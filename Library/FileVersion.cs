@@ -7,11 +7,11 @@ namespace Library
 {
     public class FileVersion
     {
-        private int Id { get; set; }
-        private string FilePath { get; set; }
-        private double VersionNumber { get; set; }
-        private DateTime TimeStamp { get; set; }
-        private User Owner { get; set; }
+        public int Id { get; set; }
+        public string FilePath { get; set; }
+        public double VersionNumber { get; set; }
+        public DateTime TimeStamp { get; set; }
+        public User Owner { get; set; }
 
         public FileVersion(string filePath, double versionNumber, User owner)
         {

@@ -8,10 +8,10 @@ namespace Library
 {
     public class Project
     {
-        private int Id { get; set; }
-        private string Title { get; set; }
-        private string Description { get; set; }
-        private string ProjectFolder { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ProjectFolder { get; set; }
         private List<User> ProjectMembers { get; set; }
         private List<User> ProjectAdministrators { get; set; }
         private List<File> ProjectFiles { get; set; }
