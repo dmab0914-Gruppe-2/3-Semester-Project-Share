@@ -8,12 +8,12 @@ namespace Library
 {
     public class File
     {
-        private int Id { get; set; }
-        private string Title { get; set; }
-        private string Description { get; set; }
-        private double VersionNr { get; set; }
-        private User FileLock { get; set; }
-        private DateTime FileLockTime { get; set; }
+        public int Id { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public double VersionNr { get; set; }
+        public User FileLock { get; set; }
+        public DateTime FileLockTime { get; set; }
         private List<FileVersion> SubFiles { get; set; }
 
         public File()

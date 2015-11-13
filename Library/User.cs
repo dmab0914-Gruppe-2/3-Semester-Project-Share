@@ -7,10 +7,10 @@ namespace Library
 {
     public class User
     {
-        private int Id { get; set; }
-        private string UserName { get; set; }
-        private string PassWord { get; set; }
-        private UserType Type { get; set; }
+        public int Id { get; set; }
+        public string UserName { get; set; }
+        public string PassWord { get; set; }
+        public UserType Type { get; set; }
 
         public User(string userName, string password, UserType type)
         {
