@@ -1,0 +1,89 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    overflow-y: -moz-scrollbars-vertical;
+    overflow-y: scroll;
+}
+
+    body a img {
+        outline: none;
+        border: none;
+    }
+
+#wrapper {
+    height: auto;
+    width: 960px;
+    margin: 25px auto;
+}
+
+header {
+    height: 100px;
+    width: 960px;
+    margin-top: -20px;
+    float: left;
+    margin-bottom: 50px;
+}
+
+    header hr {
+        float: left;
+        background-color: #6dd6ff;
+        height: 2px;
+        width: 100%;
+        box-shadow: #3d3d3d 1px 1px;
+    }
+    #logo {
+        float:left;
+    }
+    #login {
+        float: right;
+        margin-top: 20px;
+    }
+    nav {
+        float: left;
+        /*margin-right: 25px;*/
+        padding: 10px 30px 10px 0px;
+    }
+    #menu {
+        list-style: none;
+    }
+    #menu li a {
+        float: left;
+        font-family: 'Trebuchet MS';
+        color: black;
+        font-size: 22px;
+        padding: 12px;
+        padding-left: 0px;
+    }
+    #menu li a:hover {
+        text-decoration: none;
+        color: #3d3d3d;
+    }
+    #menu li.highlight a {
+        text-decoration: none;
+        color: #3d3d3d;
+    }
+    #subMenu {
+        list-style: none;
+    }
+    #subMenu li a {
+        float: left;
+        font-family: 'Trebuchet MS';
+        color: black;
+        font-size: 22px;
+        padding: 5px;
+        padding-top: 0px;
+    }
+    #subMenu li a:hover {
+        text-decoration: none;
+        color: #3d3d3d;
+    }
+    #subMenu li.highlight a {
+        text-decoration: none;
+        color: #3d3d3d;
+    }
+    #Content {
+        height: 500px;
+        width: 760px;
+        /*background-color: yellow;*/
+        float: right;
+    }
