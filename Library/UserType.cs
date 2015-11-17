@@ -2,8 +2,8 @@
 {
     public enum UserType
     {
-        Guest=0,
-        User=1,
-        Administrator=2
+        Guest=1,
+        User=2,
+        Administrator=3
     }
 }
