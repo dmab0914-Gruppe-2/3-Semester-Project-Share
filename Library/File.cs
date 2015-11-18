@@ -44,7 +44,7 @@ namespace Library
             SubFiles = new List<FileVersion>();
         }
 
-        public File(int id, string title, string description, double verionNr, User fileLock, DateTime fileLockTime)
+        public File(int id, string title, string description, int verionNr, User fileLock, DateTime fileLockTime)
         {
             Id = id;
             Title = title;
