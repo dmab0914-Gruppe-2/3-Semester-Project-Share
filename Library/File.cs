@@ -1,19 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Data.Linq.Mapping;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Library
 {
+    [Table(Name = "File")]
     public class File
     {
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
+        [Column]
         public string Title { get; set; }
+        [Column]
         public string Description { get; set; }
+        [Column]
         public int VersionNr { get; set; }
+        [Column]
         public User FileLock { get; set; }
+        [Column]
         public DateTime FileLockTime { get; set; }
+        [Column]
         private List<FileVersion> SubFiles { get; set; }
 
         public File()
