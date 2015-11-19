@@ -3,14 +3,11 @@ using System.Collections.Generic;
 using System.Data.Linq.Mapping;
 using System.Linq;
 using System.Text;
+using Library;
 
 namespace Library
 {
-<<<<<<< HEAD
-    [Table]
-=======
     [Table(Name = "User")]
->>>>>>> origin/master
     public class User
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
