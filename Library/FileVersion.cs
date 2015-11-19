@@ -13,13 +13,8 @@ namespace Library
         public int Id { get; set; }
         [Column]
         public string FilePath { get; set; }
-<<<<<<< HEAD
         [Column]
         public int VersionNumber { get; set; }
-        [Column]
-=======
-        public int VersionNumber { get; set; }
->>>>>>> refs/remotes/origin/master
         public DateTime TimeStamp { get; set; }
         [Column]
         public User Owner { get; set; }
