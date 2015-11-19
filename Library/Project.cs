@@ -42,13 +42,13 @@ namespace Library
             ProjectFiles = new List<File>();
         }
 
-        public Project(int id, string title, string description, string projectFolder, List<User> ProjectMembers, List<User> projectAdministrators, List<File> projectFiles)
+        public Project(int id, string title, string description, string projectFolder, /*List<User> ProjectMembers,*/ List<User> projectAdministrators, List<File> projectFiles)
         {
             Id = id;
             Title = title;
             Description = description;
             ProjectFolder = projectFolder;
-            ProjectMembers = ProjectMembers;
+            //ProjectMembers = ProjectMembers;
             ProjectAdministrators = projectAdministrators;
             ProjectFiles = projectFiles;
         }
