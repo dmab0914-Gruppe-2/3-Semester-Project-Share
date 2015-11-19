@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace ClientApp
 {
-    public partial class Form1 : Form
+    public partial class Form_Main : Form
     {
-        public Form1()
+        public Form_Main()
         {
             InitializeComponent();
+        }
+
+        private void button_EditFile_Click(object sender, EventArgs e)
+        {
+            Form_EditFile editfile = new Form_EditFile();
+            editfile.Enabled = true;
+            editfile.Visible = true;
         }
     }
 }
