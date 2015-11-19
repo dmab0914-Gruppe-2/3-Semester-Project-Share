@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DBJoinTables\ProjectUsers.cs" />
+    <Compile Include="Database\DbContext.cs" />
     <Compile Include="FileController.cs" />
     <Compile Include="IFileControler.cs" />
     <Compile Include="Program.cs" />
