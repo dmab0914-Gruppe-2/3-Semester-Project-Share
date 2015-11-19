@@ -11,7 +11,7 @@ namespace Library
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public double VersionNr { get; set; }
+        public int VersionNr { get; set; }
         public User FileLock { get; set; }
         public DateTime FileLockTime { get; set; }
         private List<FileVersion> SubFiles { get; set; }
@@ -44,7 +44,7 @@ namespace Library
             SubFiles = new List<FileVersion>();
         }
 
-        public File(int id, string title, string description, double verionNr, User fileLock, DateTime fileLockTime)
+        public File(int id, string title, string description, int verionNr, User fileLock, DateTime fileLockTime)
         {
             Id = id;
             Title = title;
