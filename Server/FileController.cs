@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,13 @@ namespace Server
             throw new NotImplementedException();
         }
 
-        public void UploadFile()
+        public FilePrepare ReciveFileFromClient(FilePrepare fp)
         {
-            throw new NotImplementedException();
+            FileTransfer ft = new FileTransfer();
+            string filename = @"C:\" + fp.ProjectId + @"\" + fp.FileName;
+            ft.ReceiveFile(filename);
+            fp.serverport = ft.ServerPort;            
+            return fp;
         }
 
         public void DeleteFile(int fileID)

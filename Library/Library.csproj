@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="File.cs" />
+    <Compile Include="FilePrepare.cs" />
     <Compile Include="FileTransfer.cs" />
     <Compile Include="FileVersion.cs" />
     <Compile Include="Project.cs" />

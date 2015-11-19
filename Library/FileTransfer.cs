@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Library
 {
-    public abstract class FileTransfer
+    public class FileTransfer
     {
         private static List<int> _portsInUse;
         private static int[] portRange;
@@ -33,6 +33,9 @@ namespace Library
         {
             _ipAddress = IPAddress.Parse(ipAdress);
         }
+
+
+        
 
         public void StartAcceptingClient(TcpListener srv)
         {

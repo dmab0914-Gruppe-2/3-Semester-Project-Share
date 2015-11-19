@@ -13,8 +13,10 @@ namespace Server
         List<File> AllFilesForProject(int projectID);
         List<FileVersion> AllVersionsForFile(int fileID);
         void GetFile(int fileID);
-        void UploadFile();
+        FilePrepare ReciveFileFromClient(FilePrepare fp);
         void DeleteFile(int fileID);
         void EditFile(int fileID);
+
+
     }
 }
