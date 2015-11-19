@@ -34,14 +34,11 @@ namespace Library
             _ipAddress = IPAddress.Parse(ipAdress);
         }
 
-
-        
-
         public void StartAcceptingClient(TcpListener srv)
         {
             srv.Start();
             _client = srv.AcceptTcpClient(); //Blocking call
-            Thread t = new Thread(new ThreadStart(HandleConnection)); //constantly read the stream; blocking so in a thread
+            Thread t = new Thread(new ThreadStart(HandleReceiveConnection)); //constantly read the stream; blocking so in a thread
             t.Start();
         }
 
@@ -58,7 +55,7 @@ namespace Library
             StartAcceptingClient(_server);
         }
 
-        private void HandleConnection()
+        private void HandleReceiveConnection()
         {
             while (_client.Connected)
             {
@@ -79,8 +76,9 @@ namespace Library
             //_filePath = filePath;
             ServerPort = serverPort;
             Socket connection = new Socket(SocketType.Stream, ProtocolType.Tcp);
-            _endpoint = new IPEndPoint(_ipAddress, ServerPort);
+            IPEndPoint endpoint = new IPEndPoint(_ipAddress, ServerPort);
             //string file = @"c:\temp\tis.png";
+            connection.Connect(endpoint);
             using (NetworkStream networkStream = new NetworkStream(connection))
             {
                 using (FileStream fileStream = new FileStream(filePath, FileMode.Open))
@@ -92,6 +90,15 @@ namespace Library
             connection.Close();
             Console.WriteLine("Client done sending.");
         }
+
+        //public static void ConnectToServer()
+        //{
+        //    //connection.Connect(remoteEndpoint);
+
+        //    //Thread t = new Thread(new ThreadStart(SendFile));
+        //    //t.Start();
+        //    Console.WriteLine("Thread started.");
+        //}
 
         private static void Generate_portsInUse()
         {
