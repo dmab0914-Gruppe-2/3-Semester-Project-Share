@@ -6,7 +6,11 @@ using System.Text;
 
 namespace Library
 {
+<<<<<<< HEAD
     [Table]
+=======
+    [Table(Name = "User")]
+>>>>>>> origin/master
     public class User
     {
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]

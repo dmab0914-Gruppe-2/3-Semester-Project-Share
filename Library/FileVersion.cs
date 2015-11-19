@@ -6,10 +6,17 @@ using System.Text;
 
 namespace Library
 {
+<<<<<<< HEAD
     [Table]
     public class FileVersion
     {
         [Column]
+=======
+    [Table(Name = "FileVersion")]
+    public class FileVersion
+    {
+        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+>>>>>>> origin/master
         public int Id { get; set; }
         [Column]
         public string FilePath { get; set; }

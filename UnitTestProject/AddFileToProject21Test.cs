@@ -32,7 +32,7 @@ namespace UnitTestProject
         [TestMethod]
         public void UploadFileToProject()
         {
-            string title = "Fikse filen";
+            string title = "Fiske filen";
             string description = "Generelt bare meget om fisk..";
             System.IO.File actualFile = null;
             //TODO This will have to be changed, as we have currently no idea how sending files from client to server would work..
