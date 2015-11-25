@@ -21,7 +21,7 @@ namespace Library
         [Column]
         private List<User> ProjectMembers { get; set; }
         [Column]
-        private List<User> ProjectAdministrators { get; set; }
+        public List<User> ProjectAdministrators { get; private set; }
         [Column]
         private List<File> ProjectFiles { get; set; }
 
