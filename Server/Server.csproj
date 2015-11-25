@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="Database\DbProject.cs" />
     <Compile Include="Database\IDbProject.cs" />
-    <Compile Include="DBJoinTables\ProjectUsers.cs" />
     <Compile Include="Database\DbContext.cs" />
     <Compile Include="FileController.cs" />
     <Compile Include="IFileControler.cs" />
