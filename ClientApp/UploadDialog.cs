@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClientApp.FileTransfterServices;
+using ClientApp.FileTransfterServiceRef;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;

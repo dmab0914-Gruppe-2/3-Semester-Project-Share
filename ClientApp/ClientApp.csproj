@@ -54,6 +54,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\FileTransfterServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\ProjectServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -89,6 +94,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\FileTransfterServiceRef\ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileTransfterServiceRef\ClientApp.FileTransfterServiceRef.FileMetaData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileTransfterServiceRef\ClientApp.FileTransfterServiceRef.UploadFileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileTransfterServiceRef\Message.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FileTransfterServiceRef\service.wsdl" />
+    <None Include="Service References\FileTransfterServiceRef\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FileTransfterServiceRef\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FileTransfterServiceRef\WebService.Models.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ProjectServiceReference\ClientApp.ProjectServiceReference.Project.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -113,6 +140,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FileTransfterServiceRef\" />
     <WCFMetadataStorage Include="Service References\ProjectServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +160,18 @@
       <Project>{0ed9f437-b041-4778-b248-1b7afe39a578}</Project>
       <Name>Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FileTransfterServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FileTransfterServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FileTransfterServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
