@@ -39,6 +39,29 @@ namespace Server
             //throw new NotImplementedException();
         }
 
+        public ProjectReturnType AddProject(Project project)
+        {
+            if (project.Title == null || project.Title.Equals(""))
+            {
+                return ProjectReturnType.TitleMissing;
+            }
+            else if (project.Description == null || project.Description.Equals(""))
+            {
+                return ProjectReturnType.DescriptionMissing;
+            }
+            else if (project.ProjectFolder == null || project.ProjectFolder.Equals(""))
+            {
+                return ProjectReturnType.ProjectFolderMissing;
+            }
+            else if (project.ProjectAdministrators == null || project.ProjectAdministrators.Count == 0)
+            {
+                return ProjectReturnType.ProjectAdministratorUserMissing;
+            }
+            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
+            return ProjectReturnType.Success;
+            //throw new NotImplementedException();
+        }
+
         public List<Project> GetAllProjects()
         {
             return _dbProject.GetAllProjects();
