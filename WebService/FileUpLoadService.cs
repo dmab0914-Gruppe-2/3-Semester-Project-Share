@@ -58,9 +58,9 @@ namespace WebService
         }
 
 
-        public Library.FileVersion EditFile(Library.User owner)
-        {
-            throw new NotImplementedException();
-        }
+        //public Library.FileVersion EditFile(Library.User owner)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

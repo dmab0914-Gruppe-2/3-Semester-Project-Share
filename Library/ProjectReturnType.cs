@@ -1,5 +1,6 @@
 ﻿namespace Library
 {
+
     public enum ProjectReturnType
     {
         Success = 1,

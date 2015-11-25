@@ -20,7 +20,7 @@ namespace WebService
 
         [OperationContract]
         void AddFile(string fileName, string fileDesc);
-        [OperationContract]
-        FileVersion EditFile(User owner);
+      //  [OperationContract]
+       // FileVersion EditFile(User owner);
     }
 }

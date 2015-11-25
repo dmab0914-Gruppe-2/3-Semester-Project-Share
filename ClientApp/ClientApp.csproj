@@ -59,13 +59,17 @@
     <Compile Include="ProjectAdministration.Designer.cs">
       <DependentUpon>ProjectAdministration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\FileUploadService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Service References\ProjectServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\ProjectServiceRef\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -94,6 +98,7 @@
     <EmbeddedResource Include="UploadDialog.resx">
       <DependentUpon>UploadDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Library.Project.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -141,6 +146,16 @@
     <None Include="Service References\ProjectServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ProjectServiceRef\Library.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectServiceRef\service.wsdl" />
+    <None Include="Service References\ProjectServiceRef\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectServiceRef\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -151,6 +166,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\FileUploadService\" />
     <WCFMetadataStorage Include="Service References\ProjectServiceReference\" />
+    <WCFMetadataStorage Include="Service References\ProjectServiceRef\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ProjectServiceReference\configuration91.svcinfo" />
@@ -178,6 +194,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FileUploadService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceRef\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
