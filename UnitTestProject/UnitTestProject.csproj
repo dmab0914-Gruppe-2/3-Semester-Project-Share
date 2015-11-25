@@ -52,11 +52,20 @@
   <ItemGroup>
     <Compile Include="AddFileToProject21Test.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EditFileInProject24Test.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClientApp\ClientApp.csproj">
+      <Project>{b061caf1-9041-4a8f-8d33-f88c25cd459c}</Project>
+      <Name>ClientApp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Library\Library.csproj">
       <Project>{0ED9F437-B041-4778-B248-1B7AFE39A578}</Project>
       <Name>Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Server\Server.csproj">
+      <Project>{5b295ea2-c13b-4321-9252-baf0da35d84c}</Project>
+      <Name>Server</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

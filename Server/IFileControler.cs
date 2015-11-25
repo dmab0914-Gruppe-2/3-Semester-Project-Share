@@ -10,6 +10,7 @@ namespace Server
 {
     interface IFileControler
     {
+<<<<<<< HEAD
         List<File> AllFilesForProject(int projectID);
         List<FileVersion> AllVersionsForFile(int fileID);
         void GetFile(int fileID);
@@ -18,5 +19,13 @@ namespace Server
         void EditFile(int fileID);
 
 
+=======
+        List<File> AllFilesForProject(int projectId);
+        List<FileVersion> AllVersionsForFile(int fileId);
+        File GetFile(int fileId);
+        void UploadFile();
+        void DeleteFile(int fileId);
+        void EditFile(int fileId, User owner);
+>>>>>>> refs/remotes/origin/master
     }
 }
