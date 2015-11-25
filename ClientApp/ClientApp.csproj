@@ -60,7 +60,7 @@
       <DependentUpon>ProjectAdministration.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\FileTransfterServiceRef\Reference.cs">
+    <Compile Include="Service References\FileUploadService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -103,26 +103,26 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\FileTransfterServiceRef\ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage.datasource">
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.FileDownloadReturnMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FileTransfterServiceRef\ClientApp.FileTransfterServiceRef.FileMetaData.datasource">
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.FileMetaData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FileTransfterServiceRef\ClientApp.FileTransfterServiceRef.UploadFileResponse.datasource">
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.UploadFileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FileTransfterServiceRef\Message.xsd">
+    <None Include="Service References\FileUploadService\Message.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FileTransfterServiceRef\service.wsdl" />
-    <None Include="Service References\FileTransfterServiceRef\service.xsd">
+    <None Include="Service References\FileUploadService\service.wsdl" />
+    <None Include="Service References\FileUploadService\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FileTransfterServiceRef\service1.xsd">
+    <None Include="Service References\FileUploadService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FileTransfterServiceRef\WebService.Models.xsd">
+    <None Include="Service References\FileUploadService\WebService.Models.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProjectServiceReference\ClientApp.ProjectServiceReference.Project.datasource">
@@ -149,7 +149,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\FileTransfterServiceRef\" />
+    <WCFMetadataStorage Include="Service References\FileUploadService\" />
     <WCFMetadataStorage Include="Service References\ProjectServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -171,13 +171,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\FileTransfterServiceRef\configuration91.svcinfo" />
+    <None Include="Service References\FileUploadService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\FileTransfterServiceRef\configuration.svcinfo" />
+    <None Include="Service References\FileUploadService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\FileTransfterServiceRef\Reference.svcmap">
+    <None Include="Service References\FileUploadService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

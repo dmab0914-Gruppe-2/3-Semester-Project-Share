@@ -90,7 +90,7 @@
   </wsdl:binding>
   <wsdl:service name="FileUpLoadService">
     <wsdl:port name="basicHttpStream" binding="tns:basicHttpStream">
-      <soap:address location="http://localhost:8733/Design_Time_Addresses/WebService/Service1/" />
+      <soap:address location="http://localhost:8733/Design_Time_Addresses/WebService/FileUploadService/" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using ClientApp.FileTransfterServiceRef;
+using ClientApp.FileUploadService;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -39,6 +39,7 @@ namespace ClientApp
                 lblFilePath.Text = openFileDialog1.SafeFileName;
                 fullFilePath = openFileDialog1.FileName;
                 fileToUpload = Path.GetFileName(fullFilePath);
+                txtFileName.Text = openFileDialog1.SafeFileName;
             }
         }
 
@@ -98,7 +99,7 @@ namespace ClientApp
             {
                 try
                 {
-                    client.AddFile(fileName, fileDesc);
+                    //client.AddFile(fileName, fileDesc);
                     txtDesc.Text = "";
                     txtFileName.Text = "";
                 }

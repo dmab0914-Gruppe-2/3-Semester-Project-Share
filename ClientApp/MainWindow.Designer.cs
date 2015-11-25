@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.button_ProjectAdministration = new System.Windows.Forms.Button();
             this.lblProject = new System.Windows.Forms.Label();
             this.panelCenterBottom = new System.Windows.Forms.Panel();
             this.btnUpload = new System.Windows.Forms.Button();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelCenterTop = new System.Windows.Forms.Panel();
             this.lblChat = new System.Windows.Forms.Label();
-            this.button_ProjectAdministration = new System.Windows.Forms.Button();
+            this.lwFiles = new System.Windows.Forms.ListView();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelCenterTop.SuspendLayout();
@@ -53,6 +54,16 @@
             this.panelLeft.Size = new System.Drawing.Size(235, 561);
             this.panelLeft.TabIndex = 0;
             // 
+            // button_ProjectAdministration
+            // 
+            this.button_ProjectAdministration.Location = new System.Drawing.Point(13, 77);
+            this.button_ProjectAdministration.Name = "button_ProjectAdministration";
+            this.button_ProjectAdministration.Size = new System.Drawing.Size(119, 23);
+            this.button_ProjectAdministration.TabIndex = 1;
+            this.button_ProjectAdministration.Text = "Project Administration";
+            this.button_ProjectAdministration.UseVisualStyleBackColor = true;
+            this.button_ProjectAdministration.Click += new System.EventHandler(this.button_ProjectAdministration_Click);
+            // 
             // lblProject
             // 
             this.lblProject.AutoSize = true;
@@ -68,6 +79,7 @@
             // 
             this.panelCenterBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelCenterBottom.Controls.Add(this.lwFiles);
             this.panelCenterBottom.Controls.Add(this.btnUpload);
             this.panelCenterBottom.Location = new System.Drawing.Point(241, 209);
             this.panelCenterBottom.Name = "panelCenterBottom";
@@ -76,13 +88,13 @@
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(3, 26);
+            this.btnUpload.Location = new System.Drawing.Point(12, 22);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 23);
-            this.btnUpload.TabIndex = 0;
-            this.btnUpload.Text = "Upload new file";
+            this.btnUpload.TabIndex = 2;
+            this.btnUpload.Text = "Upload file";
             this.btnUpload.UseVisualStyleBackColor = true;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.btnUpload.Click += new System.EventHandler(this.button1_Click);
             // 
             // panelRight
             // 
@@ -112,15 +124,13 @@
             this.lblChat.Text = "Chat";
             this.lblChat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // button_ProjectAdministration
+            // lwFiles
             // 
-            this.button_ProjectAdministration.Location = new System.Drawing.Point(13, 77);
-            this.button_ProjectAdministration.Name = "button_ProjectAdministration";
-            this.button_ProjectAdministration.Size = new System.Drawing.Size(119, 23);
-            this.button_ProjectAdministration.TabIndex = 1;
-            this.button_ProjectAdministration.Text = "Project Administration";
-            this.button_ProjectAdministration.UseVisualStyleBackColor = true;
-            this.button_ProjectAdministration.Click += new System.EventHandler(this.button_ProjectAdministration_Click);
+            this.lwFiles.Location = new System.Drawing.Point(12, 51);
+            this.lwFiles.Name = "lwFiles";
+            this.lwFiles.Size = new System.Drawing.Size(349, 289);
+            this.lwFiles.TabIndex = 3;
+            this.lwFiles.UseCompatibleStateImageBehavior = false;
             // 
             // MainWindow
             // 
@@ -136,6 +146,7 @@
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProjectShare";
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             this.panelCenterBottom.ResumeLayout(false);
@@ -153,8 +164,9 @@
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.Panel panelCenterTop;
         private System.Windows.Forms.Label lblChat;
-        private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Button button_ProjectAdministration;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.ListView lwFiles;
     }
 }
 

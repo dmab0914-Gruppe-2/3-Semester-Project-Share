@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClientApp.FileTransfterServiceRef {
+namespace ClientApp.FileUploadService {
     using System.Runtime.Serialization;
     using System;
     
@@ -22,7 +22,7 @@ namespace ClientApp.FileTransfterServiceRef {
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        private ClientApp.FileTransfterServiceRef.DefinedFileTypes FileTypeField;
+        private ClientApp.FileUploadService.DefinedFileTypes FileTypeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FullLocalPathField;
@@ -41,7 +41,7 @@ namespace ClientApp.FileTransfterServiceRef {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true)]
-        public ClientApp.FileTransfterServiceRef.DefinedFileTypes FileType {
+        public ClientApp.FileUploadService.DefinedFileTypes FileType {
             get {
                 return this.FileTypeField;
             }
@@ -116,22 +116,22 @@ namespace ClientApp.FileTransfterServiceRef {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FileTransfterServiceRef.IFileUpLoadService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FileUploadService.IFileUpLoadService")]
     public interface IFileUpLoadService {
         
         // CODEGEN: Generating message contract since the operation UploadFile is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/UploadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/UploadFileResponse")]
-        ClientApp.FileTransfterServiceRef.UploadFileResponse UploadFile(ClientApp.FileTransfterServiceRef.FileUploadMessage request);
+        ClientApp.FileUploadService.UploadFileResponse UploadFile(ClientApp.FileUploadService.FileUploadMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/UploadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/UploadFileResponse")]
-        System.Threading.Tasks.Task<ClientApp.FileTransfterServiceRef.UploadFileResponse> UploadFileAsync(ClientApp.FileTransfterServiceRef.FileUploadMessage request);
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> UploadFileAsync(ClientApp.FileUploadService.FileUploadMessage request);
         
         // CODEGEN: Generating message contract since the wrapper name (FileDownloadMessage) of message FileDownloadMessage does not match the default value (DownloadFile)
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/DownloadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/DownloadFileResponse")]
-        ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage DownloadFile(ClientApp.FileTransfterServiceRef.FileDownloadMessage request);
+        ClientApp.FileUploadService.FileDownloadReturnMessage DownloadFile(ClientApp.FileUploadService.FileDownloadMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/DownloadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/DownloadFileResponse")]
-        System.Threading.Tasks.Task<ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileTransfterServiceRef.FileDownloadMessage request);
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileUploadService.FileDownloadMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
         void AddFile(string fileName, string fileDesc);
@@ -147,7 +147,7 @@ namespace ClientApp.FileTransfterServiceRef {
     public partial class FileUploadMessage {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public ClientApp.FileTransfterServiceRef.FileMetaData Metadata;
+        public ClientApp.FileUploadService.FileMetaData Metadata;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         public System.IO.Stream FileByteStream;
@@ -155,7 +155,7 @@ namespace ClientApp.FileTransfterServiceRef {
         public FileUploadMessage() {
         }
         
-        public FileUploadMessage(ClientApp.FileTransfterServiceRef.FileMetaData Metadata, System.IO.Stream FileByteStream) {
+        public FileUploadMessage(ClientApp.FileUploadService.FileMetaData Metadata, System.IO.Stream FileByteStream) {
             this.Metadata = Metadata;
             this.FileByteStream = FileByteStream;
         }
@@ -178,12 +178,12 @@ namespace ClientApp.FileTransfterServiceRef {
     public partial class FileDownloadMessage {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public ClientApp.FileTransfterServiceRef.FileMetaData FileMetaData;
+        public ClientApp.FileUploadService.FileMetaData FileMetaData;
         
         public FileDownloadMessage() {
         }
         
-        public FileDownloadMessage(ClientApp.FileTransfterServiceRef.FileMetaData FileMetaData) {
+        public FileDownloadMessage(ClientApp.FileUploadService.FileMetaData FileMetaData) {
             this.FileMetaData = FileMetaData;
         }
     }
@@ -195,7 +195,7 @@ namespace ClientApp.FileTransfterServiceRef {
     public partial class FileDownloadReturnMessage {
         
         [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
-        public ClientApp.FileTransfterServiceRef.FileMetaData DownloadedFileMetadata;
+        public ClientApp.FileUploadService.FileMetaData DownloadedFileMetadata;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
         public System.IO.Stream FileByteStream;
@@ -203,19 +203,19 @@ namespace ClientApp.FileTransfterServiceRef {
         public FileDownloadReturnMessage() {
         }
         
-        public FileDownloadReturnMessage(ClientApp.FileTransfterServiceRef.FileMetaData DownloadedFileMetadata, System.IO.Stream FileByteStream) {
+        public FileDownloadReturnMessage(ClientApp.FileUploadService.FileMetaData DownloadedFileMetadata, System.IO.Stream FileByteStream) {
             this.DownloadedFileMetadata = DownloadedFileMetadata;
             this.FileByteStream = FileByteStream;
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IFileUpLoadServiceChannel : ClientApp.FileTransfterServiceRef.IFileUpLoadService, System.ServiceModel.IClientChannel {
+    public interface IFileUpLoadServiceChannel : ClientApp.FileUploadService.IFileUpLoadService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class FileUpLoadServiceClient : System.ServiceModel.ClientBase<ClientApp.FileTransfterServiceRef.IFileUpLoadService>, ClientApp.FileTransfterServiceRef.IFileUpLoadService {
+    public partial class FileUpLoadServiceClient : System.ServiceModel.ClientBase<ClientApp.FileUploadService.IFileUpLoadService>, ClientApp.FileUploadService.IFileUpLoadService {
         
         public FileUpLoadServiceClient() {
         }
@@ -237,51 +237,51 @@ namespace ClientApp.FileTransfterServiceRef {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClientApp.FileTransfterServiceRef.UploadFileResponse ClientApp.FileTransfterServiceRef.IFileUpLoadService.UploadFile(ClientApp.FileTransfterServiceRef.FileUploadMessage request) {
+        ClientApp.FileUploadService.UploadFileResponse ClientApp.FileUploadService.IFileUpLoadService.UploadFile(ClientApp.FileUploadService.FileUploadMessage request) {
             return base.Channel.UploadFile(request);
         }
         
-        public void UploadFile(ClientApp.FileTransfterServiceRef.FileMetaData Metadata, System.IO.Stream FileByteStream) {
-            ClientApp.FileTransfterServiceRef.FileUploadMessage inValue = new ClientApp.FileTransfterServiceRef.FileUploadMessage();
+        public void UploadFile(ClientApp.FileUploadService.FileMetaData Metadata, System.IO.Stream FileByteStream) {
+            ClientApp.FileUploadService.FileUploadMessage inValue = new ClientApp.FileUploadService.FileUploadMessage();
             inValue.Metadata = Metadata;
             inValue.FileByteStream = FileByteStream;
-            ClientApp.FileTransfterServiceRef.UploadFileResponse retVal = ((ClientApp.FileTransfterServiceRef.IFileUpLoadService)(this)).UploadFile(inValue);
+            ClientApp.FileUploadService.UploadFileResponse retVal = ((ClientApp.FileUploadService.IFileUpLoadService)(this)).UploadFile(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClientApp.FileTransfterServiceRef.UploadFileResponse> ClientApp.FileTransfterServiceRef.IFileUpLoadService.UploadFileAsync(ClientApp.FileTransfterServiceRef.FileUploadMessage request) {
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> ClientApp.FileUploadService.IFileUpLoadService.UploadFileAsync(ClientApp.FileUploadService.FileUploadMessage request) {
             return base.Channel.UploadFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ClientApp.FileTransfterServiceRef.UploadFileResponse> UploadFileAsync(ClientApp.FileTransfterServiceRef.FileMetaData Metadata, System.IO.Stream FileByteStream) {
-            ClientApp.FileTransfterServiceRef.FileUploadMessage inValue = new ClientApp.FileTransfterServiceRef.FileUploadMessage();
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> UploadFileAsync(ClientApp.FileUploadService.FileMetaData Metadata, System.IO.Stream FileByteStream) {
+            ClientApp.FileUploadService.FileUploadMessage inValue = new ClientApp.FileUploadService.FileUploadMessage();
             inValue.Metadata = Metadata;
             inValue.FileByteStream = FileByteStream;
-            return ((ClientApp.FileTransfterServiceRef.IFileUpLoadService)(this)).UploadFileAsync(inValue);
+            return ((ClientApp.FileUploadService.IFileUpLoadService)(this)).UploadFileAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage ClientApp.FileTransfterServiceRef.IFileUpLoadService.DownloadFile(ClientApp.FileTransfterServiceRef.FileDownloadMessage request) {
+        ClientApp.FileUploadService.FileDownloadReturnMessage ClientApp.FileUploadService.IFileUpLoadService.DownloadFile(ClientApp.FileUploadService.FileDownloadMessage request) {
             return base.Channel.DownloadFile(request);
         }
         
-        public ClientApp.FileTransfterServiceRef.FileMetaData DownloadFile(ClientApp.FileTransfterServiceRef.FileMetaData FileMetaData, out System.IO.Stream FileByteStream) {
-            ClientApp.FileTransfterServiceRef.FileDownloadMessage inValue = new ClientApp.FileTransfterServiceRef.FileDownloadMessage();
+        public ClientApp.FileUploadService.FileMetaData DownloadFile(ClientApp.FileUploadService.FileMetaData FileMetaData, out System.IO.Stream FileByteStream) {
+            ClientApp.FileUploadService.FileDownloadMessage inValue = new ClientApp.FileUploadService.FileDownloadMessage();
             inValue.FileMetaData = FileMetaData;
-            ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage retVal = ((ClientApp.FileTransfterServiceRef.IFileUpLoadService)(this)).DownloadFile(inValue);
+            ClientApp.FileUploadService.FileDownloadReturnMessage retVal = ((ClientApp.FileUploadService.IFileUpLoadService)(this)).DownloadFile(inValue);
             FileByteStream = retVal.FileByteStream;
             return retVal.DownloadedFileMetadata;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage> ClientApp.FileTransfterServiceRef.IFileUpLoadService.DownloadFileAsync(ClientApp.FileTransfterServiceRef.FileDownloadMessage request) {
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> ClientApp.FileUploadService.IFileUpLoadService.DownloadFileAsync(ClientApp.FileUploadService.FileDownloadMessage request) {
             return base.Channel.DownloadFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ClientApp.FileTransfterServiceRef.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileTransfterServiceRef.FileMetaData FileMetaData) {
-            ClientApp.FileTransfterServiceRef.FileDownloadMessage inValue = new ClientApp.FileTransfterServiceRef.FileDownloadMessage();
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileUploadService.FileMetaData FileMetaData) {
+            ClientApp.FileUploadService.FileDownloadMessage inValue = new ClientApp.FileUploadService.FileDownloadMessage();
             inValue.FileMetaData = FileMetaData;
-            return ((ClientApp.FileTransfterServiceRef.IFileUpLoadService)(this)).DownloadFileAsync(inValue);
+            return ((ClientApp.FileUploadService.IFileUpLoadService)(this)).DownloadFileAsync(inValue);
         }
         
         public void AddFile(string fileName, string fileDesc) {
