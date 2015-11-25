@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Server.DBJoinTables;
 
 namespace Library
 {
@@ -18,7 +17,8 @@ namespace Library
         public string Description { get; set; }
         [Column]
         public string ProjectFolder { get; set; }
-        [Column]
+
+        private EntitySet<ProjectUsers>[Column]
         private List<User> ProjectMembers { get; set; }
         [Column]
         private List<User> ProjectAdministrators { get; set; }
