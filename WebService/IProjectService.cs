@@ -10,7 +10,7 @@ namespace WebService
 {
 
     [ServiceContract]
-    public interface IServiceProjectController
+    public interface IProjectService
     {
         [OperationContract]
         ProjectReturnType AddProject(string title, string description, string projectFolder, User projectAdministratorUser);
