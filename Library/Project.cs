@@ -36,9 +36,9 @@ namespace Library
             get { return (from user in ProjectUsers select user.User).ToList(); }
         }
         //[Column]
-        private List<User> ProjectAdministrators { get; set; }
+        private List<User> ProjectAdministrators { get; set; } //TODO DB code
         //[Column]
-        private List<File> ProjectFiles { get; set; }
+        private List<File> ProjectFiles { get; set; } //TODO DB code
 
         public Project()
         {
