@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService", "WebService\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{0ED9F437-B041-4778-B248-1B7AFE39A578}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebKlient", "http://localhost:7290", "{AB41E856-8CF9-4EC2-8A78-C68ED1CA6D8E}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebKlient(2)", "http://localhost:7290", "{AB41E856-8CF9-4EC2-8A78-C68ED1CA6D8E}"
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
