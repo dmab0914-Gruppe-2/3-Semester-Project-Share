@@ -14,7 +14,7 @@ namespace Library
     public class ProjectUsers
     {
         [Column(IsPrimaryKey = true, Name = "userID")] private int userId;
-        private EntityRef<User> _user = new EntityRef<User>();
+        private EntityRef<User> _user;
         [Association(IsForeignKey = true, Storage = "_user", ThisKey = "userId")]
         public User User
         {
@@ -24,7 +24,7 @@ namespace Library
 
         [Column(IsPrimaryKey = true, Name = "projectID")]
         private int projectId;
-        private EntityRef<Project> _project = new EntityRef<Project>();
+        private EntityRef<Project> _project;
         [Association(IsForeignKey = true, Storage = "_project", ThisKey = "projectId")]
         public Project Project
         {

@@ -18,6 +18,9 @@ namespace Library
         [Column]
         public string ProjectFolder { get; set; }
 
+        /// <summary>
+        /// Adds project correlation to User, with ProjectUsers for all project Members.
+        /// </summary>
         private EntitySet<ProjectUsers> _projectUsers = new EntitySet<ProjectUsers>();
         [Association(Storage = "_projectUsers", OtherKey = "projectId", ThisKey = "Id")]
         internal ICollection<ProjectUsers> ProjectUsers
@@ -25,11 +28,12 @@ namespace Library
             get { return _projectUsers;}
             set { _projectUsers.Assign(value);}
         }
+        /// <summary>
+        /// Get all user members of the project.
+        /// </summary>
         public ICollection<User> ProjectMembers { 
             get { return (from user in ProjectUsers select user.User).ToList(); }
         }
-
-        //private List<User> ProjectMembers { get; set; }
         //[Column]
         private List<User> ProjectAdministrators { get; set; }
         //[Column]
