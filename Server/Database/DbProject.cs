@@ -21,11 +21,11 @@ namespace Server.Database
         Library.Project IDbProject.GetProject(int id)
         {
             throw new NotImplementedException();
-            DbContext dbContext = new DbContext();
-            if (dbContext.Projects.Where())
-            {
+            //DbContext dbContext = new DbContext();
+            //if (dbContext.Projects.Where())
+            //{
                 
-            }
+            //}
         }
 
         int IDbProject.UpdateProject(int id, string title, string description, string projectFolder, Library.User projectAdministratorUser)
