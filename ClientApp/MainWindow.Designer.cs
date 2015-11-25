@@ -32,10 +32,11 @@
             this.panelLeft = new System.Windows.Forms.Panel();
             this.lblProject = new System.Windows.Forms.Label();
             this.panelCenterBottom = new System.Windows.Forms.Panel();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelCenterTop = new System.Windows.Forms.Panel();
             this.lblChat = new System.Windows.Forms.Label();
-            this.btnUpload = new System.Windows.Forms.Button();
+            this.button_ProjectAdministration = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelCenterTop.SuspendLayout();
@@ -45,6 +46,7 @@
             // 
             this.panelLeft.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelLeft.Controls.Add(this.button_ProjectAdministration);
             this.panelLeft.Controls.Add(this.lblProject);
             this.panelLeft.Location = new System.Drawing.Point(0, 0);
             this.panelLeft.Name = "panelLeft";
@@ -71,6 +73,16 @@
             this.panelCenterBottom.Name = "panelCenterBottom";
             this.panelCenterBottom.Size = new System.Drawing.Size(373, 352);
             this.panelCenterBottom.TabIndex = 1;
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(3, 26);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 0;
+            this.btnUpload.Text = "Upload new file";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // panelRight
             // 
@@ -100,17 +112,17 @@
             this.lblChat.Text = "Chat";
             this.lblChat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnUpload
+            // button_ProjectAdministration
             // 
-            this.btnUpload.Location = new System.Drawing.Point(3, 26);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(75, 23);
-            this.btnUpload.TabIndex = 0;
-            this.btnUpload.Text = "Upload new file";
-            this.btnUpload.UseVisualStyleBackColor = true;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.button_ProjectAdministration.Location = new System.Drawing.Point(13, 77);
+            this.button_ProjectAdministration.Name = "button_ProjectAdministration";
+            this.button_ProjectAdministration.Size = new System.Drawing.Size(119, 23);
+            this.button_ProjectAdministration.TabIndex = 1;
+            this.button_ProjectAdministration.Text = "Project Administration";
+            this.button_ProjectAdministration.UseVisualStyleBackColor = true;
+            this.button_ProjectAdministration.Click += new System.EventHandler(this.button_ProjectAdministration_Click);
             // 
-            // Form1
+            // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -121,7 +133,7 @@
             this.Controls.Add(this.panelCenterBottom);
             this.Controls.Add(this.panelLeft);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ProjectShare";
             this.panelLeft.ResumeLayout(false);
@@ -142,6 +154,7 @@
         private System.Windows.Forms.Panel panelCenterTop;
         private System.Windows.Forms.Label lblChat;
         private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.Button button_ProjectAdministration;
     }
 }
 

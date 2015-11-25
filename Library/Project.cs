@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library
 {
+    #pragma warning disable 0169    // disable never used warnings for fields that are being used by LINQ
     [Table]
     public class Project
     {
@@ -18,11 +18,26 @@ namespace Library
         public string Description { get; set; }
         [Column]
         public string ProjectFolder { get; set; }
-        [Column]
-        private List<User> ProjectMembers { get; set; }
-        [Column]
+
+        /// <summary>
+        /// Adds project correlation to User, with ProjectUsers for all project Members.
+        /// </summary>
+        private EntitySet<ProjectUsers> _projectUsers = new EntitySet<ProjectUsers>();
+        [Association(Storage = "_projectUsers", OtherKey = "projectId", ThisKey = "Id")]
+        internal ICollection<ProjectUsers> ProjectUsers
+        {
+            get { return _projectUsers;}
+            set { _projectUsers.Assign(value);}
+        }
+        /// <summary>
+        /// Get all user members of the project.
+        /// </summary>
+        public ICollection<User> ProjectMembers { 
+            get { return (from user in ProjectUsers select user.User).ToList(); }
+        }
+        //[Column]
         private List<User> ProjectAdministrators { get; set; }
-        [Column]
+        //[Column]
         private List<File> ProjectFiles { get; set; }
 
         public Project()
@@ -35,7 +50,7 @@ namespace Library
             Title = title;
             Description = description;
             ProjectFolder = projectFolder;
-            ProjectMembers = ProjectMembers;
+            //ProjectMembers = ProjectMembers;
             ProjectAdministrators = new List<User> { projectAdministrator };
             ProjectFiles = new List<File>();
         }
@@ -46,7 +61,7 @@ namespace Library
             Title = title;
             Description = description;
             ProjectFolder = projectFolder;
-            ProjectMembers = ProjectMembers;
+            //ProjectMembers = ProjectMembers;
             ProjectAdministrators = new List<User> {projectAdministrator};
             ProjectFiles = new List<File>();
         }

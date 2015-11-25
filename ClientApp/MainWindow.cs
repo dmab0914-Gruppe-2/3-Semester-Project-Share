@@ -22,5 +22,12 @@ namespace ClientApp
             UploadDialog ud = new UploadDialog();
             ud.ShowDialog();
         }
+
+        private void button_ProjectAdministration_Click(object sender, EventArgs e)
+        {
+            ProjectAdministration projectAdministration = new ProjectAdministration();
+            projectAdministration.TopLevel = true;
+            projectAdministration.ShowDialog();
+        }
     }
 }
