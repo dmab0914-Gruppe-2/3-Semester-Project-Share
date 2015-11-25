@@ -132,6 +132,12 @@ namespace ClientApp.FileTransfterService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/DownloadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/DownloadFileResponse")]
         System.Threading.Tasks.Task<ClientApp.FileTransfterService.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileTransfterService.FileDownloadMessage request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
+        void AddFile(string fileName, string fileDesc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
+        System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -276,6 +282,14 @@ namespace ClientApp.FileTransfterService {
             ClientApp.FileTransfterService.FileDownloadMessage inValue = new ClientApp.FileTransfterService.FileDownloadMessage();
             inValue.FileMetaData = FileMetaData;
             return ((ClientApp.FileTransfterService.IFileUpLoadService)(this)).DownloadFileAsync(inValue);
+        }
+        
+        public void AddFile(string fileName, string fileDesc) {
+            base.Channel.AddFile(fileName, fileDesc);
+        }
+        
+        public System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc) {
+            return base.Channel.AddFileAsync(fileName, fileDesc);
         }
     }
 }

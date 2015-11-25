@@ -16,5 +16,8 @@ namespace WebService
 
         [OperationContract]
         FileDownloadReturnMessage DownloadFile(FileDownloadMessage fdm);
+
+        [OperationContract]
+        void AddFile(string fileName, string fileDesc);
     }
 }

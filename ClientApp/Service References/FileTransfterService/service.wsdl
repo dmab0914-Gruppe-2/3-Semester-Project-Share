@@ -34,6 +34,12 @@
   <wsdl:message name="FileDownloadReturnMessage_Headers">
     <wsdl:part name="DownloadedFileMetadata" element="tns:DownloadedFileMetadata" />
   </wsdl:message>
+  <wsdl:message name="IFileUpLoadService_AddFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddFile" />
+  </wsdl:message>
+  <wsdl:message name="IFileUpLoadService_AddFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="IFileUpLoadService">
     <wsdl:operation name="UploadFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/UploadFile" name="FileUploadMessage" message="tns:FileUploadMessage" />
@@ -42,6 +48,10 @@
     <wsdl:operation name="DownloadFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/DownloadFile" name="FileDownloadMessage" message="tns:FileDownloadMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/DownloadFileResponse" name="FileDownloadReturnMessage" message="tns:FileDownloadReturnMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/AddFile" message="tns:IFileUpLoadService_AddFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/AddFileResponse" message="tns:IFileUpLoadService_AddFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="basicHttpStream" type="tns:IFileUpLoadService">
@@ -65,6 +75,15 @@
       </wsdl:input>
       <wsdl:output name="FileDownloadReturnMessage">
         <soap:header message="tns:FileDownloadReturnMessage_Headers" part="DownloadedFileMetadata" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFile">
+      <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/AddFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

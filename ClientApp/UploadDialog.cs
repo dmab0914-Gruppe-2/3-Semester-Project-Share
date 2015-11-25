@@ -13,26 +13,21 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using Library;
-using ClientApp.FileCtrService;
 
 namespace ClientApp
 {
     public partial class UploadDialog : Form
     {
-        static IFile fileService = new FileClient();
-        
-
         private string fullFilePath;
         private string fileToUpload;
-
-        //private string fileName;
-        //private int projectId;
-        
+        private static FileUpLoadServiceClient client = new FileUpLoadServiceClient();
         public UploadDialog()
         {
             InitializeComponent();
+            this.tTFileName.SetToolTip(lblFileName, "Change file name if needed to project");
+            this.tTFileName.SetToolTip(txtFileName, "Change file name if needed to project");
         }
-       
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Dispose();
@@ -49,9 +44,10 @@ namespace ClientApp
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            #region File upload
             if (lblFilePath.Text.Length > 0)
             {
-                var client = new FileUpLoadServiceClient();
+                // var client = new FileUpLoadServiceClient();
                 try
                 {
                     using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
@@ -66,7 +62,7 @@ namespace ClientApp
                         client.UploadFile(fileMetaData, fileStream);
                         client.Close();
                     }
-
+                    AddFile(txtFileName.Text, txtDesc.Text);
                     lblFilePath.Text = "";
                     fullFilePath = "";
                     fileToUpload = "";
@@ -89,6 +85,32 @@ namespace ClientApp
             }
             else
                 MessageBox.Show("Come on man, you need to select a file ;)");
+            #endregion
+
+            #region add file to DB
+
+            #endregion
+        }
+
+        private void AddFile(string fileName, string fileDesc)
+        {
+            if (txtFileName.Text.Length > 0 && txtDesc.Text.Length > 3)
+            {
+                try
+                {
+                    client.AddFile(fileName, fileDesc);
+                    txtDesc.Text = "";
+                    txtFileName.Text = "";
+                }
+                catch
+                {
+                    MessageBox.Show("failed uploading your file to database. Sorry for this :(");
+                }
+            }
+            else
+            {
+                lblError.Text = "Please recheck all fields Thanks!";
+            }
         }
     }
 }

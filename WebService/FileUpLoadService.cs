@@ -8,11 +8,13 @@ using System.Configuration;
 using System.IO;
 using System.Web;
 using WebService.Models;
+using Server;
 
 namespace WebService
 {
     class FileUpLoadService : IFileUpLoadService
     {
+        private static FileController fCtr = new FileController();
         public void UploadFile(FileUploadMessage request)
         {
             // parameters validation omitted for clarity
@@ -48,6 +50,11 @@ namespace WebService
         public FileDownloadReturnMessage DownloadFile(FileDownloadMessage fdm)
         {
             throw new NotImplementedException();
+        }
+
+        public void AddFile(string fileName, string fileDesc)
+        {
+            fCtr.AddFile(fileName, fileDesc);
         }
     }
 }

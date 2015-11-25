@@ -23,16 +23,19 @@ namespace Server
         {
             throw new NotImplementedException();
         }
-
-        public FilePrepare ReciveFileFromClient(FilePrepare fp)
+        public void AddFile(string fileName, string fileDesc)
         {
-            FileTransfer ft = new FileTransfer();
-            string filename = @"C:\" + fp.ProjectId + @"\" + fp.FileName;
-            ft.ReceiveFile(filename);
-            fp.serverport = ft.ServerPort;            
-            return fp;
-        }
+            File file = new File(fileName, fileDesc);
 
+            try
+            {
+                // add to db layer
+            }
+            catch (Exception e)
+            {
+                throw new Exception("File not added to DB " + e);
+            }
+        }
         public void DeleteFile(int fileID)
         {
             throw new NotImplementedException();

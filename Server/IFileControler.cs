@@ -13,7 +13,7 @@ namespace Server
         List<File> AllFilesForProject(int projectID);
         List<FileVersion> AllVersionsForFile(int fileID);
         void GetFile(int fileID);
-        FilePrepare ReciveFileFromClient(FilePrepare fp);
+        void AddFile(string fileName, string fileDesc);
         void DeleteFile(int fileID);
         void EditFile(int fileID);
 
