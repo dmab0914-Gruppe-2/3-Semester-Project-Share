@@ -52,16 +52,14 @@
     <Compile Include="Models\FileDownloadReturnMessage.cs" />
     <Compile Include="Models\FileMetaData.cs" />
     <Compile Include="Models\FileUploadMessage.cs" />
-    <Compile Include="IServiceFileController.cs" />
-    <Compile Include="IServiceProjectController.cs" />
+    <Compile Include="IProjectService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceFileController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Compile Include="ServiceProjectController.cs" />
+    <Compile Include="ProjectService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj">
