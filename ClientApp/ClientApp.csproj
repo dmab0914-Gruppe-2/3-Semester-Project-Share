@@ -54,7 +54,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\FileTransfterService\Reference.cs">
+    <Compile Include="Service References\ProjectServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -89,26 +89,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\FileTransfterService\ClientApp.FileTransfterService.FileDownloadReturnMessage.datasource">
+    <None Include="Service References\ProjectServiceReference\ClientApp.ProjectServiceReference.Project.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FileTransfterService\ClientApp.FileTransfterService.FileMetaData.datasource">
+    <None Include="Service References\ProjectServiceReference\ClientApp.ProjectServiceReference.ProjectReturnType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FileTransfterService\ClientApp.FileTransfterService.UploadFileResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Service References\FileTransfterService\Message.xsd">
+    <None Include="Service References\ProjectServiceReference\Library.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FileTransfterService\service.wsdl" />
-    <None Include="Service References\FileTransfterService\service.xsd">
+    <None Include="Service References\ProjectServiceReference\service.wsdl" />
+    <None Include="Service References\ProjectServiceReference\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FileTransfterService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\FileTransfterService\WebService.Models.xsd">
+    <None Include="Service References\ProjectServiceReference\service1.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -118,9 +112,20 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-<<<<<<< HEAD
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\FileTransfterService\" />
+    <WCFMetadataStorage Include="Service References\ProjectServiceReference\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ProjectServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Library\Library.csproj">
@@ -128,20 +133,6 @@
       <Name>Library</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FileTransfterService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FileTransfterService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FileTransfterService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-=======
->>>>>>> refs/remotes/origin/master
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -37,15 +37,7 @@ namespace Server
         }
         public void AddFile(string fileName, string fileDesc)
         {
-<<<<<<< HEAD
             File file = new File(fileName, fileDesc);
-=======
-
-            
-            throw new NotImplementedException();
-        }
->>>>>>> refs/remotes/origin/master
-
             try
             {
                 // add to db layer
@@ -86,7 +78,9 @@ namespace Server
                     select file;
                 //dbContext.Files.Context.ExecuteQuery(query);
                 //dbContext.SubmitChanges();
-                UploadFile();
+
+
+               // UploadFile();
             }
             else
             {
