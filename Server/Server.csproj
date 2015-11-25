@@ -42,10 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DbProject.cs" />
+    <Compile Include="Database\IDbProject.cs" />
+    <Compile Include="DBJoinTables\ProjectUsers.cs" />
     <Compile Include="Database\DbContext.cs" />
     <Compile Include="FileController.cs" />
     <Compile Include="IFileControler.cs" />
+    <Compile Include="IProjectController.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="ProjectController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
