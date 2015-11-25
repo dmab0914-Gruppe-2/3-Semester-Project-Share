@@ -33,5 +33,7 @@ namespace Library
             PassWord = password;
             Type = type;
         }
+
+        public User() { }
     }
 }
