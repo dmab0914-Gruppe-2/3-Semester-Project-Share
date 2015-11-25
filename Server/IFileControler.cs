@@ -10,11 +10,12 @@ namespace Server
 {
     interface IFileControler
     {
-        List<File> AllFilesForProject(int projectId);
-        List<FileVersion> AllVersionsForFile(int fileId);
+
+        List<File> AllFilesForProject(int projectID);
+        List<FileVersion> AllVersionsForFile(int fileID);
+        void AddFile(string fileName, string fileDesc);
+        void DeleteFile(int fileID);
         File GetFile(int fileId);
-        void UploadFile();
-        void DeleteFile(int fileId);
         void EditFile(int fileId, User owner);
     }
 }

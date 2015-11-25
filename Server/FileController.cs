@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Linq;
@@ -34,14 +35,18 @@ namespace Server
                 select file;
             return query.Single();
         }
-
-        public void UploadFile()
+        public void AddFile(string fileName, string fileDesc)
         {
-
-            
-            throw new NotImplementedException();
+            File file = new File(fileName, fileDesc);
+            try
+            {
+                // add to db layer
+            }
+            catch (Exception e)
+            {
+                throw new Exception("File not added to DB " + e);
+            }
         }
-
         public void DeleteFile(int fileID)
         {
             throw new NotImplementedException();
@@ -73,7 +78,9 @@ namespace Server
                     select file;
                 //dbContext.Files.Context.ExecuteQuery(query);
                 //dbContext.SubmitChanges();
-                UploadFile();
+
+
+               // UploadFile();
             }
             else
             {
