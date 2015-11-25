@@ -13,24 +13,24 @@ namespace Library
         [Column(IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
         [Column]
-        public string UserName { get; set; }
+        public string Username { get; set; }
         [Column]
-        public string PassWord { get; set; }
-        [Column]
+        public string Password { get; set; }
+        //[Column]
         public UserType Type { get; set; }
 
-        public User(string userName, string password, UserType type)
+        public User(string username, string password, UserType type)
         {
-            UserName = userName;
-            PassWord = password;
+            Username = username;
+            Password = password;
             Type = type;
         }
 
-        public User(int id, string userName, string password, UserType type)
+        public User(int id, string username, string password, UserType type)
         {
             Id = id;
-            UserName = userName;
-            PassWord = password;
+            Username = username;
+            Password = password;
             Type = type;
         }
     }

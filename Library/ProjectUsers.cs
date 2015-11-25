@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using System.Xml;
 using Library;
 
-namespace Server.DBJoinTables
+namespace Library
 {
     [Table(Name = "ProjectUsers")]
-    internal class ProjectUsers
+    public class ProjectUsers
     {
         [Column(IsPrimaryKey = true, Name = "userID")] private int userId;
         private EntityRef<User> _user = new EntityRef<User>();

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Data.Linq.Mapping;
-using Server.DBJoinTables;
+using System.Linq;
 
 namespace Library
 {
@@ -18,11 +18,21 @@ namespace Library
         [Column]
         public string ProjectFolder { get; set; }
 
-        private EntitySet<ProjectUsers>[Column]
-        private List<User> ProjectMembers { get; set; }
-        [Column]
+        private EntitySet<ProjectUsers> _projectUsers = new EntitySet<ProjectUsers>();
+        [Association(Storage = "_projectUsers", OtherKey = "projectId", ThisKey = "Id")]
+        internal ICollection<ProjectUsers> ProjectUsers
+        {
+            get { return _projectUsers;}
+            set { _projectUsers.Assign(value);}
+        }
+        public ICollection<User> ProjectMembers { 
+            get { return (from user in ProjectUsers select user.User).ToList(); }
+        }
+
+        //private List<User> ProjectMembers { get; set; }
+        //[Column]
         private List<User> ProjectAdministrators { get; set; }
-        [Column]
+        //[Column]
         private List<File> ProjectFiles { get; set; }
 
         public Project()
@@ -35,7 +45,7 @@ namespace Library
             Title = title;
             Description = description;
             ProjectFolder = projectFolder;
-            ProjectMembers = ProjectMembers;
+            //ProjectMembers = ProjectMembers;
             ProjectAdministrators = new List<User> { projectAdministrator };
             ProjectFiles = new List<File>();
         }
@@ -46,7 +56,7 @@ namespace Library
             Title = title;
             Description = description;
             ProjectFolder = projectFolder;
-            ProjectMembers = ProjectMembers;
+            //ProjectMembers = ProjectMembers;
             ProjectAdministrators = new List<User> {projectAdministrator};
             ProjectFiles = new List<File>();
         }
