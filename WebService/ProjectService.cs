@@ -9,7 +9,7 @@ using Server;
 namespace WebService
 {
 
-    public class ServiceProjectController : IServiceProjectController
+    public class ProjectService : IProjectService
     {
         ProjectController projectController = new ProjectController();
 

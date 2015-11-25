@@ -16,8 +16,8 @@ namespace UnitTestProject
         User projectAdminUser = new User
         {
             Id = 1,
-            UserName = "arm",
-            PassWord = "1234",
+            Username = "arm",
+            Password = "1234",
             Type = UserType.Administrator
         };
 

@@ -56,5 +56,11 @@ namespace WebService
         {
             fCtr.AddFile(fileName, fileDesc);
         }
+
+
+        public Library.FileVersion EditFile(Library.User owner)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using Library;
 using WebService.Models;
 
 namespace WebService
@@ -19,5 +20,7 @@ namespace WebService
 
         [OperationContract]
         void AddFile(string fileName, string fileDesc);
+        [OperationContract]
+        FileVersion EditFile(User owner);
     }
 }

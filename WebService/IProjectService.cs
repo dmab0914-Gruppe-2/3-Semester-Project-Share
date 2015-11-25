@@ -8,12 +8,14 @@ using Library;
 
 namespace WebService
 {
-    
+
     [ServiceContract]
-    public interface IServiceFileController
+    public interface IProjectService
     {
         [OperationContract]
-        FileVersion EditFile(User owner);
-        
+        ProjectReturnType AddProject(string title, string description, string projectFolder, User projectAdministratorUser);
+
+        [OperationContract]
+        List<Project> GetAllProjects();
     }
 }
