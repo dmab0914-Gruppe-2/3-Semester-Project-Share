@@ -42,7 +42,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database\ProjectUsers.cs" />
     <Compile Include="Database\DbContext.cs" />
     <Compile Include="FileController.cs" />
     <Compile Include="IFileControler.cs" />

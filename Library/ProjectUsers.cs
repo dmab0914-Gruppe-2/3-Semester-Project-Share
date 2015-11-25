@@ -10,15 +10,17 @@ using Library;
 
 namespace Library
 {
+    #pragma warning disable 0169    // disable never used warnings for fields that are being used by LINQ
     [Table(Name = "ProjectUsers")]
     public class ProjectUsers
     {
-        [Column(IsPrimaryKey = true, Name = "userID")] private int userId;
+        [Column(IsPrimaryKey = true, Name = "userID")]
+        private int userId;
         private EntityRef<User> _user;
         [Association(IsForeignKey = true, Storage = "_user", ThisKey = "userId")]
         public User User
         {
-            get { return _user.Entity; } 
+            get { return _user.Entity; }
             set { _user.Entity = value; }
         }
 

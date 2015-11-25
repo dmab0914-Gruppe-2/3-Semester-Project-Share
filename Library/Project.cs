@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Library
 {
+    #pragma warning disable 0169    // disable never used warnings for fields that are being used by LINQ
     [Table]
     public class Project
     {
