@@ -20,7 +20,7 @@ namespace WebService
             // parameters validation omitted for clarity
             try
             {
-               // string basePath = Environment.CurrentDirectory + @"\UploadedFiles\"; // Should place the folder under webService folder in this project but not happing for Nicklas
+                // string basePath = Environment.CurrentDirectory + @"\UploadedFiles\"; // Should place the folder under webService folder in this project but not happing for Nicklas
                 string basePath = @"C:\ProjectShare\Uploads\";
                 string filenameAndPath = Path.Combine(basePath, request.Metadata.FileName);
                 if (!Directory.Exists(basePath))
@@ -50,6 +50,10 @@ namespace WebService
         public FileDownloadReturnMessage DownloadFile(FileDownloadMessage fdm)
         {
             throw new NotImplementedException();
+        }
+        public List<Library.File> GetAllFilesForProject(int projectId)
+        {
+            return fCtr.AllFilesForProject(projectId);
         }
 
         public void AddFile(string fileName, string fileDesc)

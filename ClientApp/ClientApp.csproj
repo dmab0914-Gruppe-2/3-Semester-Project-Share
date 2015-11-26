@@ -88,6 +88,7 @@
     <EmbeddedResource Include="UploadDialog.resx">
       <DependentUpon>UploadDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\Library.File.datasource" />
     <None Include="Properties\DataSources\Library.Project.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -106,6 +107,9 @@
     </None>
     <None Include="Service References\FileUploadService\ClientApp.FileUploadService.UploadFileResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileUploadService\Library.xsd">
+      <SubType>Designer</SubType>
     </None>
     <None Include="Service References\FileUploadService\Message.xsd">
       <SubType>Designer</SubType>

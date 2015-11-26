@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Library;
+using ClientApp.FileUploadService;
 
 namespace ClientApp
 {
     public partial class MainWindow : Form
     {
+        private static FileUpLoadServiceClient client = new FileUpLoadServiceClient();
         public MainWindow()
         {
             InitializeComponent();
@@ -39,9 +42,14 @@ namespace ClientApp
             lwFiles.FullRowSelect = true;
 
             lwFiles.Columns.Add("File name", 149);
-            lwFiles.Columns.Add("Description", 200);
-
-            
+            lwFiles.Columns.Add("Description", -2);
+            List<File> files = client.GetAllFilesForProject(1).ToList();
+            foreach (File f in files)
+            {
+                string[] row = { f.Title, f.Description };
+                var lwi = new ListViewItem(row);
+                lwFiles.Items.Add(lwi);
+            }
         }
     }
 }

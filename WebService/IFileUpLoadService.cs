@@ -19,6 +19,9 @@ namespace WebService
         FileDownloadReturnMessage DownloadFile(FileDownloadMessage fdm);
 
         [OperationContract]
+        List<File> GetAllFilesForProject(int projectId);
+
+        [OperationContract]
         void AddFile(string fileName, string fileDesc);
       //  [OperationContract]
        // FileVersion EditFile(User owner);

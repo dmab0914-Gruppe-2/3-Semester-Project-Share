@@ -133,6 +133,12 @@ namespace ClientApp.FileUploadService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/DownloadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/DownloadFileResponse")]
         System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileUploadService.FileDownloadMessage request);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject", ReplyAction="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse")]
+        Library.File[] GetAllFilesForProject(int projectId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject", ReplyAction="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse")]
+        System.Threading.Tasks.Task<Library.File[]> GetAllFilesForProjectAsync(int projectId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
         void AddFile(string fileName, string fileDesc);
         
@@ -282,6 +288,14 @@ namespace ClientApp.FileUploadService {
             ClientApp.FileUploadService.FileDownloadMessage inValue = new ClientApp.FileUploadService.FileDownloadMessage();
             inValue.FileMetaData = FileMetaData;
             return ((ClientApp.FileUploadService.IFileUpLoadService)(this)).DownloadFileAsync(inValue);
+        }
+        
+        public Library.File[] GetAllFilesForProject(int projectId) {
+            return base.Channel.GetAllFilesForProject(projectId);
+        }
+        
+        public System.Threading.Tasks.Task<Library.File[]> GetAllFilesForProjectAsync(int projectId) {
+            return base.Channel.GetAllFilesForProjectAsync(projectId);
         }
         
         public void AddFile(string fileName, string fileDesc) {
