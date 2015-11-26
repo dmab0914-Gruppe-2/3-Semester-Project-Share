@@ -28,9 +28,6 @@ namespace ClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //UploadFiles uf = new UploadFiles();
-            //uf.ShowDialog();
-
             UploadDialog ud = new UploadDialog();
             ud.ShowDialog();
         }
