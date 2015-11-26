@@ -23,7 +23,13 @@ namespace Server.Database
 
         public File GetFile(int fileId)
         {
-            throw new NotImplementedException();
+            DbContext dbContext = new DbContext();
+            var item = dbContext.Files.First(i => i.Id == fileId);
+            if (item != null)
+            {
+                return item;
+            }
+            return null;
         }
 
         public bool AddFIle(string fileName, string description, int versionNr, User fileLock)
