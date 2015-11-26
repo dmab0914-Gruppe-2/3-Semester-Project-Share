@@ -14,6 +14,8 @@ namespace Library
         [Column]
         public string FilePath { get; set; }
         [Column]
+        public int FileId { get; set; }
+        [Column]
         public int VersionNumber { get; set; }
         [Column]
         public DateTime TimeStamp { get; set; }
