@@ -32,8 +32,12 @@ namespace Server.Database
             return null;
         }
 
-        public bool AddFIle(string fileName, string description, int versionNr, User fileLock)
+        public bool AddFIle(File file)
         {
+            DbContext dbContext = new DbContext();
+            //dbContext.ExecuteCommand() //TODO Lock db pre write.
+            dbContext.Files.InsertOnSubmit(file);
+            dbContext.SubmitChanges();
             throw new NotImplementedException();
         }
     }
