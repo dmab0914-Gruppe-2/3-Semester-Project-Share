@@ -19,6 +19,8 @@ namespace Library
         public string Password { get; set; }
         //[Column]
         public UserType Type { get; set; }
+        [Column]
+        public string Email { get; set; }
 
         public User(string username, string password, UserType type)
         {
