@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ClientApp.ProjectServiceRef {
+namespace ClientApp.ProjectService {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProjectServiceRef.IProjectService")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ProjectService.IProjectService")]
     public interface IProjectService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/AddProject", ReplyAction="http://tempuri.org/IProjectService/AddProjectResponse")]
@@ -29,12 +29,12 @@ namespace ClientApp.ProjectServiceRef {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IProjectServiceChannel : ClientApp.ProjectServiceRef.IProjectService, System.ServiceModel.IClientChannel {
+    public interface IProjectServiceChannel : ClientApp.ProjectService.IProjectService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ProjectServiceClient : System.ServiceModel.ClientBase<ClientApp.ProjectServiceRef.IProjectService>, ClientApp.ProjectServiceRef.IProjectService {
+    public partial class ProjectServiceClient : System.ServiceModel.ClientBase<ClientApp.ProjectService.IProjectService>, ClientApp.ProjectService.IProjectService {
         
         public ProjectServiceClient() {
         }

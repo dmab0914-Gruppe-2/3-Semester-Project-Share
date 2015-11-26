@@ -28,16 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectAdministration));
             this.lblUpload = new System.Windows.Forms.Label();
-            this.projectBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.listView_Projects = new System.Windows.Forms.ListView();
-            this.label1 = new System.Windows.Forms.Label();
             this.columnHeader_Id = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUpload
@@ -49,10 +46,6 @@
             this.lblUpload.Size = new System.Drawing.Size(200, 25);
             this.lblUpload.TabIndex = 1;
             this.lblUpload.Text = "Projekt Administration";
-            // 
-            // projectBindingSource
-            // 
-            this.projectBindingSource.DataSource = typeof(ClientApp.ProjectServiceReference.Project);
             // 
             // listView_Projects
             // 
@@ -67,15 +60,6 @@
             this.listView_Projects.TabIndex = 3;
             this.listView_Projects.UseCompatibleStateImageBehavior = false;
             this.listView_Projects.View = System.Windows.Forms.View.Details;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 58);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(49, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Projekter";
             // 
             // columnHeader_Id
             // 
@@ -92,6 +76,15 @@
             this.columnHeader_Description.Text = "Description";
             this.columnHeader_Description.Width = 299;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 58);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(49, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Projekter";
+            // 
             // ProjectAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -105,7 +98,6 @@
             this.Name = "ProjectAdministration";
             this.Text = "Project Share: Projekt Administration";
             this.Load += new System.EventHandler(this.ProjectAdministration_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.projectBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,7 +106,6 @@
         #endregion
 
         private System.Windows.Forms.Label lblUpload;
-        private System.Windows.Forms.BindingSource projectBindingSource;
         private System.Windows.Forms.ListView listView_Projects;
         private System.Windows.Forms.ColumnHeader columnHeader_Id;
         private System.Windows.Forms.ColumnHeader columnHeader_Title;
