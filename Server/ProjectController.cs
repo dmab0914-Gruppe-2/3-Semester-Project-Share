@@ -53,11 +53,11 @@ namespace Server
             {
                 return ProjectReturnType.ProjectFolderMissing;
             }
-            else if (project.ProjectAdministrators == null || project.ProjectAdministrators.Count == 0)
+            else if (project.ProjectAdministrators.Count == 0)
             {
                 return ProjectReturnType.ProjectAdministratorUserMissing;
             }
-            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
+            //_dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
             return ProjectReturnType.Success;
             //throw new NotImplementedException();
         }

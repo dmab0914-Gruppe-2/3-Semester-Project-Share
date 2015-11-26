@@ -48,6 +48,7 @@ namespace UnitTestProject
         {
 
             ProjectReturnType returnValue = projectController.AddProject(title, description, projectFolder, projectAdminUser);
+            
             Assert.AreEqual(ProjectReturnType.Success, returnValue);
         }
 
@@ -79,6 +80,47 @@ namespace UnitTestProject
             ProjectReturnType returnValue = projectController.AddProject(title, description, projectFolder, null);
             Assert.AreEqual(ProjectReturnType.ProjectAdministratorUserMissing, returnValue);
         }
+        //Second method with project as input parameter
+        [TestMethod]
+        public void TestCreateProjectSuccess2()
+        {
+            Project project = new Project(id, title, description, projectFolder, projectAdminUser);
+            ProjectReturnType returnValue = projectController.AddProject(project);
+
+            Assert.AreEqual(ProjectReturnType.Success, returnValue);
+        }
+
+        [TestMethod]
+        public void TestCreateProjectFailTitle2()
+        {
+            Project project = new Project(id, null, description, projectFolder, projectAdminUser);
+            ProjectReturnType returnValue = projectController.AddProject(project);
+            Assert.AreEqual(ProjectReturnType.TitleMissing, returnValue);
+        }
+
+        [TestMethod]
+        public void TestCreateProjectFailDescription2()
+        {
+            Project project = new Project(id, title, null, projectFolder, projectAdminUser);
+            ProjectReturnType returnValue = projectController.AddProject(project);
+            Assert.AreEqual(ProjectReturnType.DescriptionMissing, returnValue);
+        }
+
+        [TestMethod]
+        public void TestCreateProjectFailProjectFolder2()
+        {
+            Project project = new Project(id, title, description, null, projectAdminUser);
+            ProjectReturnType returnValue = projectController.AddProject(project);
+            Assert.AreEqual(ProjectReturnType.ProjectFolderMissing, returnValue);
+        }
+
+        //[TestMethod]
+        //public void TestCreateProjectFailUser2()
+        //{
+        //    Project project = new Project(id, title, description, projectFolder, null);
+        //    ProjectReturnType returnValue = projectController.AddProject(project);
+        //    Assert.AreEqual(ProjectReturnType.ProjectAdministratorUserMissing, returnValue);
+        //}
 #endregion
 
 
@@ -92,5 +134,65 @@ namespace UnitTestProject
 #endregion
 
 
+#region GetProject
+
+        [TestMethod]
+        public void TestGetProjectId1()
+        {
+            Project project = projectController.GetProject(1);
+            Assert.Equals(1, project.Id);
+            Assert.Equals("World Domination", project.Title);
+            Assert.Equals("Self Explainatory", project.Description);
+            Assert.Equals(@"c:\", project.ProjectFolder);
+        }
+        [TestMethod]
+        public void TestGetProjectId2()
+        {
+            Project project = projectController.GetProject(1);
+            Assert.Equals(2, project.Id);
+            Assert.Equals("Bridge Construction", project.Title);
+            Assert.Equals("Bridge over Klisterkanalen", project.Description);
+            Assert.Equals(@"C:\Projects\BridgeConstruction", project.ProjectFolder);
+        }
+        [TestMethod]
+        public void TestGetProjectId3()
+        {
+            Project project = projectController.GetProject(1);
+            Assert.Equals(3, project.Id);
+            Assert.Equals("Recruiting", project.Title);
+            Assert.Equals("Get more members", project.Description);
+            Assert.Equals(@"C:\Projects\Recruiters", project.ProjectFolder);
+        }
+        [TestMethod]
+        public void TestGetProjectId4()
+        {
+            Project project = projectController.GetProject(1);
+            Assert.Equals(4, project.Id);
+            Assert.Equals("World Domination", project.Title);
+            Assert.Equals("Self Explainatory", project.Description);
+            Assert.Equals(@"c:\", project.ProjectFolder);
+        }
+        [TestMethod]
+        public void TestGetProjectId5()
+        {
+            Project project = projectController.GetProject(1);
+            Assert.Equals(5, project.Id);
+            Assert.Equals("World Domination", project.Title);
+            Assert.Equals("Self Explainatory", project.Description);
+            Assert.Equals(@"c:\", project.ProjectFolder);
+        }
+
+#endregion
+
+#region Updateproject
+
+
+
+#endregion
+
+
+#region DeleteProjects
+
+#endregion
     }
 }
