@@ -35,6 +35,9 @@
             this.columnHeader_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader_Description = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
+            this.button_EditParticipants = new System.Windows.Forms.Button();
+            this.listView_FilesParticipants = new System.Windows.Forms.ListView();
+            this.button_EditFiles = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblUpload
@@ -54,9 +57,9 @@
             this.columnHeader_Title,
             this.columnHeader_Description});
             this.listView_Projects.GridLines = true;
-            this.listView_Projects.Location = new System.Drawing.Point(12, 77);
+            this.listView_Projects.Location = new System.Drawing.Point(12, 74);
             this.listView_Projects.Name = "listView_Projects";
-            this.listView_Projects.Size = new System.Drawing.Size(483, 345);
+            this.listView_Projects.Size = new System.Drawing.Size(440, 345);
             this.listView_Projects.TabIndex = 3;
             this.listView_Projects.UseCompatibleStateImageBehavior = false;
             this.listView_Projects.View = System.Windows.Forms.View.Details;
@@ -74,7 +77,7 @@
             // columnHeader_Description
             // 
             this.columnHeader_Description.Text = "Description";
-            this.columnHeader_Description.Width = 299;
+            this.columnHeader_Description.Width = 256;
             // 
             // label1
             // 
@@ -85,11 +88,42 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Projekter";
             // 
+            // button_EditParticipants
+            // 
+            this.button_EditParticipants.Location = new System.Drawing.Point(12, 497);
+            this.button_EditParticipants.Name = "button_EditParticipants";
+            this.button_EditParticipants.Size = new System.Drawing.Size(108, 23);
+            this.button_EditParticipants.TabIndex = 5;
+            this.button_EditParticipants.Text = "Rediger Deltagere";
+            this.button_EditParticipants.UseVisualStyleBackColor = true;
+            this.button_EditParticipants.Click += new System.EventHandler(this.button_EditParticipants_Click);
+            // 
+            // listView_FilesParticipants
+            // 
+            this.listView_FilesParticipants.Location = new System.Drawing.Point(596, 74);
+            this.listView_FilesParticipants.Name = "listView_FilesParticipants";
+            this.listView_FilesParticipants.Size = new System.Drawing.Size(376, 345);
+            this.listView_FilesParticipants.TabIndex = 6;
+            this.listView_FilesParticipants.UseCompatibleStateImageBehavior = false;
+            // 
+            // button_EditFiles
+            // 
+            this.button_EditFiles.Location = new System.Drawing.Point(12, 526);
+            this.button_EditFiles.Name = "button_EditFiles";
+            this.button_EditFiles.Size = new System.Drawing.Size(108, 23);
+            this.button_EditFiles.TabIndex = 7;
+            this.button_EditFiles.Text = "Rediger Filer";
+            this.button_EditFiles.UseVisualStyleBackColor = true;
+            this.button_EditFiles.Click += new System.EventHandler(this.button_EditFiles_Click);
+            // 
             // ProjectAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.button_EditFiles);
+            this.Controls.Add(this.listView_FilesParticipants);
+            this.Controls.Add(this.button_EditParticipants);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView_Projects);
             this.Controls.Add(this.lblUpload);
@@ -111,5 +145,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader_Title;
         private System.Windows.Forms.ColumnHeader columnHeader_Description;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button_EditParticipants;
+        private System.Windows.Forms.ListView listView_FilesParticipants;
+        private System.Windows.Forms.Button button_EditFiles;
     }
 }
