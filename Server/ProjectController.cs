@@ -75,7 +75,8 @@ namespace Server
 
         public int DeleteProject(int id)
         {
-            return _dbProject.DeleteProject(id);
+            throw new NotImplementedException();
+            //return _dbProject.DeleteProject(id);
         }
     }
 
