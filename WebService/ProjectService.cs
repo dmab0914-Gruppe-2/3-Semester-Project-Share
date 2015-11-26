@@ -23,5 +23,21 @@ namespace WebService
         {
             return projectController.GetAllProjects();
         }
+
+
+        public Library.Project GetProject(int id)
+        {
+            return projectController.GetProject(id);
+        }
+
+        public int UpdateProject(int id, string title, string description, string projectFolder, List<Library.User> ProjectMembers, List<Library.User> projectAdministrators)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int DeleteProject(int id)
+        {
+            return projectController.DeleteProject(id);
+        }
     }
 }

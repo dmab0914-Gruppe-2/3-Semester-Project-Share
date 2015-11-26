@@ -34,6 +34,7 @@ namespace Library
         /// </summary>
         public ICollection<User> ProjectMembers { 
             get { return (from user in ProjectUsers select user.User).ToList(); }
+            private set { }
         }
         public List<User> ProjectAdministrators { get; private set; } //TODO DB code
         //[Column]
@@ -65,13 +66,13 @@ namespace Library
             ProjectFiles = new List<File>();
         }
 
-        public Project(int id, string title, string description, string projectFolder, /*List<User> ProjectMembers,*/ List<User> projectAdministrators, List<File> projectFiles)
+        public Project(int id, string title, string description, string projectFolder, List<User> ProjectMembers, List<User> projectAdministrators, List<File> projectFiles)
         {
             Id = id;
             Title = title;
             Description = description;
             ProjectFolder = projectFolder;
-            //ProjectMembers = ProjectMembers;
+            this.ProjectMembers = ProjectMembers;
             ProjectAdministrators = projectAdministrators;
             ProjectFiles = projectFiles;
         }

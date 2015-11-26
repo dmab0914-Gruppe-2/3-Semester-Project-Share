@@ -17,5 +17,14 @@ namespace WebService
 
         [OperationContract]
         List<Project> GetAllProjects();
+
+        [OperationContract]
+        Project GetProject(int id);
+
+        [OperationContract]
+        int UpdateProject(int id, string title, string description, string projectFolder, List<User> ProjectMembers, List<User> projectAdministrators);
+
+        [OperationContract]
+        int DeleteProject(int id);
     }
 }

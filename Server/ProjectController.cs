@@ -67,6 +67,16 @@ namespace Server
             return _dbProject.GetAllProjects();
         }
 
+
+        public Project GetProject(int id)
+        {
+            return _dbProject.GetProject(id);
+        }
+
+        public int DeleteProject(int id)
+        {
+            return _dbProject.DeleteProject(id);
+        }
     }
 
 }
