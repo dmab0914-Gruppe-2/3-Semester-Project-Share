@@ -26,7 +26,7 @@ namespace Server.Database
             throw new NotImplementedException();
         }
 
-        public int AddFIle(string fileName, string description, int versionNr, User fileLock)
+        public bool AddFIle(string fileName, string description, int versionNr, User fileLock)
         {
             throw new NotImplementedException();
         }

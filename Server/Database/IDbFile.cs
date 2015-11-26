@@ -11,6 +11,6 @@ namespace Server.Database
     {
         List<File> GetAllFilesForProject(int projectId);
         File GetFile(int fileId);
-        int AddFIle(string fileName, string description, int versionNr, User fileLock);
+        bool AddFIle(string fileName, string description, int versionNr, User fileLock);
     }
 }

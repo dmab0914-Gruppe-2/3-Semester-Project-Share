@@ -9,10 +9,10 @@ namespace Server.Database
 {
     interface IDbProject
     {
-        int AddProject(string title, string description, string projectFolder, User projectAdministratorUser);
-        int RemoveProject(int id);
+        bool AddProject(string title, string description, string projectFolder, User projectAdministratorUser);
+        bool RemoveProject(int id);
         Project GetProject(int id);
-        int UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser);
+        bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser);
         List<Project> GetAllProjects();
 
     }

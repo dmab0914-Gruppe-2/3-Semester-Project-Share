@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library;
 
 namespace Server.Database
 {
     class DbProject : IDbProject
     {
-        int IDbProject.AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
+        bool IDbProject.AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
         {
             throw new NotImplementedException();
         }
 
-        int IDbProject.RemoveProject(int id)
+        bool IDbProject.RemoveProject(int id)
         {
             throw new NotImplementedException();
         }
 
         Library.Project IDbProject.GetProject(int id)
         {
-            throw new NotImplementedException();
-            //DbContext dbContext = new DbContext();
-            //if (dbContext.Projects.Where())
-            //{
-                
-            //}
+            DbContext dbContext = new DbContext();
+            var item = dbContext.Projects.First(i => i.Id == id);
+            if (item != null)
+            {
+                return item;
+            }
+            return null;
         }
 
-        int IDbProject.UpdateProject(int id, string title, string description, string projectFolder, Library.User projectAdministratorUser)
+        bool IDbProject.UpdateProject(int id, string title, string description, string projectFolder, Library.User projectAdministratorUser)
         {
             throw new NotImplementedException();
         }
