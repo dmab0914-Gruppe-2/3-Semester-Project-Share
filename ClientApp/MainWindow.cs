@@ -70,21 +70,7 @@ namespace ClientApp
             lwFiles.Columns.Add("id", 20);
             lwFiles.Columns.Add("File name", 129);
             lwFiles.Columns.Add("Description", -2);
-            try
-            {
-                List<File> files = fileClient.GetAllFilesForProject(1).ToList();
-                foreach (File f in files)
-                {
-                    string[] row = { f.Id.ToString(), f.Title, f.Description };
-                    var lwi = new ListViewItem(row);
-                    lwFiles.Items.Add(lwi);
-                }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("hest :" + ex);
-            }
         }
 
         private void lwFiles_ItemActivate(object sender, EventArgs e)
@@ -101,7 +87,24 @@ namespace ClientApp
         {
             if (listView_Projects.SelectedItems.Count == 1)
             {
-                //Project activeProject = projectClient.
+                Project activeProject = projectClient.GetProject(Convert.ToInt32(listView_Projects.SelectedItems[0].Text));
+
+
+                try
+                {
+                    List<File> files = fileClient.GetAllFilesForProject(activeProject.Id).ToList();
+                    foreach (File f in files)
+                    {
+                        string[] row = { f.Id.ToString(), f.Title, f.Description };
+                        var lwi = new ListViewItem(row);
+                        lwFiles.Items.Add(lwi);
+                    }
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Fejl: " + exception);
+                }
+
             }
         }
     }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.listView_Projects = new System.Windows.Forms.ListView();
             this.button_ProjectAdministration = new System.Windows.Forms.Button();
             this.lblProject = new System.Windows.Forms.Label();
             this.panelCenterBottom = new System.Windows.Forms.Panel();
@@ -41,7 +42,6 @@
             this.lblFIleInfo = new System.Windows.Forms.Label();
             this.panelCenterTop = new System.Windows.Forms.Panel();
             this.lblChat = new System.Windows.Forms.Label();
-            this.listView_Projects = new System.Windows.Forms.ListView();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -59,6 +59,15 @@
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(235, 561);
             this.panelLeft.TabIndex = 0;
+            // 
+            // listView_Projects
+            // 
+            this.listView_Projects.Location = new System.Drawing.Point(4, 49);
+            this.listView_Projects.Name = "listView_Projects";
+            this.listView_Projects.Size = new System.Drawing.Size(228, 205);
+            this.listView_Projects.TabIndex = 2;
+            this.listView_Projects.UseCompatibleStateImageBehavior = false;
+            this.listView_Projects.ItemActivate += new System.EventHandler(this.listView_Projects_ItemActivate);
             // 
             // button_ProjectAdministration
             // 
@@ -174,15 +183,6 @@
             this.lblChat.TabIndex = 0;
             this.lblChat.Text = "Chat";
             this.lblChat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // listView_Projects
-            // 
-            this.listView_Projects.Location = new System.Drawing.Point(4, 49);
-            this.listView_Projects.Name = "listView_Projects";
-            this.listView_Projects.Size = new System.Drawing.Size(228, 205);
-            this.listView_Projects.TabIndex = 2;
-            this.listView_Projects.UseCompatibleStateImageBehavior = false;
-            this.listView_Projects.ItemActivate += new System.EventHandler(this.listView_Projects_ItemActivate);
             // 
             // MainWindow
             // 

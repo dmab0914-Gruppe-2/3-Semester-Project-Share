@@ -11,7 +11,7 @@ namespace Server.Database
 {
     class DbContext : DataContext
     {
-        public DbContext() : base("Data Source=localhost\\SQLEXPRESS;Initial Catalog=ProjectShare;Integrated Security=True")
+        public DbContext() : base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=ProjectShare;Integrated Security=True")
             //TODO Replace this is you're getting errors
         {
             

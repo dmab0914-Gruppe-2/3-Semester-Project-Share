@@ -26,6 +26,24 @@ namespace ClientApp.ProjectService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetAllProjects", ReplyAction="http://tempuri.org/IProjectService/GetAllProjectsResponse")]
         System.Threading.Tasks.Task<Library.Project[]> GetAllProjectsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetProject", ReplyAction="http://tempuri.org/IProjectService/GetProjectResponse")]
+        Library.Project GetProject(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetProject", ReplyAction="http://tempuri.org/IProjectService/GetProjectResponse")]
+        System.Threading.Tasks.Task<Library.Project> GetProjectAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/UpdateProject", ReplyAction="http://tempuri.org/IProjectService/UpdateProjectResponse")]
+        int UpdateProject(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/UpdateProject", ReplyAction="http://tempuri.org/IProjectService/UpdateProjectResponse")]
+        System.Threading.Tasks.Task<int> UpdateProjectAsync(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/DeleteProject", ReplyAction="http://tempuri.org/IProjectService/DeleteProjectResponse")]
+        int DeleteProject(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/DeleteProject", ReplyAction="http://tempuri.org/IProjectService/DeleteProjectResponse")]
+        System.Threading.Tasks.Task<int> DeleteProjectAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -69,6 +87,30 @@ namespace ClientApp.ProjectService {
         
         public System.Threading.Tasks.Task<Library.Project[]> GetAllProjectsAsync() {
             return base.Channel.GetAllProjectsAsync();
+        }
+        
+        public Library.Project GetProject(int id) {
+            return base.Channel.GetProject(id);
+        }
+        
+        public System.Threading.Tasks.Task<Library.Project> GetProjectAsync(int id) {
+            return base.Channel.GetProjectAsync(id);
+        }
+        
+        public int UpdateProject(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators) {
+            return base.Channel.UpdateProject(id, title, description, projectFolder, ProjectMembers, projectAdministrators);
+        }
+        
+        public System.Threading.Tasks.Task<int> UpdateProjectAsync(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators) {
+            return base.Channel.UpdateProjectAsync(id, title, description, projectFolder, ProjectMembers, projectAdministrators);
+        }
+        
+        public int DeleteProject(int id) {
+            return base.Channel.DeleteProject(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> DeleteProjectAsync(int id) {
+            return base.Channel.DeleteProjectAsync(id);
         }
     }
 }
