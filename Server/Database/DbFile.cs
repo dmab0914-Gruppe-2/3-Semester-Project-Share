@@ -9,14 +9,20 @@ namespace Server.Database
 {
     class DbFile : IDbFile
     {
-        DbContext dbContext = new DbContext();
         static File[] filearr = { new File { Id = 1, Title = "testFIl", Description = "awesome file", VersionNr = 1, },
                                   new File { Id = 2, Title = "doc", Description = "document file", VersionNr = 1, },
                                   new File { Id = 3, Title = "oversigt", Description = "projekt oversigt", VersionNr = 1, },
                                   new File { Id = 4, Title = "Rapport", Description = "projekt rapport", VersionNr = 1, }
                                   };
 
-        List<File> filesTest = new List<File>(filearr);
+        private List<File> filesTest;
+        private DbContext dbContext;
+        public DbFile()
+        {
+            dbContext = new DbContext();
+            filesTest = new List<File>(filearr);
+        }
+        
         public List<File> GetAllFilesForProject(int projectId)
         {
             var files = from file in dbContext.Files
