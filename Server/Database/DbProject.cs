@@ -38,7 +38,7 @@ namespace Server.Database
 
         List<Library.Project> IDbProject.GetAllProjects()
         {
-            throw new NotImplementedException();
+            return new List<Project>();
         }
     }
 }
