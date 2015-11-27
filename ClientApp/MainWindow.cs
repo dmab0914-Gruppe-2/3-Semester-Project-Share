@@ -23,7 +23,7 @@ namespace ClientApp
         private void button_ProjectAdministration_Click(object sender, EventArgs e)
         {
             ProjectAdministration projectAdministration = new ProjectAdministration();
-            projectAdministration.TopLevel = true;
+            //projectAdministration.TopLevel = true;
             projectAdministration.ShowDialog();
         }
 
