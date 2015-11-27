@@ -10,6 +10,11 @@ namespace Server
     {
         static void Main(string[] args)
         {
+            //TestDb();
+        }
+
+        static void TestDb()
+        {
             System.Console.WriteLine("Hit a button when ready..");
             System.Console.ReadLine();
             Console.WriteLine("");
