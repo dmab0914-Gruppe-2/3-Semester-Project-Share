@@ -38,7 +38,7 @@ namespace Library
         }
         public List<User> ProjectAdministrators { get; private set; } //TODO DB code
         //[Column]
-        private List<File> ProjectFiles { get; set; } //TODO DB code
+        public List<File> ProjectFiles { get; set; } //TODO DB code
 
         public Project()
         {
