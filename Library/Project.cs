@@ -10,7 +10,7 @@ namespace Library
     [Table]
     public class Project
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column(Name = "id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
         [Column]
         public string Title { get; set; }
