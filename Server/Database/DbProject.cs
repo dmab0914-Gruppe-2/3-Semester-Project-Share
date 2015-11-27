@@ -11,9 +11,11 @@ namespace Server.Database
     public class DbProject : IDbProject
     {
         private DbContext dbContext;
+        private DbFile dbFile;
         public DbProject()
         {
-             dbContext = new DbContext();
+            dbContext = new DbContext();
+            dbFile = new DbFile();
         }
 
         bool IDbProject.AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
@@ -23,7 +25,7 @@ namespace Server.Database
 
         bool IDbProject.RemoveProject(int id)
         {
-            Project project = ((IDbProject) this).GetProject(id);
+            Project project = ((IDbProject)this).GetProject(id);
             if (project != null)
             {
                 try
@@ -40,12 +42,18 @@ namespace Server.Database
             return false;
         }
 
+        /// <summary>
+        /// Get a single project from the given id, with all data filled.
+        /// </summary>
+        /// <param name="id">the project id of the project to retrieve</param>
+        /// <returns>The project with the given id if found, null if not.</returns>
         Library.Project IDbProject.GetProject(int id)
         {
-            var item = dbContext.Projects.First(i => i.Id == id);
-            if (item != null)
+            Project project = dbContext.Projects.First(i => i.Id == id);
+            if (project != null)
             {
-                return item;
+                project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
+                return project;
             }
             return null;
         }
@@ -56,6 +64,11 @@ namespace Server.Database
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Get all Projects from database. ProjectFiles, ProjectAdministrators will be empty as you might not need it atm.
+        /// Request the given project with GetProject(int id) to get the rest.
+        /// </summary>
+        /// <returns>A list of Projects from the databse with limited data.</returns>
         List<Library.Project> IDbProject.GetAllProjects()
         {
             return dbContext.Projects.ToList();
