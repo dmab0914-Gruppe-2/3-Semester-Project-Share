@@ -144,6 +144,12 @@ namespace ClientApp.FileUploadService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
         System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
+        Library.File GetFile(int fileId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
+        System.Threading.Tasks.Task<Library.File> GetFileAsync(int fileId);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -304,6 +310,14 @@ namespace ClientApp.FileUploadService {
         
         public System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc) {
             return base.Channel.AddFileAsync(fileName, fileDesc);
+        }
+        
+        public Library.File GetFile(int fileId) {
+            return base.Channel.GetFile(fileId);
+        }
+        
+        public System.Threading.Tasks.Task<Library.File> GetFileAsync(int fileId) {
+            return base.Channel.GetFileAsync(fileId);
         }
     }
 }

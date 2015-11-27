@@ -28,15 +28,7 @@ namespace Server
 
         public File GetFile(int fileID)
         {
-            ////throw new NotImplementedException();
-            ////return dbContext.Files.FirstOrDefault(x => x.Id == fileID);
-            //var query =
-            //    from file in dbFile.Files
-            //    where file.Id == fileID
-            //    select file;
-            //return query.Single();
-
-            return new Library.File();
+            return dbFile.GetFile(fileID);
         }
         public void AddFile(string fileName, string fileDesc)
         {

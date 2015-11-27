@@ -23,6 +23,8 @@ namespace WebService
 
         [OperationContract]
         void AddFile(string fileName, string fileDesc);
+        [OperationContract]
+        File GetFile(int fileId);
       //  [OperationContract]
        // FileVersion EditFile(User owner);
     }

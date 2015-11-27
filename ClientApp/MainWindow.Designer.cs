@@ -33,14 +33,17 @@
             this.button_ProjectAdministration = new System.Windows.Forms.Button();
             this.lblProject = new System.Windows.Forms.Label();
             this.panelCenterBottom = new System.Windows.Forms.Panel();
+            this.lblFIles = new System.Windows.Forms.Label();
             this.lwFiles = new System.Windows.Forms.ListView();
             this.btnUpload = new System.Windows.Forms.Button();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelCenterTop = new System.Windows.Forms.Panel();
             this.lblChat = new System.Windows.Forms.Label();
-            this.lblFIles = new System.Windows.Forms.Label();
+            this.lblFIleInfo = new System.Windows.Forms.Label();
+            this.txtFileDesc = new System.Windows.Forms.TextBox();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
+            this.panelRight.SuspendLayout();
             this.panelCenterTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,6 +91,18 @@
             this.panelCenterBottom.Size = new System.Drawing.Size(373, 352);
             this.panelCenterBottom.TabIndex = 1;
             // 
+            // lblFIles
+            // 
+            this.lblFIles.AutoSize = true;
+            this.lblFIles.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.lblFIles.Location = new System.Drawing.Point(93, 18);
+            this.lblFIles.MaximumSize = new System.Drawing.Size(270, 0);
+            this.lblFIles.MinimumSize = new System.Drawing.Size(270, 0);
+            this.lblFIles.Name = "lblFIles";
+            this.lblFIles.Size = new System.Drawing.Size(270, 25);
+            this.lblFIles.TabIndex = 4;
+            this.lblFIles.Text = "Select project to see files";
+            // 
             // lwFiles
             // 
             this.lwFiles.Location = new System.Drawing.Point(12, 51);
@@ -95,6 +110,7 @@
             this.lwFiles.Size = new System.Drawing.Size(349, 289);
             this.lwFiles.TabIndex = 3;
             this.lwFiles.UseCompatibleStateImageBehavior = false;
+            this.lwFiles.ItemActivate += new System.EventHandler(this.lwFiles_ItemActivate);
             // 
             // btnUpload
             // 
@@ -108,6 +124,8 @@
             // 
             // panelRight
             // 
+            this.panelRight.Controls.Add(this.txtFileDesc);
+            this.panelRight.Controls.Add(this.lblFIleInfo);
             this.panelRight.Location = new System.Drawing.Point(620, 0);
             this.panelRight.Name = "panelRight";
             this.panelRight.Size = new System.Drawing.Size(361, 561);
@@ -134,17 +152,26 @@
             this.lblChat.Text = "Chat";
             this.lblChat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // lblFIles
+            // lblFIleInfo
             // 
-            this.lblFIles.AutoSize = true;
-            this.lblFIles.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
-            this.lblFIles.Location = new System.Drawing.Point(93, 18);
-            this.lblFIles.MaximumSize = new System.Drawing.Size(270, 0);
-            this.lblFIles.MinimumSize = new System.Drawing.Size(270, 0);
-            this.lblFIles.Name = "lblFIles";
-            this.lblFIles.Size = new System.Drawing.Size(270, 25);
-            this.lblFIles.TabIndex = 4;
-            this.lblFIles.Text = "Select project to see files";
+            this.lblFIleInfo.AutoSize = true;
+            this.lblFIleInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 32F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Pixel, ((byte)(0)));
+            this.lblFIleInfo.Location = new System.Drawing.Point(75, 9);
+            this.lblFIleInfo.Name = "lblFIleInfo";
+            this.lblFIleInfo.Size = new System.Drawing.Size(138, 37);
+            this.lblFIleInfo.TabIndex = 1;
+            this.lblFIleInfo.Text = "File info";
+            this.lblFIleInfo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // txtFileDesc
+            // 
+            this.txtFileDesc.Location = new System.Drawing.Point(12, 49);
+            this.txtFileDesc.Multiline = true;
+            this.txtFileDesc.Name = "txtFileDesc";
+            this.txtFileDesc.ReadOnly = true;
+            this.txtFileDesc.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtFileDesc.Size = new System.Drawing.Size(330, 75);
+            this.txtFileDesc.TabIndex = 2;
             // 
             // MainWindow
             // 
@@ -165,6 +192,8 @@
             this.panelLeft.PerformLayout();
             this.panelCenterBottom.ResumeLayout(false);
             this.panelCenterBottom.PerformLayout();
+            this.panelRight.ResumeLayout(false);
+            this.panelRight.PerformLayout();
             this.panelCenterTop.ResumeLayout(false);
             this.panelCenterTop.PerformLayout();
             this.ResumeLayout(false);
@@ -183,6 +212,8 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.ListView lwFiles;
         private System.Windows.Forms.Label lblFIles;
+        private System.Windows.Forms.Label lblFIleInfo;
+        private System.Windows.Forms.TextBox txtFileDesc;
     }
 }
 

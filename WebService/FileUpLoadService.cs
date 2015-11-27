@@ -60,7 +60,10 @@ namespace WebService
         {
             fCtr.AddFile(fileName, fileDesc);
         }
-
+        public Library.File GetFile(int fileId)
+        {
+            return fCtr.GetFile(fileId);
+        }
 
         //public Library.FileVersion EditFile(Library.User owner)
         //{

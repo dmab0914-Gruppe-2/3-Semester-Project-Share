@@ -47,6 +47,12 @@
   <wsdl:message name="IFileUpLoadService_AddFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:AddFileResponse" />
   </wsdl:message>
+  <wsdl:message name="IFileUpLoadService_GetFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFile" />
+  </wsdl:message>
+  <wsdl:message name="IFileUpLoadService_GetFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  </wsdl:message>
   <wsdl:portType name="IFileUpLoadService">
     <wsdl:operation name="UploadFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/UploadFile" name="FileUploadMessage" message="tns:FileUploadMessage" />
@@ -63,6 +69,10 @@
     <wsdl:operation name="AddFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/AddFile" message="tns:IFileUpLoadService_AddFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/AddFileResponse" message="tns:IFileUpLoadService_AddFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/GetFile" message="tns:IFileUpLoadService_GetFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/GetFileResponse" message="tns:IFileUpLoadService_GetFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="basicHttpStream" type="tns:IFileUpLoadService">
@@ -100,6 +110,15 @@
     </wsdl:operation>
     <wsdl:operation name="AddFile">
       <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/AddFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFile">
+      <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/GetFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
