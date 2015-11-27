@@ -14,6 +14,16 @@ namespace Library
     [Table(Name = "ProjectUsers")]
     public class ProjectUsers
     {
+        [Column(IsPrimaryKey = true, Name = "projectID")]
+        private int projectId;
+        private EntityRef<Project> _project;
+        [Association(IsForeignKey = true, Storage = "_project", ThisKey = "projectId")]
+        public Project Project
+        {
+            get { return _project.Entity; }
+            set { _project.Entity = value; }
+        }
+
         [Column(IsPrimaryKey = true, Name = "userID")]
         private int userId;
         private EntityRef<User> _user;
@@ -24,14 +34,7 @@ namespace Library
             set { _user.Entity = value; }
         }
 
-        [Column(IsPrimaryKey = true, Name = "projectID")]
-        private int projectId;
-        private EntityRef<Project> _project;
-        [Association(IsForeignKey = true, Storage = "_project", ThisKey = "projectId")]
-        public Project Project
-        {
-            get { return _project.Entity; }
-            set { _project.Entity = value; }
-        }
+        [Column(IsPrimaryKey = false, Name = "userTypeID")]
+        public UserType UserType { get; set; }
     }
 }

@@ -53,6 +53,7 @@ namespace Server.Database
             if (project != null)
             {
                 project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
+                project.ProjectAdministrators = GetProjectAdministrators(project.Id);
                 return project;
             }
             return null;
@@ -72,6 +73,14 @@ namespace Server.Database
         List<Library.Project> IDbProject.GetAllProjects()
         {
             return dbContext.Projects.ToList();
+        }
+
+        private List<User> GetProjectAdministrators(int id) //TODO test db code.
+        {
+            var users = from user in dbContext.ProjectUsers
+                where user.Project.Id.Equals(id) && user.UserType.Equals(UserType.Administrator)
+                select user.User;
+            return users.ToList();
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Library
         public string Password { get; set; }
         [Column]
         public string Salt { get; set; }
-        //[Column]
+        [Column]
         public UserType Type { get; set; }
         [Column]
         public string Email { get; set; }
