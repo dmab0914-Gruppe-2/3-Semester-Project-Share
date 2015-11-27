@@ -87,23 +87,38 @@ namespace ClientApp
         {
             if (listView_Projects.SelectedItems.Count == 1)
             {
-                Project activeProject = projectClient.GetProject(Convert.ToInt32(listView_Projects.SelectedItems[0].Text));
-
 
                 try
                 {
-                    List<File> files = fileClient.GetAllFilesForProject(activeProject.Id).ToList();
-                    foreach (File f in files)
+                    Project activeProject = projectClient.GetProject(Convert.ToInt32(listView_Projects.SelectedItems[0].Text));
+                    List<File> files = activeProject.ProjectFiles;
+                    foreach (File file in files)
                     {
-                        string[] row = { f.Id.ToString(), f.Title, f.Description };
-                        var lwi = new ListViewItem(row);
+                        string[] row = {file.Id.ToString(), file.Title, file.Description};
+                        ListViewItem lwi = new ListViewItem(row);
                         lwFiles.Items.Add(lwi);
                     }
                 }
-                catch (Exception exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Fejl: " + exception);
+                    MessageBox.Show("Fejl: " + ex.Message);
                 }
+
+
+                //try
+                //{
+                //    List<File> files = fileClient.GetAllFilesForProject(activeProject.Id).ToList();
+                //    foreach (File f in files)
+                //    {
+                //        string[] row = { f.Id.ToString(), f.Title, f.Description };
+                //        var lwi = new ListViewItem(row);
+                //        lwFiles.Items.Add(lwi);
+                //    }
+                //}
+                //catch (Exception exception)
+                //{
+                //    MessageBox.Show("Fejl: " + exception);
+                //}
 
             }
         }
