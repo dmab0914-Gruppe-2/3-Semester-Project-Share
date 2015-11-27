@@ -19,15 +19,15 @@ namespace Library
         [Column]
         public int VersionNr { get; set; }
         [Column]
-        public User FileLock { get; set; }
+        public int FileLock { get; set; }
         [Column]
         public DateTime FileLockTime { get; set; }
-        [Column]
+        
         private List<FileVersion> SubFiles { get; set; }
 
         public File()
         {
-            FileLock = null;
+            FileLock = 0;
             FileLockTime = DateTime.Now;
             SubFiles = new List<FileVersion>();
         }
@@ -37,7 +37,7 @@ namespace Library
             Title = title;
             Description = description;
             VersionNr = 1;
-            FileLock = null;
+            FileLock = 0;
             FileLockTime = DateTime.Now;
             SubFiles = new List<FileVersion>();
         }
@@ -48,12 +48,12 @@ namespace Library
             Title = title;
             Description = description;
             VersionNr = 1;
-            FileLock = null;
+            FileLock = 0;
             FileLockTime = DateTime.Now;
             SubFiles = new List<FileVersion>();
         }
 
-        public File(int id, string title, string description, int verionNr, User fileLock, DateTime fileLockTime)
+        public File(int id, string title, string description, int verionNr, int fileLock, DateTime fileLockTime)
         {
             Id = id;
             Title = title;

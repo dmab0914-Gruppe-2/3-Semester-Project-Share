@@ -19,30 +19,11 @@ namespace Server.Database
         List<File> filesTest = new List<File>(filearr);
         public List<File> GetAllFilesForProject(int projectId)
         {
-            //var res = from f in dbContext.Files
-            //          join fv in dbContext.FileVersions on f.Id equals fv.FileId
-            //          join pf in dbContext.ProjectFiles on f.Id equals pf.fileId
-            //          where pf.projectId = projectId
-            //          select new List<File> { Title = f.Title, Description = f.Description };
-
-            //var files = dbContext.Files.Join(dbContext.FileVersions,
-            //                                  file => file.Id,
-            //                                  fileversion => fileversion.FileId,
-            //                                  (file, fileversion) => file);
-
             var files = from file in dbContext.Files
                         from projectfiles in dbContext.ProjectFiles
-
-
                         where (file.Id == projectfiles.File.Id) && (projectfiles.Project.Id == projectId)
                         select file;
-          //  var fesf = dbContext.ProjectFiles.All(i => i.)
-
-            //var filesforProject = dbContext.Files.Join(File, file => file.Id, Fil);
-
-
-         //   var item = dbContext.Files.All(i => i.Id == projectId);
-            return files.ToList();
+             return files.ToList();
         }
 
         public File GetFile(int fileId)

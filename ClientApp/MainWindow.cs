@@ -40,21 +40,21 @@ namespace ClientApp
 
             lwFiles.Columns.Add("File name", 149);
             lwFiles.Columns.Add("Description", -2);
-            //try
-            //{
-            //    List<File> files = client.GetAllFilesForProject(1).ToList();
-            //    foreach (File f in files)
-            //    {
-            //        string[] row = { f.Title, f.Description };
-            //        var lwi = new ListViewItem(row);
-            //        lwFiles.Items.Add(lwi);
-            //    }
+            try
+            {
+                List<File> files = client.GetAllFilesForProject(1).ToList();
+                foreach (File f in files)
+                {
+                    string[] row = { f.Title, f.Description };
+                    var lwi = new ListViewItem(row);
+                    lwFiles.Items.Add(lwi);
+                }
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("hest :" + ex);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("hest :" + ex);
+            }
         }
     }
 }
