@@ -29,7 +29,11 @@ namespace Server.Database
                         from projectfiles in dbContext.ProjectFiles
                         where (file.Id == projectfiles.File.Id) && (projectfiles.Project.Id == projectId)
                         select file;
-             return files.ToList();
+            if (files != null)
+            {
+                return files.ToList();
+            }
+            return null;
         }
 
         public File GetFile(int fileId)
@@ -44,10 +48,17 @@ namespace Server.Database
 
         public bool AddFIle(File file)
         {
-            //dbContext.ExecuteCommand() //TODO Lock db pre write.
-            dbContext.Files.InsertOnSubmit(file);
-            dbContext.SubmitChanges();
-            return true;
+            try
+            {
+                //dbContext.ExecuteCommand() //TODO Lock db pre write.
+                dbContext.Files.InsertOnSubmit(file);
+                dbContext.SubmitChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

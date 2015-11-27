@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Library;
 using Server.Database;
+using System.Transactions;
 
 namespace Server
 {
@@ -15,11 +16,13 @@ namespace Server
     {
         private DbContext dbContext;
         private DbFile dbFile;
+        private DbFileVersion dbFileVersion;
 
         public FileController()
         {
             dbContext = new DbContext();
             dbFile = new DbFile();
+            dbFileVersion = new DbFileVersion();
         }
         public List<File> AllFilesForProject(int projectID)
         {
@@ -39,9 +42,32 @@ namespace Server
         public void AddFile(string fileName, string fileDesc)
         {
             File file = new File(fileName, fileDesc);
+            User owner = new Library.User();
+            owner.Id = 1;
             try
             {
-                // add to db layer
+                file.FileLock = 1;
+                file.FileLockTime = DateTime.Now;
+                file.VersionNr = 1;
+                // lock tables before start
+                // 1st add file to db with DbFiles
+                // create fileversion WITH FILE ID and max version nr +1
+                // add fileVersion to db with DbFileVersion
+                // submit and unlock
+                var option = new TransactionOptions();
+                option.IsolationLevel = IsolationLevel.ReadCommitted;
+                option.Timeout = TimeSpan.FromSeconds(30);
+
+                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                 {
+                     dbFile.AddFIle(file);
+
+                     FileVersion fv = new FileVersion(file.Id.ToString(), file, file.VersionNr, owner);
+
+                     dbFileVersion.AddFileVersion(fv);
+
+                     scope.Complete();
+                 }
             }
             catch (Exception e)
             {

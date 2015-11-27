@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,9 +45,11 @@
   <ItemGroup>
     <Compile Include="Database\DbFile.cs" />
     <Compile Include="Database\DbProject.cs" />
+    <Compile Include="Database\DbFileVersion.cs" />
     <Compile Include="Database\IDbFile.cs" />
     <Compile Include="Database\IDbProject.cs" />
     <Compile Include="Database\DbContext.cs" />
+    <Compile Include="Database\IDbFileVersion.cs" />
     <Compile Include="FileController.cs" />
     <Compile Include="IFileControler.cs" />
     <Compile Include="IProjectController.cs" />

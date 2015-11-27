@@ -89,7 +89,14 @@ namespace ClientApp
             #endregion
 
             #region add file to DB
-
+            //try
+            //{
+            //    client.AddFile(txtFileName.Text, txtDesc.Text);
+            //}
+            //catch (Exception dbAddE)
+            //{
+            //    MessageBox.Show("Files not added to databse, we had an Error " + dbAddE);
+            //}
             #endregion
         }
 
@@ -99,13 +106,13 @@ namespace ClientApp
             {
                 try
                 {
-                    //client.AddFile(fileName, fileDesc);
+                    client.AddFile(fileName, fileDesc);
                     txtDesc.Text = "";
                     txtFileName.Text = "";
                 }
-                catch
+                catch (Exception hest)
                 {
-                    MessageBox.Show("failed uploading your file to database. Sorry for this :(");
+                    MessageBox.Show("failed uploading your file to database. Sorry for this :( \n " + hest);
                 }
             }
             else
