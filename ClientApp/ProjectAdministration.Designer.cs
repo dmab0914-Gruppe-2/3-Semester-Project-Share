@@ -43,7 +43,7 @@
             this.textBox_ProjektId = new System.Windows.Forms.TextBox();
             this.textBox_Title = new System.Windows.Forms.TextBox();
             this.label_Title = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox_Description = new System.Windows.Forms.TextBox();
             this.label_Description = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -70,6 +70,7 @@
             this.listView_Projects.TabIndex = 3;
             this.listView_Projects.UseCompatibleStateImageBehavior = false;
             this.listView_Projects.View = System.Windows.Forms.View.Details;
+            this.listView_Projects.ItemActivate += new System.EventHandler(this.listView_Projects_ItemActivate);
             // 
             // columnHeader_Id
             // 
@@ -152,7 +153,7 @@
             // 
             this.textBox_Title.Location = new System.Drawing.Point(593, 102);
             this.textBox_Title.Name = "textBox_Title";
-            this.textBox_Title.Size = new System.Drawing.Size(100, 20);
+            this.textBox_Title.Size = new System.Drawing.Size(229, 20);
             this.textBox_Title.TabIndex = 11;
             // 
             // label_Title
@@ -164,12 +165,12 @@
             this.label_Title.TabIndex = 12;
             this.label_Title.Text = "Titel";
             // 
-            // textBox1
+            // textBox_Description
             // 
-            this.textBox1.Location = new System.Drawing.Point(593, 129);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 13;
+            this.textBox_Description.Location = new System.Drawing.Point(593, 129);
+            this.textBox_Description.Name = "textBox_Description";
+            this.textBox_Description.Size = new System.Drawing.Size(229, 20);
+            this.textBox_Description.TabIndex = 13;
             // 
             // label_Description
             // 
@@ -186,7 +187,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
             this.Controls.Add(this.label_Description);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBox_Description);
             this.Controls.Add(this.label_Title);
             this.Controls.Add(this.textBox_Title);
             this.Controls.Add(this.textBox_ProjektId);
@@ -224,7 +225,7 @@
         private System.Windows.Forms.TextBox textBox_ProjektId;
         private System.Windows.Forms.TextBox textBox_Title;
         private System.Windows.Forms.Label label_Title;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox_Description;
         private System.Windows.Forms.Label label_Description;
     }
 }

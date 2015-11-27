@@ -14,6 +14,7 @@ namespace ClientApp
 {
     public partial class ProjectAdministration : Form
     {
+        private Project activeProject;
         ProjectService.IProjectService projectService = new ProjectServiceClient();
         public ProjectAdministration()
         {
@@ -39,22 +40,41 @@ namespace ClientApp
 
             label_MembersProject.Visible = false;
 
+            //Set visibility
+            label_ProjektId.Visible = false;
+            label_Title.Visible = false;
+            label_Description.Visible = false;
+            textBox_ProjektId.Visible = false;
+            textBox_Title.Visible = false;
+            textBox_Description.Visible = false;
+
+            //Editable
+            textBox_ProjektId.ReadOnly = true;
+
             //Add data to project table
-            //Project[] projects = projectService.GetAllProjects();
-            //foreach (Project project in projects)
-            //{
-            //    string id = project.Id.ToString();
-            //    string name = project.Title;
-            //    string description = project.Description;
-            //    string[] lwiStrings = {id, name, description};
-            //    ListViewItem lwi = new ListViewItem(lwiStrings);
-            //    listView_Projects.Items.Add(lwi);
-            //}
+            Project[] projects = projectService.GetAllProjects();
+            foreach (Project project in projects)
+            {
+                string id = project.Id.ToString();
+                string name = project.Title;
+                string description = project.Description;
+                string[] lwiStrings = { id, name, description };
+                ListViewItem lwi = new ListViewItem(lwiStrings);
+                listView_Projects.Items.Add(lwi);
+            }
 
         }
 
         private void button_EditParticipants_Click(object sender, EventArgs e)
         {
+            //Visibility
+            label_ProjektId.Visible = false;
+            label_Title.Visible = false;
+            label_Description.Visible = false;
+            textBox_ProjektId.Visible = false;
+            textBox_Title.Visible = false;
+            textBox_Description.Visible = false;
+
             //label_MembersProject settings
             label_MembersProject.Visible = true;
             label_MembersProject.Text = "Projekt Medlemmer";
@@ -75,9 +95,54 @@ namespace ClientApp
 
         private void button_EditProject_Click(object sender, EventArgs e)
         {
+            //Edit visibility
+            label_ProjektId.Visible = true;
+            label_Title.Visible = true;
+            label_Description.Visible = true;
+            textBox_ProjektId.Visible = true;
+            textBox_Title.Visible = true;
+            textBox_Description.Visible = true;
             //label_MembersProject settings
             label_MembersProject.Visible = true;
             label_MembersProject.Text = "Projekt indstillinger";
+            listView_FilesParticipants.Visible = false;
+           
+
+
+        }
+
+        private void listView_Projects_ItemActivate(object sender, EventArgs e)
+        {
+            string projectnumber = listView_Projects.SelectedItems[0].Text;
+            activeProject = projectService.GetProject(Convert.ToInt32(projectnumber));
+
+            //Users put into listview, starting with Admins
+            List<User> projectAdmin = activeProject.ProjectAdministrators;
+            //if (projectAdmin.Count != 0)
+            //{
+            //foreach (User user in projectAdmin)
+            //{
+            //    string[] row = { user.Username, user.Email, "Administrator" };
+            //    ListViewItem lwi = new ListViewItem(row);
+            //    listView_FilesParticipants.Items.Add(lwi);
+            //}
+            //}
+            List<User> projectUsers = activeProject.ProjectMembers.ToList();
+            if (projectUsers.Count != 0)
+            {
+                foreach (User user in projectUsers)
+                {
+                    string[] row = { user.Username, user.Email, "Member" };
+                    ListViewItem lwi = new ListViewItem(row);
+                    listView_FilesParticipants.Items.Add(lwi);
+                }
+            }
+
+
+            textBox_ProjektId.Text = activeProject.Id.ToString();
+            textBox_Description.Text = activeProject.Description;
+            textBox_Title.Text = activeProject.Title;
+
 
 
         }
