@@ -100,9 +100,9 @@
             // 
             // listView_FilesParticipants
             // 
-            this.listView_FilesParticipants.Location = new System.Drawing.Point(596, 74);
+            this.listView_FilesParticipants.Location = new System.Drawing.Point(532, 74);
             this.listView_FilesParticipants.Name = "listView_FilesParticipants";
-            this.listView_FilesParticipants.Size = new System.Drawing.Size(376, 345);
+            this.listView_FilesParticipants.Size = new System.Drawing.Size(440, 345);
             this.listView_FilesParticipants.TabIndex = 6;
             this.listView_FilesParticipants.UseCompatibleStateImageBehavior = false;
             // 

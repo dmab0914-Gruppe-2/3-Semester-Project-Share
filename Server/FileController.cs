@@ -13,8 +13,14 @@ namespace Server
 {
     public class FileController : IFileControler
     {
-        private DbContext dbContext = new DbContext();
-        private DbFile dbFile = new DbFile();
+        private DbContext dbContext;
+        private DbFile dbFile;
+
+        public FileController()
+        {
+            dbContext = new DbContext();
+            dbFile = new DbFile();
+        }
         public List<File> AllFilesForProject(int projectID)
         {
             return dbFile.GetAllFilesForProject(projectID);
