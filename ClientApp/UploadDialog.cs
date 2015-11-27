@@ -68,15 +68,15 @@ namespace ClientApp
                     fullFilePath = "";
                     fileToUpload = "";
                 }
-                catch (IOException)
+                catch (IOException ioException)
                 {
                     // throw new FileTransferProxyException("Unable to open the file to upload");
-                    MessageBox.Show("File error!");
+                    MessageBox.Show("File error!" + ioException);
                 }
                 catch (Exception ex)
                 {
                     //throw new FileTransferProxyException(e.Message);
-                    MessageBox.Show("Error in upload, please try again. If this continue contact administrator :(");
+                    MessageBox.Show("Error in upload, please try again. If this continue contact administrator :(" + ex);
                 }
                 finally
                 {
