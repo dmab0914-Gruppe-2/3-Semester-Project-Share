@@ -65,7 +65,7 @@
             </header>
             <nav>
                 <ul id="menu">
-                    <li><a href="../Default.aspx">Projects</a></li>
+                    <li><a href="../Projects.aspx">Projects</a></li>
                     <li><a href="../Chat.aspx">Chat</a></li>
                     <ul id="subMenu">
                         <li><a href="../Chat.aspx">Project</a></li>

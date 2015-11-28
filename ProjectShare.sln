@@ -34,6 +34,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebKlient(2)", "http://loca
 		Release.AspNetCompiler.Debug = "False"
 		SlnRelativePath = "WebKlient\"
 	EndProjectSection
+	ProjectSection(ProjectDependencies) = postProject
+		{4C369F7D-79D8-4080-961C-49D36E4F0DE9} = {4C369F7D-79D8-4080-961C-49D36E4F0DE9}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{E55B1542-671B-48B8-BE44-F856CFEFB604}"
 EndProject
