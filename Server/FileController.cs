@@ -32,7 +32,7 @@ namespace Server
         public List<FileVersion> AllVersionsForFile(int fileID)
         {
             throw new NotImplementedException();
-            
+
         }
 
         public File GetFile(int fileID)
@@ -42,32 +42,27 @@ namespace Server
         public void AddFile(string fileName, string fileDesc)
         {
             File file = new File(fileName, fileDesc);
-            User owner = new Library.User();
-            owner.Id = 1;
+            User owner = new Library.User(1);
             try
             {
                 file.FileLock = 1;
                 file.FileLockTime = DateTime.Now;
                 file.VersionNr = 1;
-                // lock tables before start
-                // 1st add file to db with DbFiles
-                // create fileversion WITH FILE ID and max version nr +1
-                // add fileVersion to db with DbFileVersion
-                // submit and unlock
                 var option = new TransactionOptions();
                 option.IsolationLevel = IsolationLevel.ReadCommitted;
-                option.Timeout = TimeSpan.FromSeconds(30);
 
-                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
-                 {
-                     dbFile.AddFIle(file);
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                {
 
-                     FileVersion fv = new FileVersion(file.Id.ToString(), file, file.VersionNr, owner);
 
-                     dbFileVersion.AddFileVersion(fv);
+                    bool f = dbFile.AddFIle(file);
+                    FileVersion fv = new FileVersion(file.Id.ToString(), file, file.VersionNr, owner);
 
-                     scope.Complete();
-                 }
+                    bool version = dbFileVersion.AddFileVersion(fv);
+
+                    if (version && f)
+                        scope.Complete();
+                }
             }
             catch (Exception e)
             {
@@ -113,8 +108,8 @@ namespace Server
             //{
             //    throw new NotImplementedException();
             //}
-            
-            
+
+
         }
     }
 }

@@ -39,6 +39,14 @@ namespace Library
             Type = type;
         }
 
-        public User() { }
+        public User() 
+        { 
+        }
+
+        public User (int id)
+        {
+            //// THIS IS ONLY FOR TESTING ADD FILE ( NEED A USER WITH AN ID THATS WHY )
+            Id = id;
+        }
     }
 }

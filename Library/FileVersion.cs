@@ -15,13 +15,17 @@ namespace Library
         public string FilePath { get; set; }
         [Column]
         public int FileId { get; set; }
-        [Column]
+        [Column(Name = "versionNr")]
         public int VersionNumber { get; set; }
-        [Column]
+        [Column(Name = "registeredTime")]
         public DateTime TimeStamp { get; set; }
         [Column]
         public int Owner { get; set; }
 
+        public FileVersion()
+        {
+            TimeStamp = DateTime.Now;
+        }
         public FileVersion(string filePath, int versionNumber, User owner)
         {
             FilePath = filePath;

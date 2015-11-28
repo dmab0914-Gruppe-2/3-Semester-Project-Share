@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FileUpLoadService.cs" />
+    <Compile Include="IFileService.cs" />
     <Compile Include="IFileUpLoadService.cs" />
     <Compile Include="Models\DefinedFileTypes.cs" />
     <Compile Include="Models\FileDownloadMessage.cs" />

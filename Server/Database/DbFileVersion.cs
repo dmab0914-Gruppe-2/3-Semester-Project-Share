@@ -48,6 +48,7 @@ namespace Server.Database
             }
             catch (Exception e)
             {
+                Console.WriteLine("fejl: " + e);
                 return false;
             }
         }

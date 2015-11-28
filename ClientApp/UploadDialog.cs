@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClientApp.FileUploadService;
+using ClientApp.addFileService;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -21,6 +22,7 @@ namespace ClientApp
         private string fullFilePath;
         private string fileToUpload;
         private static FileUpLoadServiceClient client = new FileUpLoadServiceClient();
+        private static FileServiceClient fac = new FileServiceClient();
         public UploadDialog()
         {
             InitializeComponent();
@@ -45,10 +47,8 @@ namespace ClientApp
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            #region File upload
             if (lblFilePath.Text.Length > 0)
             {
-                // var client = new FileUpLoadServiceClient();
                 try
                 {
                     using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
@@ -64,9 +64,6 @@ namespace ClientApp
                         client.Close();
                     }
                     AddFile(txtFileName.Text, txtDesc.Text);
-                    lblFilePath.Text = "";
-                    fullFilePath = "";
-                    fileToUpload = "";
                 }
                 catch (IOException ioException)
                 {
@@ -80,24 +77,12 @@ namespace ClientApp
                 }
                 finally
                 {
-                    // this.proxy.AbortProxyIfNeeded(this.service);
-                    // MessageBox.Show("This went really bad :( contact administrator for help!");
+                    lblError.Text = "File uploaded";
                 }
             }
             else
                 MessageBox.Show("Come on man, you need to select a file ;)");
-            #endregion
 
-            #region add file to DB
-            //try
-            //{
-            //    client.AddFile(txtFileName.Text, txtDesc.Text);
-            //}
-            //catch (Exception dbAddE)
-            //{
-            //    MessageBox.Show("Files not added to databse, we had an Error " + dbAddE);
-            //}
-            #endregion
         }
 
         private void AddFile(string fileName, string fileDesc)
@@ -106,9 +91,10 @@ namespace ClientApp
             {
                 try
                 {
-                    client.AddFile(fileName, fileDesc);
-                    txtDesc.Text = "";
+                    fac.AddFile(fileName, fileDesc);
+                    lblFilePath.Text = "";
                     txtFileName.Text = "";
+                    txtDesc.Text = "";                    
                 }
                 catch (Exception hest)
                 {
