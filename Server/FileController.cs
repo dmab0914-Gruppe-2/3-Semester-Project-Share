@@ -53,14 +53,10 @@ namespace Server
 
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
                 {
-
-
                     bool f = dbFile.AddFIle(file);
                     FileVersion fv = new FileVersion(file.Id.ToString(), file, file.VersionNr, owner);
 
                     bool version = dbFileVersion.AddFileVersion(fv);
-
-                    //TODO Add file to project ??
 
                     if (version && f)
                         scope.Complete();

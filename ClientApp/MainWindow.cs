@@ -23,6 +23,7 @@ namespace ClientApp
         {
             InitializeComponent();
             btnUpload.Visible = false;
+            btnRefreshFiles.Visible = false;
         }
         private void button_ProjectAdministration_Click(object sender, EventArgs e)
         {
@@ -33,7 +34,7 @@ namespace ClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
             if (project.Id != 0)
             {
                 UploadDialog ud = new UploadDialog(project);
@@ -60,7 +61,7 @@ namespace ClientApp
                 List<Project> projects = projectClient.GetAllProjects().ToList();
                 foreach (Project project in projects)
                 {
-                    string[] row = {project.Id.ToString(), project.Title, project.Description};
+                    string[] row = { project.Id.ToString(), project.Title, project.Description };
                     ListViewItem listViewItem = new ListViewItem(row);
                     listView_Projects.Items.Add(listViewItem);
                 }
@@ -100,17 +101,19 @@ namespace ClientApp
 
                 try
                 {
+                    lwFiles.Items.Clear();
                     Project activeProject = projectClient.GetProject(Convert.ToInt32(listView_Projects.SelectedItems[0].Text));
                     List<File> files = activeProject.ProjectFiles;
                     foreach (File file in files)
                     {
-                        string[] row = {file.Id.ToString(), file.Title, file.Description};
+                        string[] row = { file.Id.ToString(), file.Title, file.Description };
                         ListViewItem lwi = new ListViewItem(row);
                         lwFiles.Items.Add(lwi);
                     }
                     lblFIles.Text = activeProject.Title;
                     project = activeProject;
                     btnUpload.Visible = true;
+                    btnRefreshFiles.Visible = true;
                 }
                 catch (Exception ex)
                 {
@@ -133,6 +136,37 @@ namespace ClientApp
                 //    MessageBox.Show("Fejl: " + exception);
                 //}
 
+            }
+            else
+            {
+                MessageBox.Show("Select a project");
+            }
+        }
+
+        private void btnRefreshFiles_Click(object sender, EventArgs e)
+        {
+            if (listView_Projects.SelectedItems.Count == 1)
+            {
+
+                try
+                {
+                    lwFiles.Items.Clear();
+                    Project activeProject = projectClient.GetProject(Convert.ToInt32(listView_Projects.SelectedItems[0].Text));
+                    List<File> files = activeProject.ProjectFiles;
+                    foreach (File file in files)
+                    {
+                        string[] row = { file.Id.ToString(), file.Title, file.Description };
+                        ListViewItem lwi = new ListViewItem(row);
+                        lwFiles.Items.Add(lwi);
+                    }
+                    lblFIles.Text = activeProject.Title;
+                    project = activeProject;
+                    btnUpload.Visible = true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Fejl: " + ex.Message);
+                }
             }
         }
     }

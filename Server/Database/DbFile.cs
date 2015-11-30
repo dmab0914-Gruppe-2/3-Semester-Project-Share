@@ -26,7 +26,7 @@ namespace Server.Database
         public List<File> GetAllFilesForProject(int projectId)
         {
             var files = from file in dbContext.Files
-                        where (file.Project.Id == projectId)
+                        where (file.Project == projectId)
                         select file;
             if (files != null)
             {

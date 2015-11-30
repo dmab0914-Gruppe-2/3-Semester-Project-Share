@@ -42,6 +42,7 @@
             this.lblFIleInfo = new System.Windows.Forms.Label();
             this.panelCenterTop = new System.Windows.Forms.Panel();
             this.lblChat = new System.Windows.Forms.Label();
+            this.btnRefreshFiles = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -94,6 +95,7 @@
             // 
             this.panelCenterBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelCenterBottom.Controls.Add(this.btnRefreshFiles);
             this.panelCenterBottom.Controls.Add(this.lblFIles);
             this.panelCenterBottom.Controls.Add(this.lwFiles);
             this.panelCenterBottom.Controls.Add(this.btnUpload);
@@ -116,9 +118,9 @@
             // 
             // lwFiles
             // 
-            this.lwFiles.Location = new System.Drawing.Point(12, 51);
+            this.lwFiles.Location = new System.Drawing.Point(12, 82);
             this.lwFiles.Name = "lwFiles";
-            this.lwFiles.Size = new System.Drawing.Size(349, 289);
+            this.lwFiles.Size = new System.Drawing.Size(349, 258);
             this.lwFiles.TabIndex = 3;
             this.lwFiles.UseCompatibleStateImageBehavior = false;
             this.lwFiles.ItemActivate += new System.EventHandler(this.lwFiles_ItemActivate);
@@ -184,6 +186,16 @@
             this.lblChat.Text = "Chat";
             this.lblChat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnRefreshFiles
+            // 
+            this.btnRefreshFiles.Location = new System.Drawing.Point(12, 51);
+            this.btnRefreshFiles.Name = "btnRefreshFiles";
+            this.btnRefreshFiles.Size = new System.Drawing.Size(114, 23);
+            this.btnRefreshFiles.TabIndex = 2;
+            this.btnRefreshFiles.Text = "Refresh Files";
+            this.btnRefreshFiles.UseVisualStyleBackColor = true;
+            this.btnRefreshFiles.Click += new System.EventHandler(this.btnRefreshFiles_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +238,7 @@
         private System.Windows.Forms.Label lblFIleInfo;
         private System.Windows.Forms.TextBox txtFileDesc;
         private System.Windows.Forms.ListView listView_Projects;
+        private System.Windows.Forms.Button btnRefreshFiles;
     }
 }
 

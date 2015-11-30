@@ -22,23 +22,25 @@ namespace Library
         public int FileLock { get; set; }
         [Column]
         public DateTime FileLockTime { get; set; }
+        [Column(Name = "projectID")]
+        public int Project { get; set; }
 
-        [Column(Name = "projectID")] private int _projectId;
-        private EntityRef<Project> _project = new EntityRef<Project>();
-        [Association(IsForeignKey = true, Storage = "_project", ThisKey = "_projectId")]
-        public Project Project
-        {
-            get { return _project.Entity; }
-            set { _project.Entity = value; }
-        }
-        
-        private List<FileVersion> SubFiles { get; set; }
+        //[Column(Name = "projectID")] private int _projectId;
+        //private EntityRef<Project> _project = new EntityRef<Project>();
+        //[Association(IsForeignKey = true, Storage = "_project", ThisKey = "_projectId")]
+        //public Project Project
+        //{
+        //    get { return _project.Entity; }
+        //    set { _project.Entity.Id = value.Id; }
+        //}
+
+        //private List<FileVersion> SubFiles { get; set; }
 
         public File()
         {
             FileLock = 0;
             FileLockTime = DateTime.Now;
-            SubFiles = new List<FileVersion>();
+            //SubFiles = new List<FileVersion>();
         }
 
         public File(string title, string description, Project project)
@@ -48,11 +50,11 @@ namespace Library
             VersionNr = 1;
             FileLock = 0;
             FileLockTime = DateTime.Now;
-            SubFiles = new List<FileVersion>();
-            Project = project;
+            //   SubFiles = new List<FileVersion>();
+            Project = project.Id;
         }
 
-        public File(int id, string title, string description)
+        public File(int id, string title, string description, Project project)
         {
             Id = id;
             Title = title;
@@ -60,10 +62,11 @@ namespace Library
             VersionNr = 1;
             FileLock = 0;
             FileLockTime = DateTime.Now;
-            SubFiles = new List<FileVersion>();
+            // SubFiles = new List<FileVersion>();
+            Project = project.Id;
         }
 
-        public File(int id, string title, string description, int verionNr, int fileLock, DateTime fileLockTime)
+        public File(int id, string title, string description, int verionNr, int fileLock, DateTime fileLockTime, Project project)
         {
             Id = id;
             Title = title;
@@ -71,7 +74,8 @@ namespace Library
             VersionNr = verionNr;
             FileLock = fileLock;
             FileLockTime = fileLockTime;
-            SubFiles = new List<FileVersion>();
+            // SubFiles = new List<FileVersion>();
+            Project = project.Id;
         }
     }
 }
