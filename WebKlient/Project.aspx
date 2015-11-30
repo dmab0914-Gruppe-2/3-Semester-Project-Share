@@ -8,6 +8,8 @@
     <asp:Repeater ID="Repeater1" runat="server" DataSourceID="ObjectDataSource2">
         <ItemTemplate>
             <h1><%# DataBinder.Eval(Container.DataItem, "Title") %></h1>
+            <hr />
+            <p><%# DataBinder.Eval(Container.DataItem, "description") %></p>
         </ItemTemplate>
     </asp:Repeater>
 

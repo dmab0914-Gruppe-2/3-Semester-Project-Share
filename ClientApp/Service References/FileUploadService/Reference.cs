@@ -140,10 +140,10 @@ namespace ClientApp.FileUploadService {
         System.Threading.Tasks.Task<Library.File[]> GetAllFilesForProjectAsync(int projectId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
-        void AddFile(string fileName, string fileDesc);
+        void AddFile(string fileName, string fileDesc, int projectId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
-        System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc);
+        System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc, int projectId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
         Library.File GetFile(int fileId);
@@ -304,12 +304,12 @@ namespace ClientApp.FileUploadService {
             return base.Channel.GetAllFilesForProjectAsync(projectId);
         }
         
-        public void AddFile(string fileName, string fileDesc) {
-            base.Channel.AddFile(fileName, fileDesc);
+        public void AddFile(string fileName, string fileDesc, int projectId) {
+            base.Channel.AddFile(fileName, fileDesc, projectId);
         }
         
-        public System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc) {
-            return base.Channel.AddFileAsync(fileName, fileDesc);
+        public System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc, int projectId) {
+            return base.Channel.AddFileAsync(fileName, fileDesc, projectId);
         }
         
         public Library.File GetFile(int fileId) {

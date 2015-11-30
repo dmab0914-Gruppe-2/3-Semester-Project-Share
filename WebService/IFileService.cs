@@ -12,7 +12,7 @@ namespace WebService
     interface IFileService
     {
         [OperationContract]
-        void AddFile(string fileName, string fileDesc);
+        void AddFile(string fileName, string fileDesc, int projectId);
 
     }
 }

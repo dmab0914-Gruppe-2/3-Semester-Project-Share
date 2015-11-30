@@ -39,7 +39,7 @@ namespace Server
         {
             return dbFile.GetFile(fileID);
         }
-        public void AddFile(string fileName, string fileDesc)
+        public void AddFile(string fileName, string fileDesc, int projectId)
         {
             File file = new File(fileName, fileDesc);
             User owner = new Library.User(1);
@@ -60,6 +60,8 @@ namespace Server
 
                     bool version = dbFileVersion.AddFileVersion(fv);
 
+                    //TODO Add file to project ??
+
                     if (version && f)
                         scope.Complete();
                 }
@@ -71,6 +73,7 @@ namespace Server
         }
         public void DeleteFile(int fileID)
         {
+            // remeber to use transaction to make sure file is delete every where or no where !
             throw new NotImplementedException();
             //dbContext.
         }

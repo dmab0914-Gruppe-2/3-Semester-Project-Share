@@ -18,9 +18,11 @@ namespace ClientApp
         private static FileUpLoadServiceClient fileClient = new FileUpLoadServiceClient();
         private static IProjectService projectClient = new ProjectServiceClient();
         //private File activeFile = new File();
+        private int projectId = 0;
         public MainWindow()
         {
             InitializeComponent();
+            btnUpload.Visible = false;
         }
         private void button_ProjectAdministration_Click(object sender, EventArgs e)
         {
@@ -31,8 +33,16 @@ namespace ClientApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UploadDialog ud = new UploadDialog();
-            ud.ShowDialog();
+            
+            if (projectId != 0)
+            {
+                UploadDialog ud = new UploadDialog(projectId);
+                ud.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("select a project please!");
+            }
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -98,6 +108,9 @@ namespace ClientApp
                         ListViewItem lwi = new ListViewItem(row);
                         lwFiles.Items.Add(lwi);
                     }
+                    lblFIles.Text = activeProject.Title;
+                    projectId = activeProject.Id;
+                    btnUpload.Visible = true;
                 }
                 catch (Exception ex)
                 {

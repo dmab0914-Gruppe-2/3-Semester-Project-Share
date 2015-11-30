@@ -32,14 +32,5 @@ namespace Library
             get { return _file.Entity; }
             set { _file.Entity = value; }
         }
-        //[Column(IsPrimaryKey = true, Name = "fileID")]
-        //private int fileId;
-        //private EntityRef<File> _file;
-        //[Association(IsForeignKey = true, Storage = "_file", ThisKey = "fileId")]
-        //public File file
-        //{
-        //    get { return _file.Entity; }
-        //    set { _file.Entity = value; }
-        //}
     }
 }

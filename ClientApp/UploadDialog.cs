@@ -23,11 +23,13 @@ namespace ClientApp
         private string fileToUpload;
         private static FileUpLoadServiceClient client = new FileUpLoadServiceClient();
         private static FileServiceClient fac = new FileServiceClient();
-        public UploadDialog()
+        private int projectId;
+        public UploadDialog(int projectId)
         {
             InitializeComponent();
             this.tTFileName.SetToolTip(lblFileName, "Change file name if needed to project");
             this.tTFileName.SetToolTip(txtFileName, "Change file name if needed to project");
+            this.projectId = projectId;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -91,7 +93,8 @@ namespace ClientApp
             {
                 try
                 {
-                    fac.AddFile(fileName, fileDesc);
+                    fac.AddFile(fileName, fileDesc, projectId);
+                    
                     lblFilePath.Text = "";
                     txtFileName.Text = "";
                     txtDesc.Text = "";                    

@@ -16,10 +16,10 @@ namespace ClientApp.addFileService {
     public interface IFileService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/AddFile", ReplyAction="http://tempuri.org/IFileService/AddFileResponse")]
-        void AddFile(string fileName, string fileDesc);
+        void AddFile(string fileName, string fileDesc, int projectId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/AddFile", ReplyAction="http://tempuri.org/IFileService/AddFileResponse")]
-        System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc);
+        System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc, int projectId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +49,12 @@ namespace ClientApp.addFileService {
                 base(binding, remoteAddress) {
         }
         
-        public void AddFile(string fileName, string fileDesc) {
-            base.Channel.AddFile(fileName, fileDesc);
+        public void AddFile(string fileName, string fileDesc, int projectId) {
+            base.Channel.AddFile(fileName, fileDesc, projectId);
         }
         
-        public System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc) {
-            return base.Channel.AddFileAsync(fileName, fileDesc);
+        public System.Threading.Tasks.Task AddFileAsync(string fileName, string fileDesc, int projectId) {
+            return base.Channel.AddFileAsync(fileName, fileDesc, projectId);
         }
     }
 }

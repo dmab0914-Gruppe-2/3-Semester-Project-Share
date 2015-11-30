@@ -22,7 +22,7 @@ namespace WebService
         List<File> GetAllFilesForProject(int projectId);
 
         [OperationContract]
-        void AddFile(string fileName, string fileDesc);
+        void AddFile(string fileName, string fileDesc, int projectId);
         [OperationContract]
         File GetFile(int fileId);
       //  [OperationContract]

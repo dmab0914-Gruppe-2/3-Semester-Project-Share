@@ -10,9 +10,9 @@ namespace WebService
     class FileService:IFileService
     {
         private static FileController fCtr = new FileController();
-        public void AddFile(string fileName, string fileDesc)
+        public void AddFile(string fileName, string fileDesc, int projectId)
         {
-            fCtr.AddFile(fileName, fileDesc);
+            fCtr.AddFile(fileName, fileDesc, projectId);
         }
     }
 }
