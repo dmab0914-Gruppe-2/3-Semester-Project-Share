@@ -41,7 +41,7 @@ namespace Library
             SubFiles = new List<FileVersion>();
         }
 
-        public File(string title, string description)
+        public File(string title, string description, Project project)
         {
             Title = title;
             Description = description;
@@ -49,6 +49,7 @@ namespace Library
             FileLock = 0;
             FileLockTime = DateTime.Now;
             SubFiles = new List<FileVersion>();
+            Project = project;
         }
 
         public File(int id, string title, string description)

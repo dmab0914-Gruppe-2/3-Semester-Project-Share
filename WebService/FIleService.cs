@@ -1,4 +1,5 @@
-﻿using Server;
+﻿using Library;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace WebService
     class FileService:IFileService
     {
         private static FileController fCtr = new FileController();
-        public void AddFile(string fileName, string fileDesc, int projectId)
+        public void AddFile(string fileName, string fileDesc, Project project)
         {
-            fCtr.AddFile(fileName, fileDesc, projectId);
+            fCtr.AddFile(fileName, fileDesc, project);
         }
     }
 }

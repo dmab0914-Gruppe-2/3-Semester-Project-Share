@@ -39,9 +39,9 @@ namespace Server
         {
             return dbFile.GetFile(fileID);
         }
-        public void AddFile(string fileName, string fileDesc, int projectId)
+        public void AddFile(string fileName, string fileDesc, Project project)
         {
-            File file = new File(fileName, fileDesc);
+            File file = new File(fileName, fileDesc, project);
             User owner = new Library.User(1);
             try
             {

@@ -21,8 +21,8 @@ namespace WebService
         [OperationContract]
         List<File> GetAllFilesForProject(int projectId);
 
-        [OperationContract]
-        void AddFile(string fileName, string fileDesc, int projectId);
+        //[OperationContract]
+        //void AddFile(string fileName, string fileDesc, int projectId);
         [OperationContract]
         File GetFile(int fileId);
       //  [OperationContract]
