@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data.Linq;
 using System.Data.Linq.Mapping;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Library
 {
+#pragma warning disable 0169        // disable never used warnings for fields that are being used by LINQ
+
     [Table(Name = "File")]
     public class File
     {
@@ -22,6 +22,15 @@ namespace Library
         public int FileLock { get; set; }
         [Column]
         public DateTime FileLockTime { get; set; }
+
+        [Column(Name = "projectID")] private int _projectId;
+        private EntityRef<Project> _project = new EntityRef<Project>();
+        [Association(IsForeignKey = true, Storage = "_project", ThisKey = "_projectId")]
+        public Project Project
+        {
+            get { return _project.Entity; }
+            set { _project.Entity = value; }
+        }
         
         private List<FileVersion> SubFiles { get; set; }
 
