@@ -45,6 +45,8 @@
             this.label_Title = new System.Windows.Forms.Label();
             this.textBox_Description = new System.Windows.Forms.TextBox();
             this.label_Description = new System.Windows.Forms.Label();
+            this.button_Save = new System.Windows.Forms.Button();
+            this.button_FindUser = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblUpload
@@ -181,11 +183,33 @@
             this.label_Description.TabIndex = 14;
             this.label_Description.Text = "Beskrivelse";
             // 
+            // button_Save
+            // 
+            this.button_Save.Location = new System.Drawing.Point(897, 526);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(75, 23);
+            this.button_Save.TabIndex = 15;
+            this.button_Save.Text = "Gem";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
+            // 
+            // button_FindUser
+            // 
+            this.button_FindUser.Location = new System.Drawing.Point(897, 497);
+            this.button_FindUser.Name = "button_FindUser";
+            this.button_FindUser.Size = new System.Drawing.Size(75, 23);
+            this.button_FindUser.TabIndex = 16;
+            this.button_FindUser.Text = "Find bruger";
+            this.button_FindUser.UseVisualStyleBackColor = true;
+            this.button_FindUser.Click += new System.EventHandler(this.button_FindUser_Click);
+            // 
             // ProjectAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.button_FindUser);
+            this.Controls.Add(this.button_Save);
             this.Controls.Add(this.label_Description);
             this.Controls.Add(this.textBox_Description);
             this.Controls.Add(this.label_Title);
@@ -227,5 +251,7 @@
         private System.Windows.Forms.Label label_Title;
         private System.Windows.Forms.TextBox textBox_Description;
         private System.Windows.Forms.Label label_Description;
+        private System.Windows.Forms.Button button_Save;
+        private System.Windows.Forms.Button button_FindUser;
     }
 }

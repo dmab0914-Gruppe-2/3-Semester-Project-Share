@@ -12,6 +12,7 @@
       <xs:element minOccurs="0" name="FileLock" type="xs:int" />
       <xs:element minOccurs="0" name="FileLockTime" type="xs:dateTime" />
       <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Project" type="xs:int" />
       <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="VersionNr" type="xs:int" />
     </xs:sequence>

@@ -47,6 +47,8 @@ namespace ClientApp
             textBox_ProjektId.Visible = false;
             textBox_Title.Visible = false;
             textBox_Description.Visible = false;
+            button_Save.Visible = false;
+            button_FindUser.Visible = false;
 
             //Editable
             textBox_ProjektId.ReadOnly = true;
@@ -74,6 +76,8 @@ namespace ClientApp
             textBox_ProjektId.Visible = false;
             textBox_Title.Visible = false;
             textBox_Description.Visible = false;
+            button_FindUser.Visible = true;
+            button_Save.Visible = true;
 
             //label_MembersProject settings
             label_MembersProject.Visible = true;
@@ -91,6 +95,8 @@ namespace ClientApp
             listView_FilesParticipants.Columns.Add("Role", -2);
 
 
+
+
         }
 
         private void button_EditProject_Click(object sender, EventArgs e)
@@ -102,11 +108,13 @@ namespace ClientApp
             textBox_ProjektId.Visible = true;
             textBox_Title.Visible = true;
             textBox_Description.Visible = true;
+            button_Save.Visible = true;
+            button_FindUser.Visible = false;
             //label_MembersProject settings
             label_MembersProject.Visible = true;
             label_MembersProject.Text = "Projekt indstillinger";
             listView_FilesParticipants.Visible = false;
-           
+
 
 
         }
@@ -115,18 +123,23 @@ namespace ClientApp
         {
             string projectnumber = listView_Projects.SelectedItems[0].Text;
             activeProject = projectService.GetProject(Convert.ToInt32(projectnumber));
+            foreach (ListViewItem listViewItem in listView_FilesParticipants.Items)
+            {
+                listViewItem.Remove();
+            }
 
             //Users put into listview, starting with Admins
             List<User> projectAdmin = activeProject.ProjectAdministrators;
-            //if (projectAdmin.Count != 0)
-            //{
-            //foreach (User user in projectAdmin)
-            //{
-            //    string[] row = { user.Username, user.Email, "Administrator" };
-            //    ListViewItem lwi = new ListViewItem(row);
-            //    listView_FilesParticipants.Items.Add(lwi);
-            //}
-            //}
+            if (projectAdmin.Count != 0)
+            {
+                foreach (User user in projectAdmin)
+                {
+                    string[] row = { user.Username, user.Email, "Administrator" };
+                    ListViewItem lwi = new ListViewItem(row);
+                    listView_FilesParticipants.Items.Add(lwi);
+                }
+            }
+
             List<User> projectUsers = activeProject.ProjectMembers.ToList();
             if (projectUsers.Count != 0)
             {
@@ -145,6 +158,52 @@ namespace ClientApp
 
 
 
+        }
+
+        private void button_Save_Click(object sender, EventArgs e)
+        {
+            bool accepted = false;
+            if (listView_Projects.SelectedItems.Count == 1)
+            {
+                DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil gemme disse ændringer?", "Gem ændringer for projekt", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    if (textBox_Title.Text.Equals(""))
+                    {
+                        MessageBox.Show("Titel kan ikke være tom!");
+                        accepted = false;
+                    }else if (textBox_Description.Text.Equals(""))
+                    {
+                        MessageBox.Show("Beskrivelse kan ikke være tom");
+                        accepted = false;
+                    }
+                    else
+                    {
+                        accepted = true;
+                    }
+
+                    if (accepted)
+                    {
+                        int projectId = Convert.ToInt32(textBox_ProjektId.Text);
+                        //TODO Uncomment when ready after project users have been modified
+                        //Project project = new Project(projectId, textBox_Title.Text, textBox_Description.Text, new User("", "", UserType.Administrator));
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    MessageBox.Show("Du valgte nej");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vælg venligst et projekt først");
+            }
+        }
+
+        private void button_FindUser_Click(object sender, EventArgs e)
+        {
+            Form_FindUsers findusers = new Form_FindUsers();
+            findusers.ShowDialog();
         }
 
 

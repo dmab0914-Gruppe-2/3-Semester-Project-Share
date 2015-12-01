@@ -22,9 +22,21 @@ namespace WebService
         Project GetProject(int id);
 
         [OperationContract]
-        int UpdateProject(int id, string title, string description, string projectFolder, List<User> ProjectMembers, List<User> projectAdministrators);
+        bool UpdateProject(int id, string title, string description, string projectFolder);
 
         [OperationContract]
-        int DeleteProject(int id);
+        bool DeleteProject(int id);
+
+        [OperationContract]
+        bool AddUserToProject(int projectId, User user);
+        [OperationContract]
+        bool RemoveUserFromProject(int projectId, User user);
+        [OperationContract]
+        bool AddProjectAdministratorToProject(int projectId, User projectAdministrator);
+        [OperationContract]
+        bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator);
+        
+        
+        
     }
 }

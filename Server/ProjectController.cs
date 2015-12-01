@@ -57,7 +57,7 @@ namespace Server
             {
                 return ProjectReturnType.ProjectAdministratorUserMissing;
             }
-            //_dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
+            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
             return ProjectReturnType.Success;
             //throw new NotImplementedException();
         }
@@ -73,10 +73,39 @@ namespace Server
             return _dbProject.GetProject(id);
         }
 
-        public int DeleteProject(int id)
+        public List<Project> GetProjectByTitle(string title)
         {
-            throw new NotImplementedException();
-            //return _dbProject.DeleteProject(id);
+            return _dbProject.GetProjectByTitle(title);
+        }
+
+        public bool DeleteProject(int id)
+        {
+            return _dbProject.RemoveProject(id);
+        }
+
+        public bool UpdateProject(int id, string title, string description, string projectFolder)
+        {
+            return _dbProject.UpdateProject(id, title, description, projectFolder);
+        }
+
+        public bool AddUserToProject(int projectId, User user)
+        {
+            return _dbProject.AddUserToProject(projectId, user);
+        }
+
+        public bool RemoveUserFromProject(int projectId, User user)
+        {
+            return _dbProject.RemoveUserFromProject(projectId, user);
+        }
+
+        public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
+        {
+            return _dbProject.AddProjectAdministratorToProject(projectId, projectAdministrator);
+        }
+
+        public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
+        {
+            return RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
         }
     }
 

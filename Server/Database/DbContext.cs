@@ -9,12 +9,14 @@ using Library;
 
 namespace Server.Database
 {
+#pragma warning disable 0169    // disable never used warnings for fields that are being used by LINQ
     class DbContext : DataContext
     {
-        public DbContext() : base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=ProjectShare;Integrated Security=True")
-            //TODO Replace this is you're getting errors
+        public DbContext()
+            : base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=ProjectShare;Integrated Security=True")
+        //TODO Replace this is you're getting errors
         {
-            
+
         }
 
 
@@ -25,7 +27,7 @@ namespace Server.Database
         public Table<Project> Projects;
         public Table<ProjectUsers> ProjectUsers;
         public Table<ProjectFiles> ProjectFiles;
-        
+
         //public Table<ChatMessage> ChatMessages;
         //public Table<UserChat> UserChats;
         //public Table<FileChat> FileChats;
@@ -35,6 +37,6 @@ namespace Server.Database
     //[Table(Name = ProjectUsers)]
     //class ProjectUser
     //{
-        
+
     //}
 }

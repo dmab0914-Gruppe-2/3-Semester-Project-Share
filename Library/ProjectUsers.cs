@@ -10,10 +10,22 @@ using Library;
 
 namespace Library
 {
-    #pragma warning disable 0169    // disable never used warnings for fields that are being used by LINQ
+#pragma warning disable 0169    // disable never used warnings for fields that are being used by LINQ
     [Table(Name = "ProjectUsers")]
     public class ProjectUsers
     {
+        //public ProjectUsers()
+        //{
+
+        //}
+
+        //public ProjectUsers(Project project, User user, UserType userType)
+        //{
+        //    this.Project = project;
+        //    this.User = user;
+        //    this.UserType = userType;
+        //}
+
         [Column(IsPrimaryKey = true, Name = "projectID")]
         private int projectId;
         private EntityRef<Project> _project;

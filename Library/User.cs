@@ -24,18 +24,20 @@ namespace Library
         [Column]
         public string Email { get; set; }
 
-        public User(string username, string password, UserType type)
+        public User(string username, string password, string email, UserType type)
         {
             Username = username;
             Password = password;
+            Email = email;
             Type = type;
         }
 
-        public User(int id, string username, string password, UserType type)
+        public User(int id, string username, string password, string email, UserType type)
         {
             Id = id;
             Username = username;
             Password = password;
+            Email = email;
             Type = type;
         }
 

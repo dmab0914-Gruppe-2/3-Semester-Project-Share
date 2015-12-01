@@ -49,6 +49,7 @@ namespace Library
             Title = title;
             Description = description;
             ProjectFolder = projectFolder;
+            
             //ProjectMembers = ProjectMembers;
             ProjectAdministrators = new List<User> { projectAdministrator };
             ProjectFiles = new List<File>();

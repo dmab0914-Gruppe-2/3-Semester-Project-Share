@@ -34,16 +34,40 @@ namespace ClientApp.ProjectService {
         System.Threading.Tasks.Task<Library.Project> GetProjectAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/UpdateProject", ReplyAction="http://tempuri.org/IProjectService/UpdateProjectResponse")]
-        int UpdateProject(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators);
+        bool UpdateProject(int id, string title, string description, string projectFolder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/UpdateProject", ReplyAction="http://tempuri.org/IProjectService/UpdateProjectResponse")]
-        System.Threading.Tasks.Task<int> UpdateProjectAsync(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators);
+        System.Threading.Tasks.Task<bool> UpdateProjectAsync(int id, string title, string description, string projectFolder);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/DeleteProject", ReplyAction="http://tempuri.org/IProjectService/DeleteProjectResponse")]
-        int DeleteProject(int id);
+        bool DeleteProject(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/DeleteProject", ReplyAction="http://tempuri.org/IProjectService/DeleteProjectResponse")]
-        System.Threading.Tasks.Task<int> DeleteProjectAsync(int id);
+        System.Threading.Tasks.Task<bool> DeleteProjectAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/AddUserToProject", ReplyAction="http://tempuri.org/IProjectService/AddUserToProjectResponse")]
+        bool AddUserToProject(int projectId, Library.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/AddUserToProject", ReplyAction="http://tempuri.org/IProjectService/AddUserToProjectResponse")]
+        System.Threading.Tasks.Task<bool> AddUserToProjectAsync(int projectId, Library.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/RemoveUserFromProject", ReplyAction="http://tempuri.org/IProjectService/RemoveUserFromProjectResponse")]
+        bool RemoveUserFromProject(int projectId, Library.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/RemoveUserFromProject", ReplyAction="http://tempuri.org/IProjectService/RemoveUserFromProjectResponse")]
+        System.Threading.Tasks.Task<bool> RemoveUserFromProjectAsync(int projectId, Library.User user);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/AddProjectAdministratorToProject", ReplyAction="http://tempuri.org/IProjectService/AddProjectAdministratorToProjectResponse")]
+        bool AddProjectAdministratorToProject(int projectId, Library.User projectAdministrator);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/AddProjectAdministratorToProject", ReplyAction="http://tempuri.org/IProjectService/AddProjectAdministratorToProjectResponse")]
+        System.Threading.Tasks.Task<bool> AddProjectAdministratorToProjectAsync(int projectId, Library.User projectAdministrator);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/RemoveProjectAdministratorFromProject", ReplyAction="http://tempuri.org/IProjectService/RemoveProjectAdministratorFromProjectResponse")]
+        bool RemoveProjectAdministratorFromProject(int projectId, Library.User projectAdministrator);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/RemoveProjectAdministratorFromProject", ReplyAction="http://tempuri.org/IProjectService/RemoveProjectAdministratorFromProjectResponse")]
+        System.Threading.Tasks.Task<bool> RemoveProjectAdministratorFromProjectAsync(int projectId, Library.User projectAdministrator);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -97,20 +121,52 @@ namespace ClientApp.ProjectService {
             return base.Channel.GetProjectAsync(id);
         }
         
-        public int UpdateProject(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators) {
-            return base.Channel.UpdateProject(id, title, description, projectFolder, ProjectMembers, projectAdministrators);
+        public bool UpdateProject(int id, string title, string description, string projectFolder) {
+            return base.Channel.UpdateProject(id, title, description, projectFolder);
         }
         
-        public System.Threading.Tasks.Task<int> UpdateProjectAsync(int id, string title, string description, string projectFolder, Library.User[] ProjectMembers, Library.User[] projectAdministrators) {
-            return base.Channel.UpdateProjectAsync(id, title, description, projectFolder, ProjectMembers, projectAdministrators);
+        public System.Threading.Tasks.Task<bool> UpdateProjectAsync(int id, string title, string description, string projectFolder) {
+            return base.Channel.UpdateProjectAsync(id, title, description, projectFolder);
         }
         
-        public int DeleteProject(int id) {
+        public bool DeleteProject(int id) {
             return base.Channel.DeleteProject(id);
         }
         
-        public System.Threading.Tasks.Task<int> DeleteProjectAsync(int id) {
+        public System.Threading.Tasks.Task<bool> DeleteProjectAsync(int id) {
             return base.Channel.DeleteProjectAsync(id);
+        }
+        
+        public bool AddUserToProject(int projectId, Library.User user) {
+            return base.Channel.AddUserToProject(projectId, user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddUserToProjectAsync(int projectId, Library.User user) {
+            return base.Channel.AddUserToProjectAsync(projectId, user);
+        }
+        
+        public bool RemoveUserFromProject(int projectId, Library.User user) {
+            return base.Channel.RemoveUserFromProject(projectId, user);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveUserFromProjectAsync(int projectId, Library.User user) {
+            return base.Channel.RemoveUserFromProjectAsync(projectId, user);
+        }
+        
+        public bool AddProjectAdministratorToProject(int projectId, Library.User projectAdministrator) {
+            return base.Channel.AddProjectAdministratorToProject(projectId, projectAdministrator);
+        }
+        
+        public System.Threading.Tasks.Task<bool> AddProjectAdministratorToProjectAsync(int projectId, Library.User projectAdministrator) {
+            return base.Channel.AddProjectAdministratorToProjectAsync(projectId, projectAdministrator);
+        }
+        
+        public bool RemoveProjectAdministratorFromProject(int projectId, Library.User projectAdministrator) {
+            return base.Channel.RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
+        }
+        
+        public System.Threading.Tasks.Task<bool> RemoveProjectAdministratorFromProjectAsync(int projectId, Library.User projectAdministrator) {
+            return base.Channel.RemoveProjectAdministratorFromProjectAsync(projectId, projectAdministrator);
         }
     }
 }

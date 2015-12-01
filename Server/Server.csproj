@@ -46,16 +46,20 @@
     <Compile Include="Database\DbFile.cs" />
     <Compile Include="Database\DbProject.cs" />
     <Compile Include="Database\DbFileVersion.cs" />
+    <Compile Include="Database\DbUser.cs" />
     <Compile Include="Database\IDbFile.cs" />
     <Compile Include="Database\IDbProject.cs" />
     <Compile Include="Database\DbContext.cs" />
     <Compile Include="Database\IDbFileVersion.cs" />
+    <Compile Include="Database\IDbUser.cs" />
     <Compile Include="FileController.cs" />
     <Compile Include="IFileControler.cs" />
     <Compile Include="IProjectController.cs" />
+    <Compile Include="IUserController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
