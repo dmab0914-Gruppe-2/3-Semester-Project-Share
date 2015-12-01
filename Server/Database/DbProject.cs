@@ -134,5 +134,13 @@ namespace Server.Database
         {
             throw new NotImplementedException();
         }
+        
+        public Project[] GetProjectByTitle(string title)
+        {
+            var projects = from project in dbContext.Projects
+                where project.Title.Equals(title)
+                select project;
+            return projects.ToArray();
+        }
     }
 }

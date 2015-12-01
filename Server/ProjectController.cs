@@ -73,15 +73,20 @@ namespace Server
             return _dbProject.GetProject(id);
         }
 
+        public Project[] GetProjectByTitle(string title)
+        {
+            return _dbProject.GetProjectByTitle(title);
+        }
+
         public int DeleteProject(int id)
         {
             throw new NotImplementedException();
             //return _dbProject.DeleteProject(id);
         }
 
-        public int UpdateProject()
+        public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)
         {
-            throw new NotImplementedException();
+            return _dbProject.UpdateProject(id, title, description, projectFolder, projectAdministratorUser);
         }
     }
 
