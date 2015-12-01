@@ -45,7 +45,7 @@ namespace Server.Database
             }
             catch (Exception e)
             {
-                throw new Exception("File not added to DB " + e);
+                throw new Exception("Project not added to db " + e);
             }
         }
 
@@ -113,14 +113,6 @@ namespace Server.Database
             return dbContext.Projects.ToList();
         }
 
-        private List<User> GetProjectAdministrators(int id) //TODO test db code.
-        {
-            var users = from user in dbContext.ProjectUsers
-                        where user.Project.Id.Equals(id) && user.UserType.Equals(UserType.Administrator)
-                        select user.User;
-            return users.ToList();
-        }
-
         public List<Project> GetProjectByTitle(string title)
         {
             var projects = from project in dbContext.Projects
@@ -131,24 +123,13 @@ namespace Server.Database
 
         public bool AddUserToProject(int projectId, User user)
         {
-            Project project = GetProject(projectId);
-            dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = UserType.User });
-            try
-            {
-                dbContext.SubmitChanges();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Something went wrong, when adding the user to the project id: " + projectId + " Error Message: \n" + e);
-                return false;
-            }
-            return true;
+            return AddUserToProject(projectId, user, UserType.User);
         }
 
         public bool RemoveUserFromProject(int projectId, User user)
         {
             Project project = GetProject(projectId);
-            if (user.Type != UserType.Administrator)
+            if (project.ProjectAdministrators.Exists(user))
             {
                 dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
                 try
@@ -171,7 +152,39 @@ namespace Server.Database
 
         public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
         {
-            throw new NotImplementedException();
+            bool error = false;
+            try
+            {
+                var option = new TransactionOptions();
+                option.IsolationLevel = IsolationLevel.ReadCommitted;
+
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                {
+                    bool r = RemoveUserFromProject(projectId, projectAdministrator);
+                    bool a = AddUserToProject(projectId, user, UserType.Administrator);
+                    if (r == true && a == true)
+                    {
+                        scope.Complete();
+                    }
+                    else
+                    {
+                        error = true;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Project Administrator not added to project " + e);
+                return false;
+            }
+            if (error)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
@@ -182,6 +195,30 @@ namespace Server.Database
         public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)
         {
             throw new NotImplementedException();
+        }
+
+        private List<User> GetProjectAdministrators(int id) //TODO test db code.
+        {
+            var users = from user in dbContext.ProjectUsers
+                        where user.Project.Id.Equals(id) && user.UserType.Equals(UserType.Administrator)
+                        select user.User;
+            return users.ToList();
+        }
+
+        private bool AddUserToProject(int projectId, User user, UserType type)
+        {
+            Project project = GetProject(projectId);
+            dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = type });
+            try
+            {
+                dbContext.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, when adding the user to the project id: " + projectId + " Error Message: \n" + e);
+                return false;
+            }
+            return true;
         }
     }
 }
