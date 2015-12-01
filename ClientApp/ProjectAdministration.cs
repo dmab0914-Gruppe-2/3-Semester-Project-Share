@@ -77,6 +77,7 @@ namespace ClientApp
             textBox_Title.Visible = false;
             textBox_Description.Visible = false;
             button_FindUser.Visible = true;
+            button_Save.Visible = true;
 
             //label_MembersProject settings
             label_MembersProject.Visible = true;
@@ -195,7 +196,7 @@ namespace ClientApp
         private void button_FindUser_Click(object sender, EventArgs e)
         {
             Form_FindUsers findusers = new Form_FindUsers();
-            findusers.Activate();
+            findusers.ShowDialog();
         }
 
 
