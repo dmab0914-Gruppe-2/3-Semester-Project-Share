@@ -115,9 +115,28 @@ namespace Server.Database
             return users.ToList();
         }
 
+        public List<Project> GetProjectByTitle(string title)
+        {
+            var projects = from project in dbContext.Projects
+                           where project.Title.Equals(title)
+                           select project;
+            return projects.ToList();
+        }
+
         public bool AddUserToProject(int projectId, User user)
         {
-            throw new NotImplementedException();
+            Project project = GetProject(projectId);
+            dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = UserType.User });
+            try
+            {
+                dbContext.SubmitChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, when adding the user to the project id: " + projectId + " Error Message: \n" + e);
+                return false;
+            }
+            return true;
         }
 
         public bool RemoveUserFromProject(int projectId, User user)
@@ -133,14 +152,6 @@ namespace Server.Database
         public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
         {
             throw new NotImplementedException();
-        }
-        
-        public Project[] GetProjectByTitle(string title)
-        {
-            var projects = from project in dbContext.Projects
-                where project.Title.Equals(title)
-                select project;
-            return projects.ToArray();
         }
 
         public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)

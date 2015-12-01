@@ -14,11 +14,11 @@ namespace Server.Database
         Project GetProject(int id);
         bool UpdateProject(int id, string title, string description, string projectFolder);
         List<Project> GetAllProjects();
+        List<Project> GetProjectByTitle(string title);
         bool AddUserToProject(int projectId, User user);
         bool RemoveUserFromProject(int projectId, User user);
         bool AddProjectAdministratorToProject(int projectId, User projectAdministrator);
         bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator);
-        Project[] GetProjectByTitle(string title);
         bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser);
     }
 }

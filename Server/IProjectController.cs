@@ -9,7 +9,7 @@ namespace Server
         ProjectReturnType AddProject(Project project);
         List<Project> GetAllProjects();
         Project GetProject(int id);
-        Project[] GetProjectByTitle(string title);
+        List<Project> GetProjectByTitle(string title);
         bool DeleteProject(int id);
         bool UpdateProject(int id, string title, string description, string projectFolder);
         bool AddUserToProject(int projectId, User user);

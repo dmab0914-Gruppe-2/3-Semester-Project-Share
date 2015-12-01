@@ -73,7 +73,7 @@ namespace Server
             return _dbProject.GetProject(id);
         }
 
-        public Project[] GetProjectByTitle(string title)
+        public List<Project> GetProjectByTitle(string title)
         {
             return _dbProject.GetProjectByTitle(title);
         }
