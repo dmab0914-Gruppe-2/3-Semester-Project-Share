@@ -78,6 +78,11 @@ namespace Server
             throw new NotImplementedException();
             //return _dbProject.DeleteProject(id);
         }
+
+        public int UpdateProject()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
