@@ -10,7 +10,12 @@ namespace Server
         List<Project> GetAllProjects();
         Project GetProject(int id);
         Project[] GetProjectByTitle(string title);
-        int DeleteProject(int id);
+        bool DeleteProject(int id);
         bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser);
+        bool AddUserToProject(int projectId, User user);
+        bool RemoveUserFromProject(int projectId, User user);
+        bool AddProjectAdministratorToProject(int projectId, User projectAdministrator);
+        bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator);
+
     }
 }

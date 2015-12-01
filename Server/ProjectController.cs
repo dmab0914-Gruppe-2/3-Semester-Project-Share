@@ -78,15 +78,34 @@ namespace Server
             return _dbProject.GetProjectByTitle(title);
         }
 
-        public int DeleteProject(int id)
+        public bool DeleteProject(int id)
         {
-            throw new NotImplementedException();
-            //return _dbProject.DeleteProject(id);
+            return _dbProject.RemoveProject(id);
         }
 
         public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)
         {
             return _dbProject.UpdateProject(id, title, description, projectFolder, projectAdministratorUser);
+        }
+
+        public bool AddUserToProject(int projectId, User user)
+        {
+            return _dbProject.AddUserToProject(projectId, user);
+        }
+
+        public bool RemoveUserFromProject(int projectId, User user)
+        {
+            return _dbProject.RemoveUserFromProject(projectId, user);
+        }
+
+        public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
+        {
+            return _dbProject.AddProjectAdministratorToProject(projectId, projectAdministrator);
+        }
+
+        public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
+        {
+            return RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
         }
     }
 
