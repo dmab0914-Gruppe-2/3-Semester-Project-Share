@@ -83,9 +83,9 @@ namespace Server
             return _dbProject.RemoveProject(id);
         }
 
-        public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)
+        public bool UpdateProject(int id, string title, string description, string projectFolder)
         {
-            return _dbProject.UpdateProject(id, title, description, projectFolder, projectAdministratorUser);
+            return _dbProject.UpdateProject(id, title, description, projectFolder);
         }
 
         public bool AddUserToProject(int projectId, User user)
