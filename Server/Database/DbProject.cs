@@ -79,9 +79,8 @@ namespace Server.Database
             return null;
         }
 
-        public bool UpdateProject(int id, string title, string description, string projectFolder, Library.User projectAdministratorUser)
+        public bool UpdateProject(int id, string title, string description, string projectFolder)
         {
-
             throw new NotImplementedException();
         }
 
@@ -101,6 +100,29 @@ namespace Server.Database
                 where user.Project.Id.Equals(id) && user.UserType.Equals(UserType.Administrator)
                 select user.User;
             return users.ToList();
+        }
+
+
+        
+
+        public bool AddUserToProject(int projectId, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveUserFromProject(int projectId, User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
+        {
+            throw new NotImplementedException();
         }
     }
 }
