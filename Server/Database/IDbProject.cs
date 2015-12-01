@@ -18,6 +18,7 @@ namespace Server.Database
         bool RemoveUserFromProject(int projectId, User user);
         bool AddProjectAdministratorToProject(int projectId, User projectAdministrator);
         bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator);
-
+        Project[] GetProjectByTitle(string title);
+        bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser);
     }
 }

@@ -142,5 +142,10 @@ namespace Server.Database
                 select project;
             return projects.ToArray();
         }
+
+        public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
