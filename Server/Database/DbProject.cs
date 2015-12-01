@@ -89,7 +89,7 @@ namespace Server.Database
             {
                 dbContext.SubmitChanges();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Console.WriteLine("Something went wrong, when updating the data in project id: " + id + " Error Message: \n" + e);
                 return false;
@@ -141,7 +141,26 @@ namespace Server.Database
 
         public bool RemoveUserFromProject(int projectId, User user)
         {
-            throw new NotImplementedException();
+            Project project = GetProject(projectId);
+            if (user.Type != UserType.Administrator)
+            {
+                dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
+                try
+                {
+                    dbContext.SubmitChanges();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Something went wrong, when deleting the user id: " + user.Id + ", from the project id: " + projectId + " Error Message: \n" + e);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+            return true;
+
         }
 
         public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
