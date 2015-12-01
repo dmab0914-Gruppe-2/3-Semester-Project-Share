@@ -95,6 +95,8 @@ namespace ClientApp
             listView_FilesParticipants.Columns.Add("Role", -2);
 
 
+
+
         }
 
         private void button_EditProject_Click(object sender, EventArgs e)
@@ -112,7 +114,7 @@ namespace ClientApp
             label_MembersProject.Visible = true;
             label_MembersProject.Text = "Projekt indstillinger";
             listView_FilesParticipants.Visible = false;
-           
+
 
 
         }
@@ -121,18 +123,23 @@ namespace ClientApp
         {
             string projectnumber = listView_Projects.SelectedItems[0].Text;
             activeProject = projectService.GetProject(Convert.ToInt32(projectnumber));
+            foreach (ListViewItem listViewItem in listView_FilesParticipants.Items)
+            {
+                listViewItem.Remove();
+            }
 
             //Users put into listview, starting with Admins
             List<User> projectAdmin = activeProject.ProjectAdministrators;
-            //if (projectAdmin.Count != 0)
-            //{
-            //foreach (User user in projectAdmin)
-            //{
-            //    string[] row = { user.Username, user.Email, "Administrator" };
-            //    ListViewItem lwi = new ListViewItem(row);
-            //    listView_FilesParticipants.Items.Add(lwi);
-            //}
-            //}
+            if (projectAdmin.Count != 0)
+            {
+                foreach (User user in projectAdmin)
+                {
+                    string[] row = { user.Username, user.Email, "Administrator" };
+                    ListViewItem lwi = new ListViewItem(row);
+                    listView_FilesParticipants.Items.Add(lwi);
+                }
+            }
+
             List<User> projectUsers = activeProject.ProjectMembers.ToList();
             if (projectUsers.Count != 0)
             {
