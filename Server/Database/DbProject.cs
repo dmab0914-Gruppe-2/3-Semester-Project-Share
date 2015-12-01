@@ -13,14 +13,20 @@ namespace Server.Database
     {
         private DbContext dbContext;
         private DbFile dbFile;
+        private DbUser dbUser;
         public DbProject()
         {
             dbContext = new DbContext();
             dbFile = new DbFile();
+            dbUser = new DbUser();
         }
 
         public bool AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
         {
+            if (dbUser.FindUserById(projectAdministratorUser.Id) == null)
+            {
+                return false;
+            }
             Project project = new Project(title, description, projectFolder, projectAdministratorUser);
             try
             {
