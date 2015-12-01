@@ -25,6 +25,6 @@ namespace WebService
         int UpdateProject(int id, string title, string description, string projectFolder, List<User> ProjectMembers, List<User> projectAdministrators);
 
         [OperationContract]
-        int DeleteProject(int id);
+        bool DeleteProject(int id);
     }
 }

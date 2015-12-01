@@ -36,7 +36,7 @@ namespace WebService
             //return projectController.UpdateProject();
         }
 
-        public int DeleteProject(int id)
+        public bool DeleteProject(int id)
         {
             return projectController.DeleteProject(id);
         }
