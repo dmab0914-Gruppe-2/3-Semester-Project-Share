@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -15,12 +16,12 @@ namespace WebService
         Library.User FindUserById(int id);
 
         [OperationContract]
-        Library.User[] FindUserByEmail(string email);
+        List<User> FindUserByEmail(string email);
 
         [OperationContract]
-        Library.User[] FindUserByUsername(string username);
+        List<User> FindUserByUsername(string username);
 
         [OperationContract]
-        Library.User[] FindAllUsers();
+        List<User> FindAllUsers();
     }
 }

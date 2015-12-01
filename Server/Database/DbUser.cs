@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,24 +9,30 @@ namespace Server.Database
 {
     class DbUser : IDbUser
     {
+        private DbContext dbContext;
+
+        public DbUser()
+        {
+            dbContext = new DbContext();
+        }
         public Library.User FindUserById(int id)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.First(i => i.Id == id);
         }
 
-        public Library.User[] FindUsersByEmail(string email)
+        public List<User> FindUsersByEmail(string email)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.Where(i => i.Email.Contains(email)).ToList();
         }
 
-        public Library.User[] FindUsersByUserName(string username)
+        public List<User> FindUsersByUserName(string username)
         {
-            throw new NotImplementedException();
+            return dbContext.Users.Where(i => i.Username.Contains(username)).ToList();
         }
 
-        public Library.User[] FindAllUsers()
+        public List<User> FindAllUsers()
         {
-            throw new NotImplementedException();
+            return dbContext.Users.ToList();
         }
 
         public bool AddUser(int id, string username, string password, string salt, Library.UserType usertype, string email)

@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using Server;
+using Library;
 
 namespace WebService
 {
@@ -17,17 +18,17 @@ namespace WebService
             return userController.FindUserById(id);
         }
 
-        public Library.User[] FindUserByEmail(string email)
+        public List<User> FindUserByEmail(string email)
         {
             return userController.FindUsersByEmail(email);
         }
 
-        public Library.User[] FindUserByUsername(string username)
+        public List<User> FindUserByUsername(string username)
         {
             return userController.FindUsersByUserName(username);
         }
 
-        public Library.User[] FindAllUsers()
+        public List<User> FindAllUsers()
         {
             return userController.FindAllUsers();
         }

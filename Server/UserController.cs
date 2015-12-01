@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Database;
+using Library;
 
 namespace Server
 {
@@ -16,17 +17,17 @@ namespace Server
             
         }
 
-        public Library.User[] FindUsersByEmail(string email)
+        public List<User> FindUsersByEmail(string email)
         {
             return _dbUser.FindUsersByEmail(email);
         }
 
-        public Library.User[] FindUsersByUserName(string username)
+        public List<User> FindUsersByUserName(string username)
         {
             return _dbUser.FindUsersByUserName(username);
         }
 
-        public Library.User[] FindAllUsers()
+        public List<User> FindAllUsers()
         {
             return _dbUser.FindAllUsers();
         }
