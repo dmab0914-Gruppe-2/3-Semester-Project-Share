@@ -52,6 +52,12 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="MultiUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MultiUpload.Designer.cs">
+      <DependentUpon>MultiUpload.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="ProjectAdministration.cs">
       <SubType>Form</SubType>
@@ -83,6 +89,9 @@
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MultiUpload.resx">
+      <DependentUpon>MultiUpload.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ProjectAdministration.resx">
       <DependentUpon>ProjectAdministration.cs</DependentUpon>
     </EmbeddedResource>
@@ -98,6 +107,9 @@
     <EmbeddedResource Include="UploadDialog.resx">
       <DependentUpon>UploadDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\ClientApp.ProjectService.IProjectService.datasource" />
+    <None Include="Properties\DataSources\ClientApp.ProjectService.IProjectServiceChannel.datasource" />
+    <None Include="Properties\DataSources\ClientApp.ProjectService.ProjectServiceClient.datasource" />
     <None Include="Properties\DataSources\Library.File.datasource" />
     <None Include="Properties\DataSources\Library.Project.datasource" />
     <None Include="Properties\Settings.settings">

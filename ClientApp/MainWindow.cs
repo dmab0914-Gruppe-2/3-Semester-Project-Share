@@ -24,6 +24,9 @@ namespace ClientApp
             InitializeComponent();
             btnUpload.Visible = false;
             btnRefreshFiles.Visible = false;
+            btnMulti.Visible = false;
+            lwFiles.MultiSelect = false;
+            listView_Projects.MultiSelect = false;
         }
         private void button_ProjectAdministration_Click(object sender, EventArgs e)
         {
@@ -114,6 +117,7 @@ namespace ClientApp
                     project = activeProject;
                     btnUpload.Visible = true;
                     btnRefreshFiles.Visible = true;
+                    btnMulti.Visible = true;
                 }
                 catch (Exception ex)
                 {
@@ -161,12 +165,24 @@ namespace ClientApp
                     }
                     lblFIles.Text = activeProject.Title;
                     project = activeProject;
-                    btnUpload.Visible = true;
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Fejl: " + ex.Message);
                 }
+            }
+        }
+
+        private void btnMulti_Click(object sender, EventArgs e)
+        {
+            if (project.Id != 0 || project == null)
+            {
+                MultiUpload mu = new MultiUpload(project);
+                mu.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("select a project please!");
             }
         }
     }

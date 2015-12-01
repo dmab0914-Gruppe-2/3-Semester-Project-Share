@@ -34,6 +34,8 @@
             this.button_ProjectAdministration = new System.Windows.Forms.Button();
             this.lblProject = new System.Windows.Forms.Label();
             this.panelCenterBottom = new System.Windows.Forms.Panel();
+            this.btnMulti = new System.Windows.Forms.Button();
+            this.btnRefreshFiles = new System.Windows.Forms.Button();
             this.lblFIles = new System.Windows.Forms.Label();
             this.lwFiles = new System.Windows.Forms.ListView();
             this.btnUpload = new System.Windows.Forms.Button();
@@ -42,7 +44,6 @@
             this.lblFIleInfo = new System.Windows.Forms.Label();
             this.panelCenterTop = new System.Windows.Forms.Panel();
             this.lblChat = new System.Windows.Forms.Label();
-            this.btnRefreshFiles = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -95,6 +96,7 @@
             // 
             this.panelCenterBottom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.panelCenterBottom.Controls.Add(this.btnMulti);
             this.panelCenterBottom.Controls.Add(this.btnRefreshFiles);
             this.panelCenterBottom.Controls.Add(this.lblFIles);
             this.panelCenterBottom.Controls.Add(this.lwFiles);
@@ -103,6 +105,26 @@
             this.panelCenterBottom.Name = "panelCenterBottom";
             this.panelCenterBottom.Size = new System.Drawing.Size(373, 352);
             this.panelCenterBottom.TabIndex = 1;
+            // 
+            // btnMulti
+            // 
+            this.btnMulti.Location = new System.Drawing.Point(132, 53);
+            this.btnMulti.Name = "btnMulti";
+            this.btnMulti.Size = new System.Drawing.Size(170, 23);
+            this.btnMulti.TabIndex = 5;
+            this.btnMulti.Text = "Upload multi";
+            this.btnMulti.UseVisualStyleBackColor = true;
+            this.btnMulti.Click += new System.EventHandler(this.btnMulti_Click);
+            // 
+            // btnRefreshFiles
+            // 
+            this.btnRefreshFiles.Location = new System.Drawing.Point(12, 51);
+            this.btnRefreshFiles.Name = "btnRefreshFiles";
+            this.btnRefreshFiles.Size = new System.Drawing.Size(114, 23);
+            this.btnRefreshFiles.TabIndex = 2;
+            this.btnRefreshFiles.Text = "Refresh Files";
+            this.btnRefreshFiles.UseVisualStyleBackColor = true;
+            this.btnRefreshFiles.Click += new System.EventHandler(this.btnRefreshFiles_Click);
             // 
             // lblFIles
             // 
@@ -186,16 +208,6 @@
             this.lblChat.Text = "Chat";
             this.lblChat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // btnRefreshFiles
-            // 
-            this.btnRefreshFiles.Location = new System.Drawing.Point(12, 51);
-            this.btnRefreshFiles.Name = "btnRefreshFiles";
-            this.btnRefreshFiles.Size = new System.Drawing.Size(114, 23);
-            this.btnRefreshFiles.TabIndex = 2;
-            this.btnRefreshFiles.Text = "Refresh Files";
-            this.btnRefreshFiles.UseVisualStyleBackColor = true;
-            this.btnRefreshFiles.Click += new System.EventHandler(this.btnRefreshFiles_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -239,6 +251,7 @@
         private System.Windows.Forms.TextBox txtFileDesc;
         private System.Windows.Forms.ListView listView_Projects;
         private System.Windows.Forms.Button btnRefreshFiles;
+        private System.Windows.Forms.Button btnMulti;
     }
 }
 
