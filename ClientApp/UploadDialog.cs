@@ -93,7 +93,7 @@ namespace ClientApp
             {
                 try
                 {
-                    fac.AddFile(fileName, fileDesc, Project.Id);
+                    fac.AddFile(fileName, fileDesc, Project);
                     
                     lblFilePath.Text = "";
                     txtFileName.Text = "";
