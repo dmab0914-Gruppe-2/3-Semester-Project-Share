@@ -18,6 +18,7 @@ namespace UnitTestProject
             Id = 1,
             Username = "arm",
             Password = "1234",
+            Email = "test@hansen.dk",
             Type = UserType.Administrator
         };
 

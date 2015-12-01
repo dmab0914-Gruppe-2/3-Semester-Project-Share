@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Library;
+using System.Transactions;
 
 namespace Server.Database
 {
@@ -20,7 +21,26 @@ namespace Server.Database
 
         public bool AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
         {
-            throw new NotImplementedException();
+            Project project = new Project(title, description, projectFolder, projectAdministratorUser);
+            try
+            {
+                var option = new TransactionOptions();
+                option.IsolationLevel = IsolationLevel.ReadCommitted;
+
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                {
+                    dbContext.Projects.InsertOnSubmit(project);
+                    dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers {Project = project, User = project.ProjectAdministrators.FirstOrDefault(), UserType = UserType.Administrator});
+                    dbContext.SubmitChanges();
+                    if (true) //TODO check if the data added to db were sucessfull / valid.
+                        scope.Complete();
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("File not added to DB " + e);
+            }
         }
 
         public bool RemoveProject(int id)

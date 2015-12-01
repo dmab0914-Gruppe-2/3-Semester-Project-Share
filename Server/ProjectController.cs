@@ -57,7 +57,7 @@ namespace Server
             {
                 return ProjectReturnType.ProjectAdministratorUserMissing;
             }
-            //_dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
+            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
             return ProjectReturnType.Success;
             //throw new NotImplementedException();
         }
