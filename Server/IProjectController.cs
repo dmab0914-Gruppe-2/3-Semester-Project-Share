@@ -11,7 +11,7 @@ namespace Server
         Project GetProject(int id);
         Project[] GetProjectByTitle(string title);
         bool DeleteProject(int id);
-        bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser);
+        bool UpdateProject(int id, string title, string description, string projectFolder);
         bool AddUserToProject(int projectId, User user);
         bool RemoveUserFromProject(int projectId, User user);
         bool AddProjectAdministratorToProject(int projectId, User projectAdministrator);
