@@ -33,6 +33,7 @@ namespace WebService
         public int UpdateProject(int id, string title, string description, string projectFolder, List<Library.User> ProjectMembers, List<Library.User> projectAdministrators)
         {
             throw new NotImplementedException();
+            //return projectController.UpdateProject();
         }
 
         public int DeleteProject(int id)
