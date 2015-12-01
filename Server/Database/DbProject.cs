@@ -18,14 +18,14 @@ namespace Server.Database
             dbFile = new DbFile();
         }
 
-        bool IDbProject.AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
+        public bool AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
         {
             throw new NotImplementedException();
         }
 
-        bool IDbProject.RemoveProject(int id)
+        public bool RemoveProject(int id)
         {
-            Project project = ((IDbProject)this).GetProject(id);
+            Project project = GetProject(id);
             if (project != null)
             {
                 try
@@ -47,7 +47,7 @@ namespace Server.Database
         /// </summary>
         /// <param name="id">the project id of the project to retrieve</param>
         /// <returns>The project with the given id if found, null if not.</returns>
-        Library.Project IDbProject.GetProject(int id)
+        public Project GetProject(int id)
         {
             Project project = dbContext.Projects.First(i => i.Id == id);
             if (project != null)
@@ -59,7 +59,7 @@ namespace Server.Database
             return null;
         }
 
-        bool IDbProject.UpdateProject(int id, string title, string description, string projectFolder, Library.User projectAdministratorUser)
+        public bool UpdateProject(int id, string title, string description, string projectFolder, Library.User projectAdministratorUser)
         {
 
             throw new NotImplementedException();
@@ -70,7 +70,7 @@ namespace Server.Database
         /// Request the given project with GetProject(int id) to get the rest.
         /// </summary>
         /// <returns>A list of Projects from the databse with limited data.</returns>
-        List<Library.Project> IDbProject.GetAllProjects()
+        public List<Project> GetAllProjects()
         {
             return dbContext.Projects.ToList();
         }
