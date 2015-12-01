@@ -138,6 +138,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Library" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IFileService_AddFile_InputMessage">
@@ -173,7 +174,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/Design_Time_Addresses/WebService/FileService/</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>WELLE\welle</Upn>
+          <Upn>the-satellite\Andreas</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
