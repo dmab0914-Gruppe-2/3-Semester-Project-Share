@@ -30,7 +30,7 @@ namespace Server.Database
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
                 {
                     dbContext.Projects.InsertOnSubmit(project);
-                    dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers {Project = project, User = project.ProjectAdministrators.FirstOrDefault(), UserType = UserType.Administrator});
+                    dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = project.ProjectAdministrators.FirstOrDefault(), UserType = UserType.Administrator });
                     dbContext.SubmitChanges();
                     if (true) //TODO check if the data added to db were sucessfull / valid.
                         scope.Complete();
@@ -81,7 +81,20 @@ namespace Server.Database
 
         public bool UpdateProject(int id, string title, string description, string projectFolder)
         {
-            throw new NotImplementedException();
+            Project project = GetProject(id);
+            project.Title = title;
+            project.Description = description;
+            project.ProjectFolder = projectFolder;
+            try
+            {
+                dbContext.SubmitChanges();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Something went wrong, when updating the data in project id: " + id + " Error Message: \n" + e);
+                return false;
+            }
+            return true;
         }
 
         /// <summary>
@@ -97,13 +110,10 @@ namespace Server.Database
         private List<User> GetProjectAdministrators(int id) //TODO test db code.
         {
             var users = from user in dbContext.ProjectUsers
-                where user.Project.Id.Equals(id) && user.UserType.Equals(UserType.Administrator)
-                select user.User;
+                        where user.Project.Id.Equals(id) && user.UserType.Equals(UserType.Administrator)
+                        select user.User;
             return users.ToList();
         }
-
-
-        
 
         public bool AddUserToProject(int projectId, User user)
         {
