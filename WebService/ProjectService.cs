@@ -30,15 +30,35 @@ namespace WebService
             return projectController.GetProject(id);
         }
 
-        public int UpdateProject(int id, string title, string description, string projectFolder, List<Library.User> ProjectMembers, List<Library.User> projectAdministrators)
+        public bool UpdateProject(int id, string title, string description, string projectFolder)
         {
-            throw new NotImplementedException();
-            //return projectController.UpdateProject();
+            return projectController.UpdateProject(id, title, description, projectFolder);
         }
 
         public bool DeleteProject(int id)
         {
             return projectController.DeleteProject(id);
+        }
+
+
+        public bool AddUserToProject(int projectId, Library.User user)
+        {
+            return projectController.AddUserToProject(projectId, user);
+        }
+
+        public bool RemoveUserFromProject(int projectId, Library.User user)
+        {
+            return projectController.RemoveUserFromProject(projectId, user);
+        }
+
+        public bool AddProjectAdministratorToProject(int projectId, Library.User projectAdministrator)
+        {
+            return projectController.AddProjectAdministratorToProject(projectId, projectAdministrator);
+        }
+
+        public bool RemoveProjectAdministratorFromProject(int projectId, Library.User projectAdministrator)
+        {
+            return projectController.RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
         }
     }
 }
