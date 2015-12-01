@@ -129,7 +129,7 @@ namespace Server.Database
         public bool RemoveUserFromProject(int projectId, User user)
         {
             Project project = GetProject(projectId);
-            if (project.ProjectAdministrators.Exists(user))
+            if (project.ProjectAdministrators.Where(x => x.Id == user.Id) != null)
             {
                 dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
                 try
@@ -161,7 +161,7 @@ namespace Server.Database
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
                 {
                     bool r = RemoveUserFromProject(projectId, projectAdministrator);
-                    bool a = AddUserToProject(projectId, user, UserType.Administrator);
+                    bool a = AddUserToProject(projectId, projectAdministrator, UserType.Administrator);
                     if (r == true && a == true)
                     {
                         scope.Complete();
