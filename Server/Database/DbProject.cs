@@ -54,39 +54,39 @@ namespace Server.Database
         public bool RemoveProject(int projectId)
         {
             throw new NotImplementedException();
-            Project project = GetProject(projectId);
-            if (project != null)
-            {
-                try
-                {
-                    var option = new TransactionOptions();
-                    option.IsolationLevel = IsolationLevel.ReadCommitted;
+            //Project project = GetProject(projectId);
+            //if (project != null)
+            //{
+            //    try
+            //    {
+            //        var option = new TransactionOptions();
+            //        option.IsolationLevel = IsolationLevel.ReadCommitted;
 
-                    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
-                    {
-                        bool r = RemoveUserFromProject(projectId, nAdmin);
-                        //bool f = dbFile.RemoveAllFilesFromProject(projectId);
-                        bool a = dbContext.Projects.DeleteOnSubmit(project);
-                        if (r == true && a == true)
-                        {
-                            dbContext.SubmitChanges();
-                            scope.Complete();
-                        }
-                        else
-                        {
-                            scope.Dispose();
-                            error = true;
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Project could not be removed. Project id: " + projectId + "Error: \n" + e);
-                    return false;
-                }
-                return true;
-            }
-            return false;
+            //        using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+            //        {
+            //            bool r = RemoveUserFromProject(projectId, nAdmin);
+            //            //bool f = dbFile.RemoveAllFilesFromProject(projectId);
+            //            bool a = dbContext.Projects.DeleteOnSubmit(project);
+            //            if (r == true && a == true)
+            //            {
+            //                dbContext.SubmitChanges();
+            //                scope.Complete();
+            //            }
+            //            else
+            //            {
+            //                scope.Dispose();
+            //                error = true;
+            //            }
+            //        }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine("Project could not be removed. Project id: " + projectId + "Error: \n" + e);
+            //        return false;
+            //    }
+            //    return true;
+            //}
+            //return false;
         }
 
         /// <summary>
