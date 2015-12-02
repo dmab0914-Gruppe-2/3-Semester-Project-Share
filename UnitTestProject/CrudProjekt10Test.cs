@@ -10,26 +10,27 @@ namespace UnitTestProject
     [TestClass]
     public class CrudProjekt10Test
     {
+        
         const int id = 1;
         const string title = "The Big Project";
         const string description = "It's a fairly big project?";
         const string projectFolder = @"c:\";
-        User projectAdminUser = new User
-        {
-            Id = 1,
-            Username = "arm",
-            Password = "1234",
-            Email = "test@hansen.dk",
-            Type = UserType.Administrator
-        };
+        private User projectAdminUser;
+        private Project project1;
+        private Project project2;
+        private Project project3;
+        private Project project4;
+        private Project project5;
+        
+        //User projectAdminUser = new User
+        //{
+        //    Id = 1,
+        //    Username = "arm",
+        //    Password = "1234",
+        //    Email = "test@hansen.dk",
+        //    Type = UserType.Administrator
+        //};
 
-        static User[] users =
-        {
-            new User("arm", "1234", "gud@gudenet.dk", UserType.Administrator), 
-            new User("nsw", "5678", "nsfw@ucn.dk", UserType.Administrator), 
-            new User("nmi", "1234", "nmi@jacobsjov.dk", UserType.User), 
-            new User("rok", "5678", "ronnie@failed.org", UserType.Guest)
-        };
 
         ProjectController projectController = new ProjectController();
 
@@ -37,11 +38,13 @@ namespace UnitTestProject
         [TestInitialize]
         public void Setup()
         {
-            Project project1 = new Project(1, "World Domination", "Self Explainatory", @"c:\", projectAdminUser);
-            Project project2 = new Project(2, "Bridge Construction", "Bridge over Klisterkanalen", @"C:\Projects\BridgeConstruction", projectAdminUser);
-            Project project3 = new Project(3, "Recruiting", "Get more members", @"C:\Projects\Recruiters", projectAdminUser);
-            Project project4 = new Project(4, "Server code", "Backend server code", @"C:\Projects\Backend", projectAdminUser);
-            Project project5 = new Project(5, "Life and Universe", "What is 42?", @"C:\Projects\42", projectAdminUser);
+            UserController userController = new UserController();
+            projectAdminUser = userController.FindUsersByUserName("arm").FirstOrDefault();
+            project1 = new Project("World Domination", "Self Explainatory", @"c:\", projectAdminUser);
+            project2 = new Project("Bridge Construction", "Bridge over Klisterkanalen", @"C:\Projects\BridgeConstruction", projectAdminUser);
+            project3 = new Project("Recruiting", "Get more members", @"C:\Projects\Recruiters", projectAdminUser);
+            project4 = new Project("Server code", "Backend server code", @"C:\Projects\Backend", projectAdminUser);
+            project5 = new Project("Life and Universe", "What is 42?", @"C:\Projects\42", projectAdminUser);
             projectController.AddProject(project1);
             projectController.AddProject(project2);
             projectController.AddProject(project3);
@@ -49,6 +52,28 @@ namespace UnitTestProject
             projectController.AddProject(project5);
 
         }
+#endregion
+
+#region Test Teardown
+
+        [TestCleanup]
+        public void Teardown()
+        {
+            projectController.DeleteProject(project1.Id);
+            projectController.DeleteProject(project2.Id);
+            projectController.DeleteProject(project3.Id);
+            projectController.DeleteProject(project4.Id);
+            projectController.DeleteProject(project5.Id);
+
+            //foreach (List<Project> projects in projectsList)
+            //{
+            //    foreach (Project project in projects)
+            //    {
+            //        projectController.DeleteProject(project.Id);
+            //    }
+            //}
+        }
+
 #endregion
 
 
@@ -205,6 +230,24 @@ namespace UnitTestProject
 
 
 #region DeleteProjects
+
+        [TestMethod]
+        public void TestRemoveProject()
+        {
+            List<Project> projects1 = projectController.GetProjectByTitle(project1.Title);;
+            List<bool> result1 = new List<bool>();
+
+            foreach (Project project in projects1)
+            {
+                bool result = projectController.DeleteProject(project.Id);
+                result1.Add(result);
+            }
+            foreach (bool b in result1)
+            {
+                Assert.AreEqual(true, b);
+            }
+            
+        }
 
 #endregion
 
