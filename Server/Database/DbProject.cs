@@ -23,11 +23,13 @@ namespace Server.Database
 
         public bool AddProject(string title, string description, string projectFolder, Library.User projectAdministratorUser)
         {
-            if (dbUser.FindUserById(projectAdministratorUser.Id) == null)
+            User adminUser = dbUser.FindUserById(projectAdministratorUser.Id);
+            if (adminUser == null)
             {
                 return false;
             }
-            Project project = new Project(title, description, projectFolder, projectAdministratorUser);
+
+            Project project = new Project(title, description, projectFolder, adminUser);
             try
             {
                 var option = new TransactionOptions();
@@ -49,9 +51,9 @@ namespace Server.Database
             }
         }
 
-        public bool RemoveProject(int id)
+        public bool RemoveProject(int projectId)
         {
-            Project project = GetProject(id);
+            Project project = GetProject(projectId);
             if (project != null)
             {
                 try
@@ -59,8 +61,9 @@ namespace Server.Database
                     dbContext.Projects.DeleteOnSubmit(project);
                     dbContext.SubmitChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine("Project could not be removed. Project id: " + projectId + "Error: \n" + e);
                     return false;
                 }
                 return true;
@@ -131,43 +134,37 @@ namespace Server.Database
 
         public bool AddUserToProject(int projectId, User user)
         {
-            return AddUserToProject(projectId, user, UserType.User);
+            User nUser = dbUser.FindUserById(user.Id);
+            if (nUser == null)
+            {
+                return false;
+            }
+            return AddUserToProject(projectId, nUser, UserType.User);
         }
 
         public bool RemoveUserFromProject(int projectId, User user)
         {
             Project project = GetProject(projectId);
+            User nUser = dbUser.FindUserById(user.Id);
             if (project == null)
             {
                 return false;
             }
-            else if (project.ProjectMembers.FirstOrDefault(x => x.Id == user.Id) != null)
+            else if (project.ProjectMembers.FirstOrDefault(x => x.Id == nUser.Id) != null)
             {
-                //dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
-                var t = from d in dbContext.ProjectUsers
-                        where project.Equals(d.Project) && user.Equals(d.User)
-                        select d;
-                dbContext.ProjectUsers.DeleteOnSubmit(t.ToList().FirstOrDefault());
-                try
-                {
-                    dbContext.SubmitChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Something went wrong, when deleting the user id: " + user.Id + ", from the project id: " + projectId + " Error Message: \n" + e);
-                    return false;
-                }
+
+                return RemovePersonFromProject(project, nUser);
             }
             else
             {
                 return false;
             }
-            return true;
         }
 
         public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
         {
             bool error = false;
+            User nAdmin = dbUser.FindUserById(projectAdministrator.Id);
             try
             {
                 var option = new TransactionOptions();
@@ -175,8 +172,8 @@ namespace Server.Database
 
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
                 {
-                    bool r = RemoveUserFromProject(projectId, projectAdministrator);
-                    bool a = AddUserToProject(projectId, projectAdministrator, UserType.Administrator);
+                    bool r = RemoveUserFromProject(projectId, nAdmin);
+                    bool a = AddUserToProject(projectId, nAdmin, UserType.Administrator);
                     if (r == true && a == true)
                     {
                         scope.Complete();
@@ -190,7 +187,7 @@ namespace Server.Database
             }
             catch (Exception e)
             {
-                throw new Exception("Project Administrator not added to project " + e);
+                Console.WriteLine("Project Administrator not added to project " + e);
                 return false;
             }
             if (error)
@@ -205,7 +202,56 @@ namespace Server.Database
 
         public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
         {
-            throw new NotImplementedException();
+            bool error = false;
+            Project project = GetProject(projectId);
+            User nAdmin = dbUser.FindUserById(projectAdministrator.Id);
+            if (project == null)
+            {
+                return false;
+            }
+            else if (project.ProjectAdministrators.FirstOrDefault(x => x.Id == nAdmin.Id) != null)
+            {
+                try
+                {
+                    var option = new TransactionOptions();
+                    option.IsolationLevel = IsolationLevel.ReadCommitted;
+
+                    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                    {
+                        bool r = RemovePersonFromProject(project, nAdmin); //Removes the administrator so the person can be added as a normal user instead
+                        bool a = AddUserToProject(projectId, nAdmin); //Adds the same user again bus as a normal user instead.
+                        if (r == true && a == true)
+                        {
+                            scope.Complete();
+                        }
+                        else
+                        {
+                            scope.Dispose();
+                            error = true;
+                        }
+
+                    }
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Project Administrator not added to project " + e);
+                    error = true;
+                }
+
+            }
+            else
+            {
+                error = true;
+            }
+
+            if (error)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)
@@ -213,10 +259,10 @@ namespace Server.Database
             throw new NotImplementedException();
         }
 
-        private List<User> GetProjectAdministrators(int id) //TODO test db code.
+        private List<User> GetProjectAdministrators(int projectId) //TODO test db code.
         {
             var users = from user in dbContext.ProjectUsers
-                        where user.Project.Id.Equals(id) && user.UserType.Equals(UserType.Administrator)
+                        where user.Project.Id.Equals(projectId) && user.UserType.Equals(UserType.Administrator)
                         select user.User;
             return users.ToList();
         }
@@ -224,6 +270,10 @@ namespace Server.Database
         private bool AddUserToProject(int projectId, User user, UserType type)
         {
             Project project = GetProject(projectId);
+            if (project == null || user == null)
+            {
+                return false;
+            }
             dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = type });
             try
             {
@@ -235,6 +285,32 @@ namespace Server.Database
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Removes the individual person in the given Project.
+        /// There's no check whether the user or project exists or not.
+        /// So checks should be made prior to executing this method.
+        /// </summary>
+        /// <param name="project">The project to remove the user from</param>
+        /// <param name="user">THe user to be removed from the given project</param>
+        /// <returns></returns>
+        private bool RemovePersonFromProject(Project project, User user)
+        {
+            var t = from d in dbContext.ProjectUsers
+                    where project.Equals(d.Project) && user.Equals(d.User)
+                    select d;
+            dbContext.ProjectUsers.DeleteOnSubmit(t.ToList().FirstOrDefault());
+            try
+            {
+                dbContext.SubmitChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, when deleting the user id: " + user.Id + ", from the project id: " + project.Id + " Error Message: \n" + e);
+                return false;
+            }
         }
     }
 }
