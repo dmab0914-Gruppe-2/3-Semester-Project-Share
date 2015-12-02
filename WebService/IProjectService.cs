@@ -14,19 +14,22 @@ namespace WebService
     {
         [OperationContract]
         ProjectReturnType AddProject(string title, string description, string projectFolder, User projectAdministratorUser);
-
         [OperationContract]
         List<Project> GetAllProjects();
 
         [OperationContract]
-        Project GetProject(int id);
+        List<Project> GetProjectByTitle(string title);
 
+        [OperationContract]
+        List<Project> GetSomeProjectsBetweenId(int first, int last);
+        [OperationContract]
+        List<Project> GetSomeProjectsToId(int last);
+        [OperationContract]
+        Project GetProject(int id);
         [OperationContract]
         bool UpdateProject(int id, string title, string description, string projectFolder);
-
         [OperationContract]
         bool DeleteProject(int id);
-
         [OperationContract]
         bool AddUserToProject(int projectId, User user);
         [OperationContract]

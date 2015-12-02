@@ -60,5 +60,21 @@ namespace WebService
         {
             return projectController.RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
         }
+
+
+        public List<Library.Project> GetProjectByTitle(string title)
+        {
+            return projectController.GetProjectByTitle(title);
+        }
+
+        public List<Library.Project> GetSomeProjectsBetweenId(int first, int last)
+        {
+            return projectController.GetSomeProjects(first, last);
+        }
+
+        public List<Library.Project> GetSomeProjectsToId(int last)
+        {
+            return projectController.GetSomeProjects(last);
+        }
     }
 }
