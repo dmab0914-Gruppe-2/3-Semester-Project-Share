@@ -53,13 +53,31 @@ namespace Server.Database
 
         public bool RemoveProject(int projectId)
         {
+            throw new NotImplementedException();
             Project project = GetProject(projectId);
             if (project != null)
             {
                 try
                 {
-                    dbContext.Projects.DeleteOnSubmit(project);
-                    dbContext.SubmitChanges();
+                    var option = new TransactionOptions();
+                    option.IsolationLevel = IsolationLevel.ReadCommitted;
+
+                    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                    {
+                        bool r = RemoveUserFromProject(projectId, nAdmin);
+                        //bool f = dbFile.RemoveAllFilesFromProject(projectId);
+                        bool a = dbContext.Projects.DeleteOnSubmit(project);
+                        if (r == true && a == true)
+                        {
+                            dbContext.SubmitChanges();
+                            scope.Complete();
+                        }
+                        else
+                        {
+                            scope.Dispose();
+                            error = true;
+                        }
+                    }
                 }
                 catch (Exception e)
                 {
@@ -80,7 +98,7 @@ namespace Server.Database
         {
             try
             {
-                Project project = dbContext.Projects.First(i => i.Id == id);
+                Project project = dbContext.Projects.FirstOrDefault(i => i.Id == id);
                 if (project != null)
                 {
 
