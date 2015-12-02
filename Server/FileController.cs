@@ -12,7 +12,7 @@ using System.Transactions;
 
 namespace Server
 {
-    public class FileController : IFileControler
+    public class FileController : IFileController
     {
         private DbContext dbContext;
         private DbFile dbFile;
@@ -67,6 +67,7 @@ namespace Server
                 throw new Exception("File not added to DB " + e);
             }
         }
+
         public void DeleteFile(int fileID)
         {
             // remeber to use transaction to make sure file is delete every where or no where !
@@ -109,6 +110,47 @@ namespace Server
             //}
 
 
+        }
+
+
+        public void AddMutiFiles(List<string> fileNames, List<string> fileDescs, Library.Project project)
+        {
+            List<File> files = new List<File>();
+            User owner = new Library.User(1);
+            int i = 0;
+            try
+            {
+                foreach (String fn in fileNames)
+                {
+                    File file = new File(fn, fileDescs[i], project);
+                    file.FileLock = 1;
+                    file.FileLockTime = DateTime.Now;
+                    file.VersionNr = 1;
+                    files.Add(file);
+                    i++;
+                }
+                var option = new TransactionOptions();
+                option.IsolationLevel = IsolationLevel.ReadCommitted;
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                {
+                    foreach (File f in files)
+                    {
+                        bool af = dbFile.AddFIle(f);
+                        FileVersion fv = new FileVersion(f.Id.ToString(), f, f.VersionNr, owner);
+                        bool version = dbFileVersion.AddFileVersion(fv);
+                        if (!af && !version)
+                        {
+                            scope.Dispose();
+                            break;
+                        }
+                    }
+                    scope.Complete();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Files not added to DB: \n" + e);
+            }
         }
     }
 }

@@ -56,10 +56,10 @@ namespace WebService
             return fCtr.AllFilesForProject(projectId);
         }
 
-        //public void AddFile(string fileName, string fileDesc, int projectId)
-        //{
-        //    fCtr.AddFile(fileName, fileDesc, projectId);
-        //}
+        public void AddMutiFiles(List<String> fileNames, List<String> fileDescs, Library.Project project)
+        {
+            fCtr.AddMutiFiles(fileNames, fileDescs, project);
+        }
         public Library.File GetFile(int fileId)
         {
             return fCtr.GetFile(fileId);

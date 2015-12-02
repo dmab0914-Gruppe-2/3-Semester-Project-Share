@@ -139,6 +139,12 @@ namespace ClientApp.FileUploadService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject", ReplyAction="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse")]
         System.Threading.Tasks.Task<Library.File[]> GetAllFilesForProjectAsync(int projectId);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMutiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMutiFilesResponse")]
+        void AddMutiFiles(string[] fileNames, string[] fileDescs, Library.Project project);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMutiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMutiFilesResponse")]
+        System.Threading.Tasks.Task AddMutiFilesAsync(string[] fileNames, string[] fileDescs, Library.Project project);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
         Library.File GetFile(int fileId);
         
@@ -296,6 +302,14 @@ namespace ClientApp.FileUploadService {
         
         public System.Threading.Tasks.Task<Library.File[]> GetAllFilesForProjectAsync(int projectId) {
             return base.Channel.GetAllFilesForProjectAsync(projectId);
+        }
+        
+        public void AddMutiFiles(string[] fileNames, string[] fileDescs, Library.Project project) {
+            base.Channel.AddMutiFiles(fileNames, fileDescs, project);
+        }
+        
+        public System.Threading.Tasks.Task AddMutiFilesAsync(string[] fileNames, string[] fileDescs, Library.Project project) {
+            return base.Channel.AddMutiFilesAsync(fileNames, fileDescs, project);
         }
         
         public Library.File GetFile(int fileId) {

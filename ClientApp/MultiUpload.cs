@@ -42,44 +42,40 @@ namespace ClientApp
             int i = 0;
             if (fullFilePathList != null && fileToUploadList != null)
             {
-
-                //try
-                //{
+                try
+                {
                     foreach (string fullFilePath in fullFilePathList)
                     {
-                        //using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
-                        //{
-                        //    var request = new FileUploadMessage();
-                        //    var fileMetaData = new FileMetaData();
-                        //    fileMetaData.FileName = fileToUploadList[i];
-                        //    fileMetaData.FullLocalPath = fullFilePath;
-                        //    fileMetaData.FileType = (DefinedFileTypes)Enum.Parse(typeof(DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
-                        //    request.Metadata = fileMetaData;
-                        //    request.FileByteStream = fileStream;
-                        //    client.UploadFile(fileMetaData, fileStream);
-                            
-                        //}
-                       // AddFiles(dataGridView1.Rows[i].Cells[0].Value.ToString(), dataGridView1.Rows[i].Cells[1].Value.ToString());
-                        
+                        using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                        {
+                            var request = new FileUploadMessage();
+                            var fileMetaData = new FileMetaData();
+                            fileMetaData.FileName = fileToUploadList[i];
+                            fileMetaData.FullLocalPath = fullFilePath;
+                            fileMetaData.FileType = (DefinedFileTypes)Enum.Parse(typeof(DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
+                            request.Metadata = fileMetaData;
+                            request.FileByteStream = fileStream;
+                            client.UploadFile(fileMetaData, fileStream);                            
+                        }                        
                         i++;
                     }
-                    AddFiles();
-                   // client.Close();
-                //}
-                //catch (IOException ioException)
-                //{
-                //    // throw new FileTransferProxyException("Unable to open the file to upload");
-                //    MessageBox.Show("File error!" + ioException);
-                //}
-                //catch (Exception ex)
-                //{
-                //    //throw new FileTransferProxyException(e.Message);
-                //    MessageBox.Show("Error in upload, please try again. If this continue contact administrator :(" + ex);
-                //}
-                //finally
-                //{
-                //    lblError.Text = "File uploaded";
-                //}
+                    AddFiles();                
+                    client.Close();
+                }
+                catch (IOException ioException)
+                {
+                    // throw new FileTransferProxyException("Unable to open the file to upload");
+                    MessageBox.Show("File error!" + ioException);
+                }
+                catch (Exception ex)
+                {
+                    //throw new FileTransferProxyException(e.Message);
+                    MessageBox.Show("Error in upload, please try again. If this continue contact administrator :(" + ex);
+                }
+                finally
+                {
+                    lblError.Text = "File uploaded";
+                }
 
             }
 
@@ -90,7 +86,6 @@ namespace ClientApp
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-
                 btnUpload.Enabled = true;
                 lblError.Text = "";
                 //fileToUploadList = null;
@@ -116,16 +111,21 @@ namespace ClientApp
                     fullFilePathList.Add(filepath);
                     fileToUploadList.Add(Path.GetFileName(filepath));
                 }
-
             }
         }
 
         private void AddFiles()
         {
+           List<string> filenames = new List<string>();
+           // string[] filenames;
+            List<string> filedescs = new List<string>();
             for(int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                fac.AddFile(dataGridView1.Rows[i].Cells[0].Value.ToString(), dataGridView1.Rows[i].Cells[1].Value.ToString(), Project);
+                filenames.Add(dataGridView1.Rows[i].Cells[0].Value.ToString());
+                filedescs.Add(dataGridView1.Rows[i].Cells[1].Value.ToString());
+              //  fac.AddFile(dataGridView1.Rows[i].Cells[0].Value.ToString(), dataGridView1.Rows[i].Cells[1].Value.ToString(), Project);
             }
+            client.AddMutiFiles(filenames.ToArray<string>(), filedescs.ToArray<string>(), Project);
             btnUpload.Enabled = false;
             lblError.Text = "Upload done";
         }

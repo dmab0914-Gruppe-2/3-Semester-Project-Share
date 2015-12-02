@@ -28,6 +28,7 @@
     <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="11b66bb2-6188-4918-b771-5748f6bcccb7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/FileUploadService/mex" />
     <MetadataFile FileName="WebService.Models.xsd" MetadataType="Schema" ID="1dea203d-2e30-4741-9434-327aef1a4fb0" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/FileUploadService/mex" />
     <MetadataFile FileName="Library.xsd" MetadataType="Schema" ID="2dcb0593-0f92-4c11-bbd4-f859f0e1238e" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/FileUploadService/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="8aa7cf70-404b-4395-9624-5dc6f1009ad7" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/FileUploadService/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

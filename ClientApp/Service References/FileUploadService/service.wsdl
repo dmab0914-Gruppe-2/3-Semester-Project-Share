@@ -14,6 +14,7 @@
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/WebService.Models" />
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Library" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="FileUploadMessage">
@@ -41,6 +42,12 @@
   <wsdl:message name="IFileUpLoadService_GetAllFilesForProject_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllFilesForProjectResponse" />
   </wsdl:message>
+  <wsdl:message name="IFileUpLoadService_AddMutiFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMutiFiles" />
+  </wsdl:message>
+  <wsdl:message name="IFileUpLoadService_AddMutiFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMutiFilesResponse" />
+  </wsdl:message>
   <wsdl:message name="IFileUpLoadService_GetFile_InputMessage">
     <wsdl:part name="parameters" element="tns:GetFile" />
   </wsdl:message>
@@ -59,6 +66,10 @@
     <wsdl:operation name="GetAllFilesForProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject" message="tns:IFileUpLoadService_GetAllFilesForProject_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse" message="tns:IFileUpLoadService_GetAllFilesForProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMutiFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/AddMutiFiles" message="tns:IFileUpLoadService_AddMutiFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/AddMutiFilesResponse" message="tns:IFileUpLoadService_AddMutiFiles_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/GetFile" message="tns:IFileUpLoadService_GetFile_InputMessage" />
@@ -91,6 +102,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllFilesForProject">
       <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMutiFiles">
+      <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/AddMutiFiles" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

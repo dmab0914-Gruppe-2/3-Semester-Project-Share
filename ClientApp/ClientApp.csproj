@@ -143,6 +143,9 @@
     <None Include="Service References\addFileService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\FileUploadService\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\FileUploadService\ClientApp.FileUploadService.FileDownloadReturnMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

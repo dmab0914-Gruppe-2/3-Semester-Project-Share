@@ -53,7 +53,7 @@
     <Compile Include="Database\IDbFileVersion.cs" />
     <Compile Include="Database\IDbUser.cs" />
     <Compile Include="FileController.cs" />
-    <Compile Include="IFileControler.cs" />
+    <Compile Include="IFileController.cs" />
     <Compile Include="IProjectController.cs" />
     <Compile Include="IUserController.cs" />
     <Compile Include="Program.cs" />
