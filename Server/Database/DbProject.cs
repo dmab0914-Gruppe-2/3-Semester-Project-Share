@@ -131,7 +131,11 @@ namespace Server.Database
             Project project = GetProject(projectId);
             if (project.ProjectAdministrators.Where(x => x.Id == user.Id) != null)
             {
-                dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
+                //dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
+                var t = from d in dbContext.ProjectUsers
+                        where project.Equals(d.Project) && user.Equals(d.User)
+                        select d;
+                dbContext.ProjectUsers.DeleteOnSubmit(t.ToList().FirstOrDefault());
                 try
                 {
                     dbContext.SubmitChanges();
@@ -168,6 +172,7 @@ namespace Server.Database
                     }
                     else
                     {
+                        scope.Dispose();
                         error = true;
                     }
                 }
