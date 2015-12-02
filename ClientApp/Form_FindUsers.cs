@@ -46,5 +46,14 @@ namespace ClientApp
                 listView_Users.Items.Add(lwi);
             }
         }
+
+        private void button_AddUser_Click(object sender, EventArgs e)
+        {
+            //TODO kald proxy, når fokus forlader dette vindue, opdater Projektadministration bruger vindue
+            if (listView_Users.SelectedItems.Count == 1)
+            {
+                
+            }
+        }
     }
 }
