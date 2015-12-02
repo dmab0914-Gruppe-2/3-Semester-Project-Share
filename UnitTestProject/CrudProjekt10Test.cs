@@ -234,19 +234,21 @@ namespace UnitTestProject
         [TestMethod]
         public void TestRemoveProject()
         {
-            List<Project> projects1 = projectController.GetProjectByTitle(project1.Title);;
-            List<bool> result1 = new List<bool>();
+            //List<Project> projects1 = projectController.GetProjectByTitle(project1.Title); ;
+            //List<bool> result1 = new List<bool>();
 
-            foreach (Project project in projects1)
-            {
-                bool result = projectController.DeleteProject(project.Id);
-                result1.Add(result);
-            }
-            foreach (bool b in result1)
-            {
-                Assert.AreEqual(true, b);
-            }
-            
+            //foreach (Project project in projects1)
+            //{
+            //    bool result = projectController.DeleteProject(project.Id);
+            //    result1.Add(result);
+            //}
+            //foreach (bool b in result1)
+            //{
+            //    Assert.AreEqual(true, b);
+            //}
+            bool result = projectController.DeleteProject(1);
+            Assert.AreEqual(true, result);
+
         }
 
 #endregion
