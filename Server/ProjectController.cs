@@ -110,6 +110,29 @@ namespace Server
         {
             return _dbProject.RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
         }
+
+        /// <summary>
+        /// Returns a list of projects with specified id range, first included last excluded
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="last"></param>
+        /// <returns>List of Project between the given range</returns>
+        public List<Project> GetSomeProjects(int first, int last)
+        {
+            List<Project> projects = _dbProject.GetAllProjects().Where(x => x.Id >= first && x.Id > last).ToList();
+            return projects;
+        }
+
+        /// <summary>
+        /// Returns a list of Project within the last parameter with last included
+        /// </summary>
+        /// <param name="last"></param>
+        /// <returns>List of project up to Last</returns>
+        public List<Project> GetSomeProjects(int last)
+        {
+            List<Project> projects = _dbProject.GetAllProjects().Where(x => x.Id >= last).ToList();
+            return projects;
+        }
     }
 
 }
