@@ -75,19 +75,20 @@ namespace Server.Database
         /// <returns>The project with the given id if found, null if not.</returns>
         public Project GetProject(int id)
         {
-            Project project = dbContext.Projects.First(i => i.Id == id);
-            if (project != null)
+            try
             {
-                try
+                Project project = dbContext.Projects.First(i => i.Id == id);
+                if (project != null)
                 {
+
                     project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
                     project.ProjectAdministrators = GetProjectAdministrators(project.Id);
                     return project;
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Something went wrong, when looking for the given Project id: " + id + " Error Message: \n" + e);
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, when looking for the given Project id: " + id + " Error Message: \n" + e);
             }
             return null;
         }
