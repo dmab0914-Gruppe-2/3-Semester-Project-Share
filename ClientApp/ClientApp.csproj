@@ -136,6 +136,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\addFileService\Library1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\addFileService\service.wsdl" />
     <None Include="Service References\addFileService\service.xsd">
       <SubType>Designer</SubType>
@@ -179,6 +182,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ProjectService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ProjectService\System.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\UserService\Library.xsd">
