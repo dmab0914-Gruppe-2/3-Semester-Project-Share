@@ -149,47 +149,50 @@ namespace UnitTestProject
         [TestMethod]
         public void TestGetProjectId1()
         {
-            Project project = projectController.GetProject(1);
-            Assert.Equals(1, project.Id);
-            Assert.Equals("World Domination", project.Title);
-            Assert.Equals("Self Explainatory", project.Description);
-            Assert.Equals(@"c:\", project.ProjectFolder);
+            //Project project = projectController.GetProject(1);
+            List<Project> projects = projectController.GetProjectByTitle("World Domination");
+            Project project = projects.FirstOrDefault();
+            //Assert.AreEqual(1, project.Id);
+            Assert.AreEqual("World Domination", project.Title);
+            Assert.AreEqual("Self Explainatory", project.Description);
+            Assert.AreEqual(@"c:\", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId2()
         {
-            Project project = projectController.GetProject(1);
-            Assert.Equals(2, project.Id);
-            Assert.Equals("Bridge Construction", project.Title);
-            Assert.Equals("Bridge over Klisterkanalen", project.Description);
-            Assert.Equals(@"C:\Projects\BridgeConstruction", project.ProjectFolder);
+            List<Project> projects = projectController.GetProjectByTitle("Bridge Construction");
+            Project project = projects.FirstOrDefault();
+            //Assert.AreEqual(1, project.Id);
+            Assert.AreEqual("Bridge Construction", project.Title);
+            Assert.AreEqual("Bridge over Klisterkanalen", project.Description);
+            Assert.AreEqual(@"C:\Projects\BridgeConstruction", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId3()
         {
-            Project project = projectController.GetProject(1);
-            Assert.Equals(3, project.Id);
-            Assert.Equals("Recruiting", project.Title);
-            Assert.Equals("Get more members", project.Description);
-            Assert.Equals(@"C:\Projects\Recruiters", project.ProjectFolder);
+            List<Project> projects = projectController.GetProjectByTitle("Recruiting");
+            Project project = projects.FirstOrDefault();
+            Assert.AreEqual("Recruiting", project.Title);
+            Assert.AreEqual("Get more members", project.Description);
+            Assert.AreEqual(@"C:\Projects\Recruiters", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId4()
         {
-            Project project = projectController.GetProject(1);
-            Assert.Equals(4, project.Id);
-            Assert.Equals("World Domination", project.Title);
-            Assert.Equals("Self Explainatory", project.Description);
-            Assert.Equals(@"c:\", project.ProjectFolder);
+            List<Project> projects = projectController.GetProjectByTitle("World Domination");
+            Project project = projects.FirstOrDefault();
+            Assert.AreEqual("World Domination", project.Title);
+            Assert.AreEqual("Self Explainatory", project.Description);
+            Assert.AreEqual(@"c:\", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId5()
         {
-            Project project = projectController.GetProject(1);
-            Assert.Equals(5, project.Id);
-            Assert.Equals("World Domination", project.Title);
-            Assert.Equals("Self Explainatory", project.Description);
-            Assert.Equals(@"c:\", project.ProjectFolder);
+            List<Project> projects = projectController.GetProjectByTitle("World Domination");
+            Project project = projects.FirstOrDefault();
+            Assert.AreEqual("World Domination", project.Title);
+            Assert.AreEqual("Self Explainatory", project.Description);
+            Assert.AreEqual(@"c:\", project.ProjectFolder);
         }
 
 #endregion
