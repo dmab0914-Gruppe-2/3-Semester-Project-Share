@@ -133,20 +133,26 @@ namespace Server.Database
 
         public bool AddUserToProject(int projectId, User user)
         {
-            return AddUserToProject(projectId, user, UserType.User);
+            User nUser = dbUser.FindUserById(user.Id);
+            if (nUser == null)
+            {
+                return false;
+            }
+            return AddUserToProject(projectId, nUser, UserType.User);
         }
 
         public bool RemoveUserFromProject(int projectId, User user)
         {
             Project project = GetProject(projectId);
+            User nUser = dbUser.FindUserById(user.Id);
             if (project == null)
             {
                 return false;
             }
-            else if (project.ProjectMembers.FirstOrDefault(x => x.Id == user.Id) != null)
+            else if (project.ProjectMembers.FirstOrDefault(x => x.Id == nUser.Id) != null)
             {
 
-                return RemovePersonFromProject(project, user);
+                return RemovePersonFromProject(project, nUser);
             }
             else
             {
@@ -157,6 +163,7 @@ namespace Server.Database
         public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
         {
             bool error = false;
+            User nAdmin = dbUser.FindUserById(projectAdministrator.Id);
             try
             {
                 var option = new TransactionOptions();
@@ -164,8 +171,8 @@ namespace Server.Database
 
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
                 {
-                    bool r = RemoveUserFromProject(projectId, projectAdministrator);
-                    bool a = AddUserToProject(projectId, projectAdministrator, UserType.Administrator);
+                    bool r = RemoveUserFromProject(projectId, nAdmin);
+                    bool a = AddUserToProject(projectId, nAdmin, UserType.Administrator);
                     if (r == true && a == true)
                     {
                         scope.Complete();
@@ -196,11 +203,12 @@ namespace Server.Database
         {
             bool error = false;
             Project project = GetProject(projectId);
+            User nAdmin = dbUser.FindUserById(projectAdministrator.Id);
             if (project == null)
             {
                 return false;
             }
-            else if (project.ProjectAdministrators.FirstOrDefault(x => x.Id == projectAdministrator.Id) != null)
+            else if (project.ProjectAdministrators.FirstOrDefault(x => x.Id == nAdmin.Id) != null)
             {
                 try
                 {
@@ -209,8 +217,8 @@ namespace Server.Database
 
                     using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
                     {
-                        bool r = RemovePersonFromProject(project, projectAdministrator); //Removes the administrator so the person can be added as a normal user instead
-                        bool a = AddUserToProject(projectId, projectAdministrator); //Adds the same user again bus as a normal user instead.
+                        bool r = RemovePersonFromProject(project, nAdmin); //Removes the administrator so the person can be added as a normal user instead
+                        bool a = AddUserToProject(projectId, nAdmin); //Adds the same user again bus as a normal user instead.
                         if (r == true && a == true)
                         {
                             scope.Complete();
@@ -261,7 +269,7 @@ namespace Server.Database
         private bool AddUserToProject(int projectId, User user, UserType type)
         {
             Project project = GetProject(projectId);
-            if (project == null)
+            if (project == null || user == null)
             {
                 return false;
             }
