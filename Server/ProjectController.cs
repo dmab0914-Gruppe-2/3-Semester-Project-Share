@@ -13,7 +13,9 @@ namespace Server
     public class ProjectController : IProjectController
     {
         private readonly IDbProject _dbProject = new DbProject();
-        public ProjectReturnType AddProject(string title, string description, string projectFolder, User projectAdministratorUser)
+
+        public ProjectReturnType AddProject(string title, string description, string projectFolder,
+            User projectAdministratorUser)
         {
             if (title == null || title.Equals(""))
             {
@@ -57,7 +59,8 @@ namespace Server
             {
                 return ProjectReturnType.ProjectAdministratorUserMissing;
             }
-            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
+            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder,
+                project.ProjectAdministrators.FirstOrDefault());
             return ProjectReturnType.Success;
             //throw new NotImplementedException();
         }
@@ -105,7 +108,7 @@ namespace Server
 
         public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
         {
-            return RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
+            return _dbProject.RemoveProjectAdministratorFromProject(projectId, projectAdministrator);
         }
     }
 
