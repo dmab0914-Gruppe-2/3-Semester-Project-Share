@@ -51,9 +51,9 @@ namespace Server.Database
             }
         }
 
-        public bool RemoveProject(int id)
+        public bool RemoveProject(int projectId)
         {
-            Project project = GetProject(id);
+            Project project = GetProject(projectId);
             if (project != null)
             {
                 try
@@ -61,8 +61,9 @@ namespace Server.Database
                     dbContext.Projects.DeleteOnSubmit(project);
                     dbContext.SubmitChanges();
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
+                    Console.WriteLine("Project could not be removed. Project id: " + projectId + "Error: \n" + e);
                     return false;
                 }
                 return true;
