@@ -141,7 +141,7 @@ namespace Server.Database
             {
                 return false;
             }
-            else if (project.ProjectAdministrators.FirstOrDefault(x => x.Id == user.Id) != null)
+            else if (project.ProjectMembers.FirstOrDefault(x => x.Id == user.Id) != null)
             {
                 //dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
                 var t = from d in dbContext.ProjectUsers
