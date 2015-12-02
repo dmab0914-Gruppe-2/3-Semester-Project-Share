@@ -184,9 +184,6 @@
     <None Include="Service References\ProjectService\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ProjectService\System.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\UserService\Library.xsd">
       <SubType>Designer</SubType>
     </None>
