@@ -17,7 +17,7 @@ namespace Server.Database
         }
         public Library.User FindUserById(int id)
         {
-            return dbContext.Users.First(i => i.Id == id);
+            return dbContext.Users.FirstOrDefault(i => i.Id == id);
         }
 
         public List<User> FindUsersByEmail(string email)
