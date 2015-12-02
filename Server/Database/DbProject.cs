@@ -137,7 +137,11 @@ namespace Server.Database
         public bool RemoveUserFromProject(int projectId, User user)
         {
             Project project = GetProject(projectId);
-            if (project.ProjectAdministrators.Where(x => x.Id == user.Id) != null)
+            if (project == null)
+            {
+                return false;
+            }
+            else if (project.ProjectAdministrators.FirstOrDefault(x => x.Id == user.Id) != null)
             {
                 //dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
                 var t = from d in dbContext.ProjectUsers
