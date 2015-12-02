@@ -162,7 +162,7 @@ namespace ClientApp
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-            bool accepted = false;
+            bool accepted;
             if (listView_Projects.SelectedItems.Count == 1)
             {
                 DialogResult dialogResult = MessageBox.Show("Er du sikker på at du vil gemme disse ændringer?", "Gem ændringer for projekt", MessageBoxButtons.YesNo);
@@ -187,6 +187,11 @@ namespace ClientApp
                         int projectId = Convert.ToInt32(textBox_ProjektId.Text);
                         //TODO Uncomment when ready after project users have been modified
                         //Project project = new Project(projectId, textBox_Title.Text, textBox_Description.Text, new User("", "", UserType.Administrator));
+                        Project project = new Project
+                        {
+                            Description = textBox_Description.Text,
+                            Title = textBox_Title.Text
+                        };
                     }
                 }
                 else if (dialogResult == DialogResult.No)

@@ -27,6 +27,12 @@ namespace ClientApp.ProjectService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetAllProjects", ReplyAction="http://tempuri.org/IProjectService/GetAllProjectsResponse")]
         System.Threading.Tasks.Task<Library.Project[]> GetAllProjectsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetSomeProjects", ReplyAction="http://tempuri.org/IProjectService/GetSomeProjectsResponse")]
+        Library.Project[] GetSomeProjects(System.Func<Library.Project, bool> func);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetSomeProjects", ReplyAction="http://tempuri.org/IProjectService/GetSomeProjectsResponse")]
+        System.Threading.Tasks.Task<Library.Project[]> GetSomeProjectsAsync(System.Func<Library.Project, bool> func);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetProject", ReplyAction="http://tempuri.org/IProjectService/GetProjectResponse")]
         Library.Project GetProject(int id);
         
@@ -111,6 +117,14 @@ namespace ClientApp.ProjectService {
         
         public System.Threading.Tasks.Task<Library.Project[]> GetAllProjectsAsync() {
             return base.Channel.GetAllProjectsAsync();
+        }
+        
+        public Library.Project[] GetSomeProjects(System.Func<Library.Project, bool> func) {
+            return base.Channel.GetSomeProjects(func);
+        }
+        
+        public System.Threading.Tasks.Task<Library.Project[]> GetSomeProjectsAsync(System.Func<Library.Project, bool> func) {
+            return base.Channel.GetSomeProjectsAsync(func);
         }
         
         public Library.Project GetProject(int id) {
