@@ -75,12 +75,20 @@ namespace Server.Database
         /// <returns>The project with the given id if found, null if not.</returns>
         public Project GetProject(int id)
         {
-            Project project = dbContext.Projects.First(i => i.Id == id);
-            if (project != null)
+            try
             {
-                project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
-                project.ProjectAdministrators = GetProjectAdministrators(project.Id);
-                return project;
+                Project project = dbContext.Projects.First(i => i.Id == id);
+                if (project != null)
+                {
+
+                    project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
+                    project.ProjectAdministrators = GetProjectAdministrators(project.Id);
+                    return project;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Something went wrong, when looking for the given Project id: " + id + " Error Message: \n" + e);
             }
             return null;
         }
@@ -131,7 +139,11 @@ namespace Server.Database
             Project project = GetProject(projectId);
             if (project.ProjectAdministrators.Where(x => x.Id == user.Id) != null)
             {
-                dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
+                //dbContext.ProjectUsers.DeleteOnSubmit(new ProjectUsers { Project = project, User = user }); //TODO make test for this code.
+                var t = from d in dbContext.ProjectUsers
+                        where project.Equals(d.Project) && user.Equals(d.User)
+                        select d;
+                dbContext.ProjectUsers.DeleteOnSubmit(t.ToList().FirstOrDefault());
                 try
                 {
                     dbContext.SubmitChanges();
@@ -147,7 +159,6 @@ namespace Server.Database
                 return false;
             }
             return true;
-
         }
 
         public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
@@ -168,6 +179,7 @@ namespace Server.Database
                     }
                     else
                     {
+                        scope.Dispose();
                         error = true;
                     }
                 }
