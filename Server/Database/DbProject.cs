@@ -78,9 +78,16 @@ namespace Server.Database
             Project project = dbContext.Projects.First(i => i.Id == id);
             if (project != null)
             {
-                project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
-                project.ProjectAdministrators = GetProjectAdministrators(project.Id);
-                return project;
+                try
+                {
+                    project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
+                    project.ProjectAdministrators = GetProjectAdministrators(project.Id);
+                    return project;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Something went wrong, when looking for the given Project id: " + id + " Error Message: \n" + e);
+                }
             }
             return null;
         }
@@ -151,7 +158,6 @@ namespace Server.Database
                 return false;
             }
             return true;
-
         }
 
         public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
