@@ -326,9 +326,11 @@ namespace Server.Database
             {
                 return false;
             }
-            dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = type });
             try
             {
+                //dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = type });
+                string sql = "INSERT INTO ProjectUsers VALUES (" + project.Id + "," + user.Id + "," + EnumToint(type) + ")";
+                dbContext.ExecuteCommand(sql);
                 dbContext.SubmitChanges();
             }
             catch (Exception e)
@@ -363,6 +365,23 @@ namespace Server.Database
                 Console.WriteLine("Something went wrong, when deleting the user id: " + user.Id + ", from the project id: " + project.Id + " Error Message: \n" + e);
                 return false;
             }
+        }
+
+        private int EnumToint(UserType type)
+        {
+            if (type.Equals(UserType.Guest))
+            {
+                return 1;
+            }
+            else if (type.Equals(UserType.User))
+            {
+                return 2;
+            }
+            else if (type.Equals(UserType.Administrator))
+            {
+                return 3;
+            }
+            return 0;
         }
     }
 }
