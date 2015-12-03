@@ -12,5 +12,6 @@ namespace Server.Database
         List<FileVersion> GetFilesVersionForFile(int fileId);
         FileVersion GetNewsFileVersion(int fileId);
         bool AddFileVersion(FileVersion fileVersion);
+        bool RemoveFileVersionsForFile(int fileId);
     }
 }

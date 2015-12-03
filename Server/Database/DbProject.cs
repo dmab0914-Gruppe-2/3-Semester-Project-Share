@@ -75,6 +75,10 @@ namespace Server.Database
                         {
                             success.Add(RemovePersonFromProject(project, user));
                         }
+                        foreach (File file in dbFile.GetAllFilesForProject(project.Id))
+                        {
+                            success.Add(dbFile.RemoveFile(file));
+                        }
                         //bool f = dbFile.RemoveAllFilesFromProject(projectId);
                         dbContext.Projects.DeleteOnSubmit(project);
                         if (success.TrueForAll(x => x.Equals(true))) //Checks if all values in the List matches true, and returns true if so.

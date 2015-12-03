@@ -12,5 +12,6 @@ namespace Server.Database
         List<File> GetAllFilesForProject(int projectId);
         File GetFile(int fileId);
         bool AddFIle(File file);
+        bool RemoveFile(File file);
     }
 }
