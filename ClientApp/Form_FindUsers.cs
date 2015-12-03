@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClientApp.ProjectService;
 using ClientApp.UserService;
 using Library;
 
@@ -14,9 +15,19 @@ namespace ClientApp
 {
     public partial class Form_FindUsers : Form
     {
-        public Form_FindUsers()
+        //Services
+        ProjectService.IProjectService projectService = new ProjectServiceClient();
+        UserService.IUserService userService = new UserServiceClient();
+
+        //Class variables
+        private int projectId;
+        private bool createProject;
+
+        public Form_FindUsers(int projectId, bool createProject)
         {
             InitializeComponent();
+            this.projectId = projectId;
+            this.createProject = createProject;
         }
 
         private void button_FindUser_Click(object sender, EventArgs e)
@@ -27,7 +38,7 @@ namespace ClientApp
 
         private void Form_FindUsers_Load(object sender, EventArgs e)
         {
-            UserService.IUserService userService = new UserServiceClient();
+            
             //Listview settings
             listView_Users.GridLines = true;
             listView_Users.FullRowSelect = true;
@@ -49,10 +60,17 @@ namespace ClientApp
 
         private void button_AddUser_Click(object sender, EventArgs e)
         {
-            //TODO kald proxy, når fokus forlader dette vindue, opdater Projektadministration bruger vindue
+            bool success;
+
             if (listView_Users.SelectedItems.Count == 1)
             {
-                
+                int id = Convert.ToInt32(listView_Users.SelectedItems[0].Text);
+                User user = userService.FindUserById(id);
+                success = projectService.AddUserToProject(projectId, user);
+                if (success)
+                    MessageBox.Show("Bruger tilføjet!");
+                else
+                    MessageBox.Show("Fejl");
             }
         }
     }

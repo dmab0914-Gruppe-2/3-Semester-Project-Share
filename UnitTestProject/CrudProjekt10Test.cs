@@ -40,11 +40,11 @@ namespace UnitTestProject
         {
             UserController userController = new UserController();
             projectAdminUser = userController.FindUsersByUserName("arm").FirstOrDefault();
-            project1 = new Project("World Domination", "Self Explainatory", @"c:\", projectAdminUser);
-            project2 = new Project("Bridge Construction", "Bridge over Klisterkanalen", @"C:\Projects\BridgeConstruction", projectAdminUser);
-            project3 = new Project("Recruiting", "Get more members", @"C:\Projects\Recruiters", projectAdminUser);
-            project4 = new Project("Server code", "Backend server code", @"C:\Projects\Backend", projectAdminUser);
-            project5 = new Project("Life and Universe", "What is 42?", @"C:\Projects\42", projectAdminUser);
+            project1 = new Project("World Domination", "Self Explainatory", @"WorldDomination", projectAdminUser);
+            project2 = new Project("Bridge Construction", "Bridge over Klisterkanalen", @"BridgeConstruction", projectAdminUser);
+            project3 = new Project("Recruiting", "Get more members", @"Recruiters", projectAdminUser);
+            project4 = new Project("Server code", "Backend server code", @"Backend", projectAdminUser);
+            project5 = new Project("Life and Universe", "What is 42?", @"42", projectAdminUser);
             projectController.AddProject(project1);
             projectController.AddProject(project2);
             projectController.AddProject(project3);
@@ -180,7 +180,7 @@ namespace UnitTestProject
             //Assert.AreEqual(1, project.Id);
             Assert.AreEqual("World Domination", project.Title);
             Assert.AreEqual("Self Explainatory", project.Description);
-            Assert.AreEqual(@"c:\", project.ProjectFolder);
+            Assert.AreEqual(@"WorldDomination", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId2()
@@ -190,7 +190,7 @@ namespace UnitTestProject
             //Assert.AreEqual(1, project.Id);
             Assert.AreEqual("Bridge Construction", project.Title);
             Assert.AreEqual("Bridge over Klisterkanalen", project.Description);
-            Assert.AreEqual(@"C:\Projects\BridgeConstruction", project.ProjectFolder);
+            Assert.AreEqual(@"BridgeConstruction", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId3()
@@ -199,7 +199,7 @@ namespace UnitTestProject
             Project project = projects.FirstOrDefault();
             Assert.AreEqual("Recruiting", project.Title);
             Assert.AreEqual("Get more members", project.Description);
-            Assert.AreEqual(@"C:\Projects\Recruiters", project.ProjectFolder);
+            Assert.AreEqual(@"Recruiters", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId4()
@@ -208,7 +208,7 @@ namespace UnitTestProject
             Project project = projects.FirstOrDefault();
             Assert.AreEqual("World Domination", project.Title);
             Assert.AreEqual("Self Explainatory", project.Description);
-            Assert.AreEqual(@"c:\", project.ProjectFolder);
+            Assert.AreEqual(@"WorldDomination", project.ProjectFolder);
         }
         [TestMethod]
         public void TestGetProjectId5()
@@ -217,7 +217,7 @@ namespace UnitTestProject
             Project project = projects.FirstOrDefault();
             Assert.AreEqual("World Domination", project.Title);
             Assert.AreEqual("Self Explainatory", project.Description);
-            Assert.AreEqual(@"c:\", project.ProjectFolder);
+            Assert.AreEqual(@"WorldDomination", project.ProjectFolder);
         }
 
 #endregion
@@ -246,7 +246,7 @@ namespace UnitTestProject
             //{
             //    Assert.AreEqual(true, b);
             //}
-            bool result = projectController.DeleteProject(1);
+            bool result = projectController.DeleteProject(10);
             Assert.AreEqual(true, result);
 
         }
