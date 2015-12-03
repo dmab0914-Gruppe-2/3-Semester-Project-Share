@@ -272,11 +272,6 @@ namespace Server.Database
             }
         }
 
-        public bool UpdateProject(int id, string title, string description, string projectFolder, User projectAdministratorUser)
-        {
-            throw new NotImplementedException();
-        }
-
         private List<User> GetProjectAdministrators(int projectId) //TODO test db code.
         {
             var users = from user in dbContext.ProjectUsers
