@@ -262,7 +262,7 @@ namespace Server.Database
             bool error = false;
             Project project = GetProject(projectId);
             User nAdmin = dbUser.FindUserById(projectAdministrator.Id);
-            if (project == null)
+            if (project == null || nAdmin == null)
             {
                 return false;
             }
