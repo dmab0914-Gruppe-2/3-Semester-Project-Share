@@ -27,6 +27,24 @@ namespace ClientApp.ProjectService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetAllProjects", ReplyAction="http://tempuri.org/IProjectService/GetAllProjectsResponse")]
         System.Threading.Tasks.Task<Library.Project[]> GetAllProjectsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetProjectByTitle", ReplyAction="http://tempuri.org/IProjectService/GetProjectByTitleResponse")]
+        Library.Project[] GetProjectByTitle(string title);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetProjectByTitle", ReplyAction="http://tempuri.org/IProjectService/GetProjectByTitleResponse")]
+        System.Threading.Tasks.Task<Library.Project[]> GetProjectByTitleAsync(string title);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetSomeProjectsBetweenId", ReplyAction="http://tempuri.org/IProjectService/GetSomeProjectsBetweenIdResponse")]
+        Library.Project[] GetSomeProjectsBetweenId(int first, int last);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetSomeProjectsBetweenId", ReplyAction="http://tempuri.org/IProjectService/GetSomeProjectsBetweenIdResponse")]
+        System.Threading.Tasks.Task<Library.Project[]> GetSomeProjectsBetweenIdAsync(int first, int last);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetSomeProjectsToId", ReplyAction="http://tempuri.org/IProjectService/GetSomeProjectsToIdResponse")]
+        Library.Project[] GetSomeProjectsToId(int last);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetSomeProjectsToId", ReplyAction="http://tempuri.org/IProjectService/GetSomeProjectsToIdResponse")]
+        System.Threading.Tasks.Task<Library.Project[]> GetSomeProjectsToIdAsync(int last);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProjectService/GetProject", ReplyAction="http://tempuri.org/IProjectService/GetProjectResponse")]
         Library.Project GetProject(int id);
         
@@ -111,6 +129,30 @@ namespace ClientApp.ProjectService {
         
         public System.Threading.Tasks.Task<Library.Project[]> GetAllProjectsAsync() {
             return base.Channel.GetAllProjectsAsync();
+        }
+        
+        public Library.Project[] GetProjectByTitle(string title) {
+            return base.Channel.GetProjectByTitle(title);
+        }
+        
+        public System.Threading.Tasks.Task<Library.Project[]> GetProjectByTitleAsync(string title) {
+            return base.Channel.GetProjectByTitleAsync(title);
+        }
+        
+        public Library.Project[] GetSomeProjectsBetweenId(int first, int last) {
+            return base.Channel.GetSomeProjectsBetweenId(first, last);
+        }
+        
+        public System.Threading.Tasks.Task<Library.Project[]> GetSomeProjectsBetweenIdAsync(int first, int last) {
+            return base.Channel.GetSomeProjectsBetweenIdAsync(first, last);
+        }
+        
+        public Library.Project[] GetSomeProjectsToId(int last) {
+            return base.Channel.GetSomeProjectsToId(last);
+        }
+        
+        public System.Threading.Tasks.Task<Library.Project[]> GetSomeProjectsToIdAsync(int last) {
+            return base.Channel.GetSomeProjectsToIdAsync(last);
         }
         
         public Library.Project GetProject(int id) {

@@ -37,6 +37,7 @@
             this.textBox_Email = new System.Windows.Forms.TextBox();
             this.button_FindUser = new System.Windows.Forms.Button();
             this.listView_Users = new System.Windows.Forms.ListView();
+            this.button_AddUser = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblUpload
@@ -115,11 +116,22 @@
             this.listView_Users.TabIndex = 10;
             this.listView_Users.UseCompatibleStateImageBehavior = false;
             // 
+            // button_AddUser
+            // 
+            this.button_AddUser.Location = new System.Drawing.Point(94, 226);
+            this.button_AddUser.Name = "button_AddUser";
+            this.button_AddUser.Size = new System.Drawing.Size(75, 23);
+            this.button_AddUser.TabIndex = 11;
+            this.button_AddUser.Text = "Tilføj bruger";
+            this.button_AddUser.UseVisualStyleBackColor = true;
+            this.button_AddUser.Click += new System.EventHandler(this.button_AddUser_Click);
+            // 
             // Form_FindUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(524, 261);
+            this.Controls.Add(this.button_AddUser);
             this.Controls.Add(this.listView_Users);
             this.Controls.Add(this.button_FindUser);
             this.Controls.Add(this.textBox_Email);
@@ -148,6 +160,7 @@
         private System.Windows.Forms.TextBox textBox_Email;
         private System.Windows.Forms.Button button_FindUser;
         private System.Windows.Forms.ListView listView_Users;
+        private System.Windows.Forms.Button button_AddUser;
 
     }
 }

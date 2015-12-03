@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Server.Database
 {
@@ -31,7 +32,7 @@ namespace Server.Database
             var item = dbContext.FileVersions.Where(i => i.FileId == fileId).
                 OrderByDescending(i => i.VersionNumber).
                 First();
-            if(item != null)
+            if (item != null)
             {
                 return item;
             }
@@ -49,6 +50,34 @@ namespace Server.Database
             catch (Exception e)
             {
                 Console.WriteLine("fejl: " + e);
+                return false;
+            }
+        }
+
+        public bool RemoveFileVersionsForFile(int fileId)
+        {
+            try
+            {
+                var option = new TransactionOptions();
+                option.IsolationLevel = IsolationLevel.ReadCommitted;
+
+                using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                {
+                    var fileVersions = from fv in dbContext.FileVersions
+                                       where fv.FileId == fileId
+                                       select fv;
+                    foreach (FileVersion fileVersion in fileVersions)
+                    {
+                        dbContext.FileVersions.DeleteOnSubmit(fileVersion);
+                    }
+                    dbContext.SubmitChanges();
+                    scope.Complete();
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Fileversion for file could not be removed. File id: " + fileId + "Error: \n" + e);
                 return false;
             }
         }

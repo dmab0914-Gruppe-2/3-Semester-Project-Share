@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Library;
 
 namespace Server
@@ -8,8 +9,10 @@ namespace Server
         ProjectReturnType AddProject(string title, string description, string projectFolder, User projectAdministratorUser);
         ProjectReturnType AddProject(Project project);
         List<Project> GetAllProjects();
-        Project GetProject(int id);
         List<Project> GetProjectByTitle(string title);
+        List<Project> GetSomeProjects(int first, int last);
+        List<Project> GetSomeProjects(int last);
+        Project GetProject(int id);
         bool DeleteProject(int id);
         bool UpdateProject(int id, string title, string description, string projectFolder);
         bool AddUserToProject(int projectId, User user);

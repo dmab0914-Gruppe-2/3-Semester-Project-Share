@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace Server.Database
 {
@@ -22,7 +23,7 @@ namespace Server.Database
             dbContext = new DbContext();
             filesTest = new List<File>(filearr);
         }
-        
+
         public List<File> GetAllFilesForProject(int projectId)
         {
             var files = from file in dbContext.Files
@@ -58,6 +59,55 @@ namespace Server.Database
             {
                 return false;
             }
+        }
+
+
+        public bool RemoveFile(File file)
+        {
+            File nFile = GetFile(file.Id);
+            if (nFile != null)
+            {
+                IDbFileVersion dbFileVersion = new DbFileVersion();
+                bool error = false;
+                try
+                {
+                    var option = new TransactionOptions();
+                    option.IsolationLevel = IsolationLevel.ReadCommitted;
+
+                    using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, option))
+                    {
+                        nFile = GetFile(file.Id);
+                        //Delete all file versions related to file
+                        bool fv = dbFileVersion.RemoveFileVersionsForFile(file.Id);
+                        if (fv)
+                        {
+                            dbContext.Files.DeleteOnSubmit(nFile);
+                            dbContext.SubmitChanges();
+                            scope.Complete();
+                        }
+                        else
+                        {
+                            scope.Dispose();
+                            error = true;
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("File could not be removed. File id: " + nFile.Id + "Error: \n" + e);
+                    return false;
+                }
+                if (error != true)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return false;
+            throw new NotImplementedException();
         }
     }
 }
