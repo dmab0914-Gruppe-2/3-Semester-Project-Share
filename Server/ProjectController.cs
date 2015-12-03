@@ -94,7 +94,11 @@ namespace Server
 
         public bool UpdateProject(int id, string title, string description, string projectFolder)
         {
-            return _dbProject.UpdateProject(id, title, description, projectFolder);
+            if (_dbProject.GetProject(id) != null)
+            {
+                return _dbProject.UpdateProject(id, title, description, projectFolder);
+            }
+            return false;
         }
 
         public bool AddUserToProject(int projectId, User user)
