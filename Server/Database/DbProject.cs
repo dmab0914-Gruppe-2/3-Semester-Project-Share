@@ -181,6 +181,12 @@ namespace Server.Database
             return AddUserToProject(projectId, nUser, UserType.User);
         }
 
+        /// <summary>
+        /// Removes the given user from the given project, if the user is member of the project.
+        /// </summary>
+        /// <param name="projectId">The project to remove the user from.</param>
+        /// <param name="user">THe user to be removed from the project.</param>
+        /// <returns>True if the user exsisted and if the action succeeded. False if either failed.</returns>
         public bool RemoveUserFromProject(int projectId, User user)
         {
             Project project = GetProject(projectId);
@@ -200,6 +206,12 @@ namespace Server.Database
             }
         }
 
+        /// <summary>
+        /// Adds a given user to the given project as Administrative project user.
+        /// </summary>
+        /// <param name="projectId">The project for the user to become administrator of.</param>
+        /// <param name="projectAdministrator">The user to become project administrator.</param>
+        /// <returns>True if the action succeeded, and false if not.</returns>
         public bool AddProjectAdministratorToProject(int projectId, User projectAdministrator)
         {
             bool error = false;
@@ -239,6 +251,12 @@ namespace Server.Database
             }
         }
 
+        /// <summary>
+        /// Removes the given project administrator from the given project. And adds them as normal Users.
+        /// </summary>
+        /// <param name="projectId">The project to remove the administrator from.</param>
+        /// <param name="projectAdministrator">The Administrator to remove.</param>
+        /// <returns>True if the action succeeded, and false if not.</returns>
         public bool RemoveProjectAdministratorFromProject(int projectId, User projectAdministrator)
         {
             bool error = false;
