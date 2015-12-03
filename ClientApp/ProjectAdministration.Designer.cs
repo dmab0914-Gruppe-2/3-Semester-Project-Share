@@ -47,6 +47,12 @@
             this.label_Description = new System.Windows.Forms.Label();
             this.button_Save = new System.Windows.Forms.Button();
             this.button_FindUser = new System.Windows.Forms.Button();
+            this.button_Refresh = new System.Windows.Forms.Button();
+            this.label_Directory = new System.Windows.Forms.Label();
+            this.textbox_Directory = new System.Windows.Forms.TextBox();
+            this.button_CreateProject = new System.Windows.Forms.Button();
+            this.listView_ProjectAdmin = new System.Windows.Forms.ListView();
+            this.label_ProjectAdmin = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUpload
@@ -203,11 +209,71 @@
             this.button_FindUser.UseVisualStyleBackColor = true;
             this.button_FindUser.Click += new System.EventHandler(this.button_FindUser_Click);
             // 
+            // button_Refresh
+            // 
+            this.button_Refresh.Location = new System.Drawing.Point(127, 525);
+            this.button_Refresh.Name = "button_Refresh";
+            this.button_Refresh.Size = new System.Drawing.Size(107, 23);
+            this.button_Refresh.TabIndex = 17;
+            this.button_Refresh.Text = "Opdater";
+            this.button_Refresh.UseVisualStyleBackColor = true;
+            this.button_Refresh.Click += new System.EventHandler(this.button_Refresh_Click);
+            // 
+            // label_Directory
+            // 
+            this.label_Directory.AutoSize = true;
+            this.label_Directory.Location = new System.Drawing.Point(529, 163);
+            this.label_Directory.Name = "label_Directory";
+            this.label_Directory.Size = new System.Drawing.Size(49, 13);
+            this.label_Directory.TabIndex = 18;
+            this.label_Directory.Text = "Directory";
+            // 
+            // textbox_Directory
+            // 
+            this.textbox_Directory.Location = new System.Drawing.Point(593, 156);
+            this.textbox_Directory.Name = "textbox_Directory";
+            this.textbox_Directory.Size = new System.Drawing.Size(229, 20);
+            this.textbox_Directory.TabIndex = 19;
+            // 
+            // button_CreateProject
+            // 
+            this.button_CreateProject.Location = new System.Drawing.Point(126, 496);
+            this.button_CreateProject.Name = "button_CreateProject";
+            this.button_CreateProject.Size = new System.Drawing.Size(108, 23);
+            this.button_CreateProject.TabIndex = 20;
+            this.button_CreateProject.Text = "Opret Projekt";
+            this.button_CreateProject.UseVisualStyleBackColor = true;
+            this.button_CreateProject.Click += new System.EventHandler(this.button_CreateProject_Click);
+            // 
+            // listView_ProjectAdmin
+            // 
+            this.listView_ProjectAdmin.Location = new System.Drawing.Point(532, 206);
+            this.listView_ProjectAdmin.Name = "listView_ProjectAdmin";
+            this.listView_ProjectAdmin.Size = new System.Drawing.Size(440, 213);
+            this.listView_ProjectAdmin.TabIndex = 21;
+            this.listView_ProjectAdmin.UseCompatibleStateImageBehavior = false;
+            this.listView_ProjectAdmin.SelectedIndexChanged += new System.EventHandler(this.listView_ProjectAdmin_SelectedIndexChanged);
+            // 
+            // label_ProjectAdmin
+            // 
+            this.label_ProjectAdmin.AutoSize = true;
+            this.label_ProjectAdmin.Location = new System.Drawing.Point(529, 190);
+            this.label_ProjectAdmin.Name = "label_ProjectAdmin";
+            this.label_ProjectAdmin.Size = new System.Drawing.Size(183, 13);
+            this.label_ProjectAdmin.TabIndex = 22;
+            this.label_ProjectAdmin.Text = "Vælg venligst en projekt administrator";
+            // 
             // ProjectAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.label_ProjectAdmin);
+            this.Controls.Add(this.listView_ProjectAdmin);
+            this.Controls.Add(this.button_CreateProject);
+            this.Controls.Add(this.textbox_Directory);
+            this.Controls.Add(this.label_Directory);
+            this.Controls.Add(this.button_Refresh);
             this.Controls.Add(this.button_FindUser);
             this.Controls.Add(this.button_Save);
             this.Controls.Add(this.label_Description);
@@ -253,5 +319,11 @@
         private System.Windows.Forms.Label label_Description;
         private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.Button button_FindUser;
+        private System.Windows.Forms.Button button_Refresh;
+        private System.Windows.Forms.Label label_Directory;
+        private System.Windows.Forms.TextBox textbox_Directory;
+        private System.Windows.Forms.Button button_CreateProject;
+        private System.Windows.Forms.ListView listView_ProjectAdmin;
+        private System.Windows.Forms.Label label_ProjectAdmin;
     }
 }
