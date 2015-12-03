@@ -273,7 +273,7 @@ namespace Server.Database
                 }
                 catch (Exception e)
                 {
-                    throw new Exception("Project Administrator not added to project " + e);
+                    Console.WriteLine("Project Administrator id: " + projectAdministrator.Id + " not removed from project /n" + e);
                     error = true;
                 }
 
