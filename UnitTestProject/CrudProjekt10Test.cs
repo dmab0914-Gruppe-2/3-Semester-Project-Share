@@ -39,7 +39,7 @@ namespace UnitTestProject
         public void Setup()
         {
             UserController userController = new UserController();
-            projectAdminUser = userController.FindUsersByUserName("arm").FirstOrDefault();
+            projectAdminUser = userController.FindUsersByUserName("nsw").FirstOrDefault();
             project1 = new Project("World Domination", "Self Explainatory", @"WorldDomination", projectAdminUser);
             project2 = new Project("Bridge Construction", "Bridge over Klisterkanalen", @"BridgeConstruction", projectAdminUser);
             project3 = new Project("Recruiting", "Get more members", @"Recruiters", projectAdminUser);
