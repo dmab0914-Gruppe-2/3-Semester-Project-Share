@@ -13,6 +13,12 @@ namespace Server
     public class ProjectController : IProjectController
     {
         private readonly IDbProject _dbProject = new DbProject();
+        private readonly IDbUser _dbUser = new DbUser();
+
+        public ProjectController()
+        {
+
+        }
 
         public ProjectReturnType AddProject(string title, string description, string projectFolder,
             User projectAdministratorUser)
@@ -93,7 +99,11 @@ namespace Server
 
         public bool AddUserToProject(int projectId, User user)
         {
-            return _dbProject.AddUserToProject(projectId, user);
+            if (_dbProject.GetProject(projectId) != null && _dbUser.FindUserById(user.Id) != null)
+            {
+                return _dbProject.AddUserToProject(projectId, user);
+            }
+            return false;
         }
 
         public bool RemoveUserFromProject(int projectId, User user)
