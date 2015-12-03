@@ -19,7 +19,7 @@ namespace WebService.Models
 
         [MessageHeader(MustUnderstand = true)]
         public FileMetaData DownloadedFileMetadata;
-        [MessageBodyMember(Order = 1)]
+        [MessageBodyMember(Order = 0)]
         public Stream FileByteStream;
     }
 }

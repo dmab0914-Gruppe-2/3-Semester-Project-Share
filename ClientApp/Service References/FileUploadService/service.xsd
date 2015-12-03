@@ -12,20 +12,27 @@
     </xs:complexType>
   </xs:element>
   <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/WebService.Models" name="Metadata" nillable="true" type="q2:FileMetaData" />
+  <xs:element name="AddSingleFileMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="file" nillable="true" type="q3:File" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="FileDownloadMessage">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/WebService.Models" name="FileMetaData" nillable="true" type="q3:FileMetaData" />
+  <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WebService.Models" name="FileMetaData" nillable="true" type="q4:FileMetaData" />
   <xs:element name="FileDownloadReturnMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.microsoft.com/Message" name="FileByteStream" type="q4:StreamBody" />
+        <xs:element xmlns:q5="http://schemas.microsoft.com/Message" name="FileByteStream" type="q5:StreamBody" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WebService.Models" name="DownloadedFileMetadata" nillable="true" type="q5:FileMetaData" />
+  <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WebService.Models" name="DownloadedFileMetadata" nillable="true" type="q6:FileMetaData" />
   <xs:element name="GetAllFilesForProject">
     <xs:complexType>
       <xs:sequence>
@@ -36,35 +43,28 @@
   <xs:element name="GetAllFilesForProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetAllFilesForProjectResult" nillable="true" type="q6:ArrayOfFile" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetAllFilesForProjectResult" nillable="true" type="q7:ArrayOfFile" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddMutiFiles">
+  <xs:element name="AddMultiFilesMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fileNames" nillable="true" type="q7:ArrayOfstring" />
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="fileDescs" nillable="true" type="q8:ArrayOfstring" />
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="project" nillable="true" type="q9:Project" />
+        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="filenames" nillable="true" type="q8:ArrayOfstring" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="filedescs" nillable="true" type="q9:ArrayOfstring" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="project" nillable="true" type="q10:Project" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="AddMutiFilesResponse">
+  <xs:element name="GetFileMessage">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="GetFile">
+  <xs:element name="GetFIleReturnMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="fileId" type="xs:int" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetFileResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetFileResult" nillable="true" type="q10:File" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="file" nillable="true" type="q11:File" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

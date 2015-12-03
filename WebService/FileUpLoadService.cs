@@ -9,6 +9,7 @@ using System.IO;
 using System.Web;
 using WebService.Models;
 using Server;
+using Library;
 
 namespace WebService
 {
@@ -30,15 +31,7 @@ namespace WebService
 
                 using (FileStream outfile = new FileStream(filenameAndPath, FileMode.Create))
                 {
-                    const int bufferSize = 65536; // 64K
-                    Byte[] buffer = new Byte[bufferSize];
-                    int bytesRead = request.FileByteStream.Read(buffer, 0, bufferSize);
-
-                    while (bytesRead > 0)
-                    {
-                        outfile.Write(buffer, 0, bytesRead);
-                        bytesRead = request.FileByteStream.Read(buffer, 0, bufferSize);
-                    }
+                    request.FileByteStream.CopyTo(outfile);
                 }
             }
             catch (IOException)
@@ -46,23 +39,43 @@ namespace WebService
                 throw;
             }
         }
-
-        public FileDownloadReturnMessage DownloadFile(FileDownloadMessage fdm)
+        public void AddFile(AddSingleFileMessage asfm)
         {
-            throw new NotImplementedException();
+            fCtr.AddFile(asfm.file.Title, asfm.file.Description, asfm.file.Project);
+        }
+        public FileDownloadReturnMessage DownloadFile(FileDownloadMessage request)
+        {
+            // parameters validation omitted for clarity
+            string localFileName = request.FileMetaData.FullLocalPath;
+
+            try
+            {
+                Stream fs = new FileStream(localFileName, FileMode.Open);
+
+                return new FileDownloadReturnMessage(new FileMetaData(1, localFileName, localFileName, request.FileMetaData.FileType), fs);
+            }
+            catch (IOException e)
+            {
+                throw new FaultException<IOException>(e);
+            }
         }
         public List<Library.File> GetAllFilesForProject(int projectId)
         {
             return fCtr.AllFilesForProject(projectId);
         }
 
-        public void AddMutiFiles(List<String> fileNames, List<String> fileDescs, Library.Project project)
+        //public void AddMutiFiles(List<String> fileNames, List<String> fileDescs, Library.Project project)
+        public void AddMultiFiles(AddMultiFilesMessage amfm)
         {
-            fCtr.AddMutiFiles(fileNames, fileDescs, project);
+            fCtr.AddMutiFiles(amfm.filenames.ToList<string>(), amfm.filedescs.ToList<string>(), amfm.project);
         }
-        public Library.File GetFile(int fileId)
+        public GetFIleReturnMessage GetFile(GetFileMessage gfm)
         {
-            return fCtr.GetFile(fileId);
+            Library.File file = null;
+            file = fCtr.GetFile(gfm.Metadata.FileId);
+            GetFIleReturnMessage gfrm = new GetFIleReturnMessage();
+            gfrm.file = file;
+            return gfrm;
         }
 
         //public Library.FileVersion EditFile(Library.User owner)

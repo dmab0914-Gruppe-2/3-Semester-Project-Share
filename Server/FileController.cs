@@ -39,8 +39,10 @@ namespace Server
         {
             return dbFile.GetFile(fileID);
         }
-        public void AddFile(string fileName, string fileDesc, Project project)
+        public void AddFile(string fileName, string fileDesc, int projectid)
         {
+            Project project = new Library.Project();
+            project.Id = projectid;
             File file = new File(fileName, fileDesc, project);
             User owner = new Library.User(1);
             try

@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClientApp.FileUploadService;
-using ClientApp.addFileService;
 using System.IO;
 
 namespace ClientApp
@@ -17,7 +16,6 @@ namespace ClientApp
     public partial class MultiUpload : Form
     {
         private static FileUpLoadServiceClient client = new FileUpLoadServiceClient();
-        private static FileServiceClient fac = new FileServiceClient();
         private Project Project;
         private List<string> fullFilePathList = new List<string>();
         private List<string> fileToUploadList = new List<string>();
@@ -49,13 +47,14 @@ namespace ClientApp
                         using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
                         {
                             var request = new FileUploadMessage();
-                            var fileMetaData = new FileMetaData();
+                            var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
                             fileMetaData.FileName = fileToUploadList[i];
                             fileMetaData.FullLocalPath = fullFilePath;
-                            fileMetaData.FileType = (DefinedFileTypes)Enum.Parse(typeof(DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
+                            fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
                             request.Metadata = fileMetaData;
                             request.FileByteStream = fileStream;
-                            client.UploadFile(fileMetaData, fileStream);                            
+                            FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
+                            client.UploadFile(fum);                            
                         }                        
                         i++;
                     }
@@ -87,9 +86,7 @@ namespace ClientApp
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 btnUpload.Enabled = true;
-                lblError.Text = "";
-                //fileToUploadList = null;
-                //fileToUploadList = null;                
+                lblError.Text = "";              
                 #region dataGridView stuff
                 List<String> files = openFileDialog1.SafeFileNames.ToList();
                 List<Library.File> myFiles = new List<Library.File>();
@@ -117,18 +114,19 @@ namespace ClientApp
         private void AddFiles()
         {
            List<string> filenames = new List<string>();
-           // string[] filenames;
             List<string> filedescs = new List<string>();
             for(int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 filenames.Add(dataGridView1.Rows[i].Cells[0].Value.ToString());
                 filedescs.Add(dataGridView1.Rows[i].Cells[1].Value.ToString());
-              //  fac.AddFile(dataGridView1.Rows[i].Cells[0].Value.ToString(), dataGridView1.Rows[i].Cells[1].Value.ToString(), Project);
             }
-            client.AddMutiFiles(filenames.ToArray<string>(), filedescs.ToArray<string>(), Project);
+            AddMultiFilesMessage amfm = new AddMultiFilesMessage();
+            amfm.filenames = filenames.ToArray<string>();
+            amfm.filedescs = filedescs.ToArray<string>();
+            amfm.project = Project;
+            client.AddMultiFiles(amfm);
             btnUpload.Enabled = false;
             lblError.Text = "Upload done";
         }
-
     }
 }

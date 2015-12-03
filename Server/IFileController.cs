@@ -12,7 +12,7 @@ namespace Server
     {
         List<File> AllFilesForProject(int projectID);
         List<FileVersion> AllVersionsForFile(int fileID);
-        void AddFile(string fileName, string fileDesc, Project project);
+        void AddFile(string fileName, string fileDesc, int projectId);
         void AddMutiFiles(List<String> fileNames, List<String> fileDescs, Project project);
         void DeleteFile(int fileID);
         File GetFile(int fileId);

@@ -71,11 +71,6 @@
     <Compile Include="ProjectAdministration.Designer.cs">
       <DependentUpon>ProjectAdministration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Service References\addFileService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\FileUploadService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -136,20 +131,22 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\addFileService\service.wsdl" />
-    <None Include="Service References\addFileService\service.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\addFileService\service1.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Service References\FileUploadService\Arrays.xsd">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.AddFileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.AddMultiFilesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\FileUploadService\ClientApp.FileUploadService.FileDownloadReturnMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.FileMetaData.datasource">
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.GetAllFilesForProjectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.GetFIleReturnMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\FileUploadService\ClientApp.FileUploadService.UploadFileResponse.datasource">
@@ -199,7 +196,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\addFileService\" />
     <WCFMetadataStorage Include="Service References\FileUploadService\" />
     <WCFMetadataStorage Include="Service References\ProjectService\" />
     <WCFMetadataStorage Include="Service References\UserService\" />
@@ -209,18 +205,6 @@
       <Project>{0ed9f437-b041-4778-b248-1b7afe39a578}</Project>
       <Name>Library</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FileUploadService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FileUploadService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\FileUploadService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ProjectService\configuration91.svcinfo" />
@@ -235,18 +219,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\addFileService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\addFileService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\addFileService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\UserService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +226,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\UserService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FileUploadService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FileUploadService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FileUploadService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

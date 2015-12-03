@@ -44,6 +44,7 @@
             this.lblFIleInfo = new System.Windows.Forms.Label();
             this.panelCenterTop = new System.Windows.Forms.Panel();
             this.lblChat = new System.Windows.Forms.Label();
+            this.btnDownload = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -159,6 +160,7 @@
             // 
             // panelRight
             // 
+            this.panelRight.Controls.Add(this.btnDownload);
             this.panelRight.Controls.Add(this.txtFileDesc);
             this.panelRight.Controls.Add(this.lblFIleInfo);
             this.panelRight.Location = new System.Drawing.Point(620, 0);
@@ -208,6 +210,16 @@
             this.lblChat.Text = "Chat";
             this.lblChat.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // btnDownload
+            // 
+            this.btnDownload.Location = new System.Drawing.Point(12, 131);
+            this.btnDownload.Name = "btnDownload";
+            this.btnDownload.Size = new System.Drawing.Size(112, 23);
+            this.btnDownload.TabIndex = 3;
+            this.btnDownload.Text = "Download file";
+            this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -252,6 +264,7 @@
         private System.Windows.Forms.ListView listView_Projects;
         private System.Windows.Forms.Button btnRefreshFiles;
         private System.Windows.Forms.Button btnMulti;
+        private System.Windows.Forms.Button btnDownload;
     }
 }
 

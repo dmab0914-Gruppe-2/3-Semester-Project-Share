@@ -30,6 +30,8 @@ namespace ClientApp.FileUploadService {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string FileNameField;
         
+        private int FileIdField;
+        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -79,6 +81,19 @@ namespace ClientApp.FileUploadService {
             }
         }
         
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=3)]
+        public int FileId {
+            get {
+                return this.FileIdField;
+            }
+            set {
+                if ((this.FileIdField.Equals(value) != true)) {
+                    this.FileIdField = value;
+                    this.RaisePropertyChanged("FileId");
+                }
+            }
+        }
+        
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         
         protected void RaisePropertyChanged(string propertyName) {
@@ -119,14 +134,18 @@ namespace ClientApp.FileUploadService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FileUploadService.IFileUpLoadService")]
     public interface IFileUpLoadService {
         
-        // CODEGEN: Generating message contract since the operation UploadFile is neither RPC nor document wrapped.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/UploadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/UploadFileResponse")]
         ClientApp.FileUploadService.UploadFileResponse UploadFile(ClientApp.FileUploadService.FileUploadMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/UploadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/UploadFileResponse")]
         System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> UploadFileAsync(ClientApp.FileUploadService.FileUploadMessage request);
         
-        // CODEGEN: Generating message contract since the wrapper name (FileDownloadMessage) of message FileDownloadMessage does not match the default value (DownloadFile)
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
+        ClientApp.FileUploadService.AddFileResponse AddFile(ClientApp.FileUploadService.AddSingleFileMessage request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.AddFileResponse> AddFileAsync(ClientApp.FileUploadService.AddSingleFileMessage request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/DownloadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/DownloadFileResponse")]
         ClientApp.FileUploadService.FileDownloadReturnMessage DownloadFile(ClientApp.FileUploadService.FileDownloadMessage request);
         
@@ -134,27 +153,26 @@ namespace ClientApp.FileUploadService {
         System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileUploadService.FileDownloadMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject", ReplyAction="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse")]
-        Library.File[] GetAllFilesForProject(int projectId);
+        ClientApp.FileUploadService.GetAllFilesForProjectResponse GetAllFilesForProject(ClientApp.FileUploadService.GetAllFilesForProjectRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject", ReplyAction="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse")]
-        System.Threading.Tasks.Task<Library.File[]> GetAllFilesForProjectAsync(int projectId);
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.GetAllFilesForProjectResponse> GetAllFilesForProjectAsync(ClientApp.FileUploadService.GetAllFilesForProjectRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMutiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMutiFilesResponse")]
-        void AddMutiFiles(string[] fileNames, string[] fileDescs, Library.Project project);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMultiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMultiFilesResponse")]
+        ClientApp.FileUploadService.AddMultiFilesResponse AddMultiFiles(ClientApp.FileUploadService.AddMultiFilesMessage request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMutiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMutiFilesResponse")]
-        System.Threading.Tasks.Task AddMutiFilesAsync(string[] fileNames, string[] fileDescs, Library.Project project);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
-        Library.File GetFile(int fileId);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMultiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMultiFilesResponse")]
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.AddMultiFilesResponse> AddMultiFilesAsync(ClientApp.FileUploadService.AddMultiFilesMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
-        System.Threading.Tasks.Task<Library.File> GetFileAsync(int fileId);
+        ClientApp.FileUploadService.GetFIleReturnMessage GetFile(ClientApp.FileUploadService.GetFileMessage request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.GetFIleReturnMessage> GetFileAsync(ClientApp.FileUploadService.GetFileMessage request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="FileUploadMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class FileUploadMessage {
         
@@ -175,7 +193,6 @@ namespace ClientApp.FileUploadService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
     public partial class UploadFileResponse {
         
@@ -185,7 +202,31 @@ namespace ClientApp.FileUploadService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddSingleFileMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddSingleFileMessage {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Library.File file;
+        
+        public AddSingleFileMessage() {
+        }
+        
+        public AddSingleFileMessage(Library.File file) {
+            this.file = file;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddFileResponse {
+        
+        public AddFileResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="FileDownloadMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class FileDownloadMessage {
         
@@ -202,7 +243,6 @@ namespace ClientApp.FileUploadService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="FileDownloadReturnMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class FileDownloadReturnMessage {
         
@@ -218,6 +258,103 @@ namespace ClientApp.FileUploadService {
         public FileDownloadReturnMessage(ClientApp.FileUploadService.FileMetaData DownloadedFileMetadata, System.IO.Stream FileByteStream) {
             this.DownloadedFileMetadata = DownloadedFileMetadata;
             this.FileByteStream = FileByteStream;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllFilesForProject", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetAllFilesForProjectRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int projectId;
+        
+        public GetAllFilesForProjectRequest() {
+        }
+        
+        public GetAllFilesForProjectRequest(int projectId) {
+            this.projectId = projectId;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetAllFilesForProjectResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetAllFilesForProjectResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Library.File[] GetAllFilesForProjectResult;
+        
+        public GetAllFilesForProjectResponse() {
+        }
+        
+        public GetAllFilesForProjectResponse(Library.File[] GetAllFilesForProjectResult) {
+            this.GetAllFilesForProjectResult = GetAllFilesForProjectResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddMultiFilesMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddMultiFilesMessage {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string[] filenames;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string[] filedescs;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
+        public Library.Project project;
+        
+        public AddMultiFilesMessage() {
+        }
+        
+        public AddMultiFilesMessage(string[] filenames, string[] filedescs, Library.Project project) {
+            this.filenames = filenames;
+            this.filedescs = filedescs;
+            this.project = project;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
+    public partial class AddMultiFilesResponse {
+        
+        public AddMultiFilesResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetFileMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetFileMessage {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public ClientApp.FileUploadService.FileMetaData Metadata;
+        
+        public GetFileMessage() {
+        }
+        
+        public GetFileMessage(ClientApp.FileUploadService.FileMetaData Metadata) {
+            this.Metadata = Metadata;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="GetFIleReturnMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class GetFIleReturnMessage {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Library.File file;
+        
+        public GetFIleReturnMessage() {
+        }
+        
+        public GetFIleReturnMessage(Library.File file) {
+            this.file = file;
         }
     }
     
@@ -248,76 +385,52 @@ namespace ClientApp.FileUploadService {
                 base(binding, remoteAddress) {
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClientApp.FileUploadService.UploadFileResponse ClientApp.FileUploadService.IFileUpLoadService.UploadFile(ClientApp.FileUploadService.FileUploadMessage request) {
+        public ClientApp.FileUploadService.UploadFileResponse UploadFile(ClientApp.FileUploadService.FileUploadMessage request) {
             return base.Channel.UploadFile(request);
         }
         
-        public void UploadFile(ClientApp.FileUploadService.FileMetaData Metadata, System.IO.Stream FileByteStream) {
-            ClientApp.FileUploadService.FileUploadMessage inValue = new ClientApp.FileUploadService.FileUploadMessage();
-            inValue.Metadata = Metadata;
-            inValue.FileByteStream = FileByteStream;
-            ClientApp.FileUploadService.UploadFileResponse retVal = ((ClientApp.FileUploadService.IFileUpLoadService)(this)).UploadFile(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> ClientApp.FileUploadService.IFileUpLoadService.UploadFileAsync(ClientApp.FileUploadService.FileUploadMessage request) {
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> UploadFileAsync(ClientApp.FileUploadService.FileUploadMessage request) {
             return base.Channel.UploadFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> UploadFileAsync(ClientApp.FileUploadService.FileMetaData Metadata, System.IO.Stream FileByteStream) {
-            ClientApp.FileUploadService.FileUploadMessage inValue = new ClientApp.FileUploadService.FileUploadMessage();
-            inValue.Metadata = Metadata;
-            inValue.FileByteStream = FileByteStream;
-            return ((ClientApp.FileUploadService.IFileUpLoadService)(this)).UploadFileAsync(inValue);
+        public ClientApp.FileUploadService.AddFileResponse AddFile(ClientApp.FileUploadService.AddSingleFileMessage request) {
+            return base.Channel.AddFile(request);
         }
         
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        ClientApp.FileUploadService.FileDownloadReturnMessage ClientApp.FileUploadService.IFileUpLoadService.DownloadFile(ClientApp.FileUploadService.FileDownloadMessage request) {
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.AddFileResponse> AddFileAsync(ClientApp.FileUploadService.AddSingleFileMessage request) {
+            return base.Channel.AddFileAsync(request);
+        }
+        
+        public ClientApp.FileUploadService.FileDownloadReturnMessage DownloadFile(ClientApp.FileUploadService.FileDownloadMessage request) {
             return base.Channel.DownloadFile(request);
         }
         
-        public ClientApp.FileUploadService.FileMetaData DownloadFile(ClientApp.FileUploadService.FileMetaData FileMetaData, out System.IO.Stream FileByteStream) {
-            ClientApp.FileUploadService.FileDownloadMessage inValue = new ClientApp.FileUploadService.FileDownloadMessage();
-            inValue.FileMetaData = FileMetaData;
-            ClientApp.FileUploadService.FileDownloadReturnMessage retVal = ((ClientApp.FileUploadService.IFileUpLoadService)(this)).DownloadFile(inValue);
-            FileByteStream = retVal.FileByteStream;
-            return retVal.DownloadedFileMetadata;
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> ClientApp.FileUploadService.IFileUpLoadService.DownloadFileAsync(ClientApp.FileUploadService.FileDownloadMessage request) {
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileUploadService.FileDownloadMessage request) {
             return base.Channel.DownloadFileAsync(request);
         }
         
-        public System.Threading.Tasks.Task<ClientApp.FileUploadService.FileDownloadReturnMessage> DownloadFileAsync(ClientApp.FileUploadService.FileMetaData FileMetaData) {
-            ClientApp.FileUploadService.FileDownloadMessage inValue = new ClientApp.FileUploadService.FileDownloadMessage();
-            inValue.FileMetaData = FileMetaData;
-            return ((ClientApp.FileUploadService.IFileUpLoadService)(this)).DownloadFileAsync(inValue);
+        public ClientApp.FileUploadService.GetAllFilesForProjectResponse GetAllFilesForProject(ClientApp.FileUploadService.GetAllFilesForProjectRequest request) {
+            return base.Channel.GetAllFilesForProject(request);
         }
         
-        public Library.File[] GetAllFilesForProject(int projectId) {
-            return base.Channel.GetAllFilesForProject(projectId);
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.GetAllFilesForProjectResponse> GetAllFilesForProjectAsync(ClientApp.FileUploadService.GetAllFilesForProjectRequest request) {
+            return base.Channel.GetAllFilesForProjectAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Library.File[]> GetAllFilesForProjectAsync(int projectId) {
-            return base.Channel.GetAllFilesForProjectAsync(projectId);
+        public ClientApp.FileUploadService.AddMultiFilesResponse AddMultiFiles(ClientApp.FileUploadService.AddMultiFilesMessage request) {
+            return base.Channel.AddMultiFiles(request);
         }
         
-        public void AddMutiFiles(string[] fileNames, string[] fileDescs, Library.Project project) {
-            base.Channel.AddMutiFiles(fileNames, fileDescs, project);
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.AddMultiFilesResponse> AddMultiFilesAsync(ClientApp.FileUploadService.AddMultiFilesMessage request) {
+            return base.Channel.AddMultiFilesAsync(request);
         }
         
-        public System.Threading.Tasks.Task AddMutiFilesAsync(string[] fileNames, string[] fileDescs, Library.Project project) {
-            return base.Channel.AddMutiFilesAsync(fileNames, fileDescs, project);
+        public ClientApp.FileUploadService.GetFIleReturnMessage GetFile(ClientApp.FileUploadService.GetFileMessage request) {
+            return base.Channel.GetFile(request);
         }
         
-        public Library.File GetFile(int fileId) {
-            return base.Channel.GetFile(fileId);
-        }
-        
-        public System.Threading.Tasks.Task<Library.File> GetFileAsync(int fileId) {
-            return base.Channel.GetFileAsync(fileId);
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.GetFIleReturnMessage> GetFileAsync(ClientApp.FileUploadService.GetFileMessage request) {
+            return base.Channel.GetFileAsync(request);
         }
     }
 }

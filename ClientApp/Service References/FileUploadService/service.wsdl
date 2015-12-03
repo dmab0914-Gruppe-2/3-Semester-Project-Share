@@ -24,6 +24,10 @@
     <wsdl:part name="Metadata" element="tns:Metadata" />
   </wsdl:message>
   <wsdl:message name="IFileUpLoadService_UploadFile_OutputMessage" />
+  <wsdl:message name="AddSingleFileMessage">
+    <wsdl:part name="parameters" element="tns:AddSingleFileMessage" />
+  </wsdl:message>
+  <wsdl:message name="IFileUpLoadService_AddFile_OutputMessage" />
   <wsdl:message name="FileDownloadMessage">
     <wsdl:part name="parameters" element="tns:FileDownloadMessage" />
   </wsdl:message>
@@ -42,22 +46,27 @@
   <wsdl:message name="IFileUpLoadService_GetAllFilesForProject_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllFilesForProjectResponse" />
   </wsdl:message>
-  <wsdl:message name="IFileUpLoadService_AddMutiFiles_InputMessage">
-    <wsdl:part name="parameters" element="tns:AddMutiFiles" />
+  <wsdl:message name="AddMultiFilesMessage">
+    <wsdl:part name="parameters" element="tns:AddMultiFilesMessage" />
   </wsdl:message>
-  <wsdl:message name="IFileUpLoadService_AddMutiFiles_OutputMessage">
-    <wsdl:part name="parameters" element="tns:AddMutiFilesResponse" />
+  <wsdl:message name="IFileUpLoadService_AddMultiFiles_OutputMessage" />
+  <wsdl:message name="GetFileMessage">
+    <wsdl:part name="parameters" element="tns:GetFileMessage" />
   </wsdl:message>
-  <wsdl:message name="IFileUpLoadService_GetFile_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetFile" />
+  <wsdl:message name="GetFileMessage_Headers">
+    <wsdl:part name="Metadata" element="tns:Metadata" />
   </wsdl:message>
-  <wsdl:message name="IFileUpLoadService_GetFile_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetFileResponse" />
+  <wsdl:message name="GetFIleReturnMessage">
+    <wsdl:part name="parameters" element="tns:GetFIleReturnMessage" />
   </wsdl:message>
   <wsdl:portType name="IFileUpLoadService">
     <wsdl:operation name="UploadFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/UploadFile" name="FileUploadMessage" message="tns:FileUploadMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/UploadFileResponse" message="tns:IFileUpLoadService_UploadFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/AddFile" name="AddSingleFileMessage" message="tns:AddSingleFileMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/AddFileResponse" message="tns:IFileUpLoadService_AddFile_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DownloadFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/DownloadFile" name="FileDownloadMessage" message="tns:FileDownloadMessage" />
@@ -67,13 +76,13 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject" message="tns:IFileUpLoadService_GetAllFilesForProject_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse" message="tns:IFileUpLoadService_GetAllFilesForProject_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="AddMutiFiles">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/AddMutiFiles" message="tns:IFileUpLoadService_AddMutiFiles_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/AddMutiFilesResponse" message="tns:IFileUpLoadService_AddMutiFiles_OutputMessage" />
+    <wsdl:operation name="AddMultiFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/AddMultiFiles" name="AddMultiFilesMessage" message="tns:AddMultiFilesMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/AddMultiFilesResponse" message="tns:IFileUpLoadService_AddMultiFiles_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetFile">
-      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/GetFile" message="tns:IFileUpLoadService_GetFile_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/GetFileResponse" message="tns:IFileUpLoadService_GetFile_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileUpLoadService/GetFile" name="GetFileMessage" message="tns:GetFileMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileUpLoadService/GetFileResponse" name="GetFIleReturnMessage" message="tns:GetFIleReturnMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="basicHttpStream" type="tns:IFileUpLoadService">
@@ -83,6 +92,15 @@
       <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/UploadFile" style="document" />
       <wsdl:input name="FileUploadMessage">
         <soap:header message="tns:FileUploadMessage_Headers" part="Metadata" use="literal" />
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddFile">
+      <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/AddFile" style="document" />
+      <wsdl:input name="AddSingleFileMessage">
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
@@ -109,9 +127,9 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="AddMutiFiles">
-      <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/AddMutiFiles" style="document" />
-      <wsdl:input>
+    <wsdl:operation name="AddMultiFiles">
+      <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/AddMultiFiles" style="document" />
+      <wsdl:input name="AddMultiFilesMessage">
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
@@ -120,10 +138,11 @@
     </wsdl:operation>
     <wsdl:operation name="GetFile">
       <soap:operation soapAction="http://tempuri.org/IFileUpLoadService/GetFile" style="document" />
-      <wsdl:input>
+      <wsdl:input name="GetFileMessage">
+        <soap:header message="tns:GetFileMessage_Headers" part="Metadata" use="literal" />
         <soap:body use="literal" />
       </wsdl:input>
-      <wsdl:output>
+      <wsdl:output name="GetFIleReturnMessage">
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

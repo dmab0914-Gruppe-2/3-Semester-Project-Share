@@ -5,6 +5,7 @@
       <xs:element name="FileType" type="tns:DefinedFileTypes" />
       <xs:element minOccurs="0" name="FullLocalPath" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="FileName" nillable="true" type="xs:string" />
+      <xs:element name="FileId" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FileMetaData" nillable="true" type="tns:FileMetaData" />

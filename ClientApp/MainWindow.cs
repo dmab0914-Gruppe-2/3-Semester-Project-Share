@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Library;
 using ClientApp.FileUploadService;
 using ClientApp.ProjectService;
+using System.IO;
 
 namespace ClientApp
 {
@@ -17,7 +18,7 @@ namespace ClientApp
     {
         private static FileUpLoadServiceClient fileClient = new FileUpLoadServiceClient();
         private static IProjectService projectClient = new ProjectServiceClient();
-        //private File activeFile = new File();
+        private Library.File activeFile = new Library.File();
         private Project project = null;
         public MainWindow()
         {
@@ -25,6 +26,7 @@ namespace ClientApp
             btnUpload.Visible = false;
             btnRefreshFiles.Visible = false;
             btnMulti.Visible = false;
+            btnDownload.Visible = false;
             lwFiles.MultiSelect = false;
             listView_Projects.MultiSelect = false;
         }
@@ -91,9 +93,14 @@ namespace ClientApp
         {
             if (lwFiles.SelectedItems.Count == 1)
             {
-                File activeFile = fileClient.GetFile(Convert.ToInt32(lwFiles.SelectedItems[0].Text));
+                var fileMetaData = new FileMetaData();
+                fileMetaData.FileId = Convert.ToInt32(lwFiles.SelectedItems[0].Text);
+                GetFileMessage gfm = new GetFileMessage();
+                gfm.Metadata = fileMetaData;
+                Library.File activeFile = fileClient.GetFile(gfm).file;
                 lblFIleInfo.Text = activeFile.Title;
                 txtFileDesc.Text = activeFile.Description;
+                btnDownload.Visible = true;
             }
         }
 
@@ -106,8 +113,8 @@ namespace ClientApp
                 {
                     lwFiles.Items.Clear();
                     Project activeProject = projectClient.GetProject(Convert.ToInt32(listView_Projects.SelectedItems[0].Text));
-                    List<File> files = activeProject.ProjectFiles;
-                    foreach (File file in files)
+                    List<Library.File> files = activeProject.ProjectFiles;
+                    foreach (Library.File file in files)
                     {
                         string[] row = { file.Id.ToString(), file.Title, file.Description };
                         ListViewItem lwi = new ListViewItem(row);
@@ -156,8 +163,8 @@ namespace ClientApp
                 {
                     lwFiles.Items.Clear();
                     Project activeProject = projectClient.GetProject(Convert.ToInt32(listView_Projects.SelectedItems[0].Text));
-                    List<File> files = activeProject.ProjectFiles;
-                    foreach (File file in files)
+                    List<Library.File> files = activeProject.ProjectFiles;
+                    foreach (Library.File file in files)
                     {
                         string[] row = { file.Id.ToString(), file.Title, file.Description };
                         ListViewItem lwi = new ListViewItem(row);
@@ -183,6 +190,60 @@ namespace ClientApp
             else
             {
                 MessageBox.Show("select a project please!");
+            }
+        }
+
+        private void btnDownload_Click(object sender, EventArgs e)
+        {
+            string filetodownload = @"C:\ProjectShare\Uploads\" + lblFIleInfo.Text;
+
+
+           FileMetaData fmd = new FileMetaData();
+            fmd.FullLocalPath = filetodownload;
+            FileDownloadMessage fdm = new FileDownloadMessage(fmd);
+
+            IssueDownloadRequest(filetodownload, fdm);
+        }
+        private void IssueDownloadRequest(string localFile, FileDownloadMessage fdm)
+        {
+            
+            try
+            {
+                var response = fileClient.DownloadFile(fdm);
+
+                if (response != null && response.FileByteStream != null)
+                {
+                    SaveFile(response.FileByteStream, Path.GetFileName(localFile));
+                }
+
+
+                fileClient.Close();
+            }
+            catch (Exception e)
+            {
+                //throw new FileTransferProxyException("Error while downloading the file", e);
+                MessageBox.Show("error in downloading the fail \n" + e);
+            }
+        }
+
+        private void SaveFile(Stream saveFile, string fileName)
+        {
+            const int bufferSize = 65536; // 64K
+            string FILE_SAVE_PATH = @"C:\ProjectShare\downloads\";
+            if (!Directory.Exists(FILE_SAVE_PATH))
+            {
+                Directory.CreateDirectory(FILE_SAVE_PATH);
+            }
+            using (FileStream outfile = new FileStream(FILE_SAVE_PATH + fileName, FileMode.Create))
+            {
+                byte[] buffer = new byte[bufferSize];
+                int bytesRead = saveFile.Read(buffer, 0, bufferSize);
+
+                while (bytesRead > 0)
+                {
+                    outfile.Write(buffer, 0, bytesRead);
+                    bytesRead = saveFile.Read(buffer, 0, bufferSize);
+                }
             }
         }
     }

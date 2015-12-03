@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ClientApp.FileUploadService;
-using ClientApp.addFileService;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -22,7 +21,6 @@ namespace ClientApp
         private string fullFilePath;
         private string fileToUpload;
         private static FileUpLoadServiceClient client = new FileUpLoadServiceClient();
-        private static FileServiceClient fac = new FileServiceClient();
         private Project Project;
         public UploadDialog(Project project)
         {
@@ -56,16 +54,17 @@ namespace ClientApp
                     using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
                     {
                         var request = new FileUploadMessage();
-                        var fileMetaData = new FileMetaData();
+                        var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
                         fileMetaData.FileName = fileToUpload;
                         fileMetaData.FullLocalPath = fullFilePath;
-                        fileMetaData.FileType = (DefinedFileTypes)Enum.Parse(typeof(DefinedFileTypes), Path.GetExtension(fileToUpload).ToUpper().Replace(@".", ""));
+                        fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUpload).ToUpper().Replace(@".", ""));
                         request.Metadata = fileMetaData;
                         request.FileByteStream = fileStream;
-                        client.UploadFile(fileMetaData, fileStream);
-                        client.Close();
+                        FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
+                        client.UploadFile(fum);
                     }
                     AddFile(txtFileName.Text, txtDesc.Text);
+                    client.Close();
                 }
                 catch (IOException ioException)
                 {
@@ -84,20 +83,21 @@ namespace ClientApp
             }
             else
                 MessageBox.Show("Come on man, you need to select a file ;)");
-
         }
-
         private void AddFile(string fileName, string fileDesc)
         {
             if (txtFileName.Text.Length > 0 && txtDesc.Text.Length > 3)
             {
                 try
                 {
-                    fac.AddFile(fileName, fileDesc, Project);
-                    
+                    Library.File newFile = new Library.File(fileName, fileDesc, Project);
+                    AddSingleFileMessage asfm = new AddSingleFileMessage();
+                    asfm.file = newFile;
+                    client.AddFile(asfm);
+
                     lblFilePath.Text = "";
                     txtFileName.Text = "";
-                    txtDesc.Text = "";                    
+                    txtDesc.Text = "";
                 }
                 catch (Exception hest)
                 {
