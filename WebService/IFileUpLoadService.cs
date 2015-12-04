@@ -19,12 +19,11 @@ namespace WebService
         void AddFile(AddSingleFileMessage asfm);
         [OperationContract]
         FileDownloadReturnMessage DownloadFile(FileDownloadMessage fdm);
-
         [OperationContract]
         List<File> GetAllFilesForProject(int projectId);
-
         [OperationContract]
-        //void AddMutiFiles(List<String> fileNames, List<String> fileDescs, Project project);
+        File getFileById(int fileID);
+        [OperationContract]
         void AddMultiFiles(AddMultiFilesMessage amfm);
         [OperationContract]
         GetFIleReturnMessage GetFile(GetFileMessage gfm);

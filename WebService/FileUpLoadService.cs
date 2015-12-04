@@ -82,5 +82,11 @@ namespace WebService
         //{
         //    throw new NotImplementedException();
         //}
+
+
+        public Library.File getFileById(int fileID)
+        {
+            return fCtr.GetFile(fileID);
+        }
     }
 }
