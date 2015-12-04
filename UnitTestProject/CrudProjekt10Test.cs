@@ -59,12 +59,33 @@ namespace UnitTestProject
         [TestCleanup]
         public void Teardown()
         {
-            projectController.DeleteProject(project1.Id);
-            projectController.DeleteProject(project2.Id);
-            projectController.DeleteProject(project3.Id);
-            projectController.DeleteProject(project4.Id);
-            projectController.DeleteProject(project5.Id);
-
+            List<Project> projects = projectController.GetProjectByTitle(project1.Title);
+            projectController.GetProjectByTitle(project2.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            projectController.GetProjectByTitle(project3.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            projectController.GetProjectByTitle(project4.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            projectController.GetProjectByTitle(project5.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            List<bool> results = new List<bool>();
+            foreach (Project project in projects)
+            {
+                bool result = projectController.DeleteProject(project.Id);
+                results.Add(result);
+            }
+            foreach (bool b in results)
+            {
+                Assert.AreEqual(true, b);
+            }
             //foreach (List<Project> projects in projectsList)
             //{
             //    foreach (Project project in projects)
@@ -295,12 +316,14 @@ namespace UnitTestProject
 
             List<Project> projects = projectController.GetProjectByTitle("World Domination");
             Project project = projects.FirstOrDefault();
-            int projectId = project.Id;
 
-            bool success = projectController.AddProjectAdministratorToProject(projectId, user);
+            bool success = projectController.AddUserToProject(project.Id, user);
             Assert.AreEqual(true, success);
 
-            success = projectController.RemoveProjectAdministratorFromProject(projectId, user);
+            success = projectController.AddProjectAdministratorToProject(project.Id, user);
+            Assert.AreEqual(true, success);
+
+            success = projectController.RemoveProjectAdministratorFromProject(project.Id, user);
             Assert.AreEqual(true, success);
         }
 
@@ -331,34 +354,9 @@ namespace UnitTestProject
         public void TestRemoveProject()
         {
             List<Project> projects = projectController.GetProjectByTitle(project1.Title);
-            projectController.GetProjectByTitle(project2.Title).ForEach(delegate(Project project)
-            {
-                projects.Add(project);
-            });
-            projectController.GetProjectByTitle(project3.Title).ForEach(delegate(Project project)
-            {
-                projects.Add(project);
-            });
-            projectController.GetProjectByTitle(project4.Title).ForEach(delegate(Project project)
-            {
-                projects.Add(project);
-            });
-            projectController.GetProjectByTitle(project5.Title).ForEach(delegate(Project project)
-            {
-                projects.Add(project);
-            });
-            List<bool> results = new List<bool>();
-            foreach (Project project in projects)
-            {
-                bool result = projectController.DeleteProject(project.Id);
-                results.Add(result);
-            }
-            foreach (bool b in results)
-            {
-                Assert.AreEqual(true, b);
-            }
-            //bool result = projectController.DeleteProject(10);
-            //Assert.AreEqual(true, result);
+
+            bool result = projectController.DeleteProject(projects.FirstOrDefault().Id);
+            Assert.AreEqual(true, result);
 
         }
 
