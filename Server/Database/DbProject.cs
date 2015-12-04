@@ -113,16 +113,16 @@ namespace Server.Database
         /// <summary>
         /// Get a single project from the given id, with all data filled.
         /// </summary>
-        /// <param name="id">the project id of the project to retrieve</param>
+        /// <param name="projectId">the project id of the project to retrieve</param>
         /// <returns>The project with the given id if found, null if not.</returns>
-        public Project GetProject(int id)
+        public Project GetProject(int projectId)
         {
             try
             {
-                Project project = dbContext.Projects.FirstOrDefault(i => i.Id == id);
+                Project project = dbContext.Projects.FirstOrDefault(i => i.Id == projectId);
                 if (project != null)
                 {
-
+                    project.ProjectMembers = GetProjectMembers(projectId);
                     project.ProjectFiles = dbFile.GetAllFilesForProject(project.Id);
                     project.ProjectAdministrators = GetProjectAdministrators(project.Id);
                     return project;
@@ -130,7 +130,7 @@ namespace Server.Database
             }
             catch (Exception e)
             {
-                Console.WriteLine("Something went wrong, when looking for the given Project id: " + id + " Error Message: \n" + e);
+                Console.WriteLine("Something went wrong, when looking for the given Project id: " + projectId + " Error Message: \n" + e);
             }
             return null;
         }
@@ -315,6 +315,14 @@ namespace Server.Database
         {
             var users = from user in dbContext.ProjectUsers
                         where user.Project.Id.Equals(projectId) && user.UserType.Equals(UserType.Administrator)
+                        select user.User;
+            return users.ToList();
+        }
+
+        private List<User> GetProjectMembers(int projectId) //TODO test db code.
+        {
+            var users = from user in dbContext.ProjectUsers
+                        where user.Project.Id.Equals(projectId) && user.UserType.Equals(UserType.User)
                         select user.User;
             return users.ToList();
         }

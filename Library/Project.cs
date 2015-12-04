@@ -19,23 +19,24 @@ namespace Library
         [Column]
         public string ProjectFolder { get; set; }
 
-        /// <summary>
-        /// Adds project correlation to User, with ProjectUsers for all project Members.
-        /// </summary>
-        private EntitySet<ProjectUsers> _projectUsers = new EntitySet<ProjectUsers>();
-        [Association(Storage = "_projectUsers", OtherKey = "projectId", ThisKey = "Id")]
-        internal ICollection<ProjectUsers> ProjectUsers
-        {
-            get { return _projectUsers;}
-            set { _projectUsers.Assign(value);}
-        }
-        /// <summary>
-        /// Get all user members of the project.
-        /// </summary>
-        public ICollection<User> ProjectMembers { 
-            get { return (from user in ProjectUsers select user.User).ToList(); }
-            private set { }
-        }
+        ///// <summary>
+        ///// Adds project correlation to User, with ProjectUsers for all project Members.
+        ///// </summary>
+        //private EntitySet<ProjectUsers> _projectUsers = new EntitySet<ProjectUsers>();
+        //[Association(Storage = "_projectUsers", OtherKey = "projectId", ThisKey = "Id")]
+        //internal ICollection<ProjectUsers> ProjectUsers
+        //{
+        //    get { return _projectUsers;}
+        //    set { _projectUsers.Assign(value);}
+        //}
+        ///// <summary>
+        ///// Get all user members of the project.
+        ///// </summary>
+        //public ICollection<User> ProjectMembers { 
+        //    get { return (from user in ProjectUsers select user.User).ToList(); }
+        //    private set { }
+        //}
+        public List<User> ProjectMembers { get; set; }
         public List<User> ProjectAdministrators { get; set; } //TODO DB code
         //[Column]
         public List<File> ProjectFiles { get; set; } //TODO DB code
