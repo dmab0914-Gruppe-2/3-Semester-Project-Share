@@ -231,6 +231,7 @@ namespace ClientApp
         {
             Form_FindUsers findusers = new Form_FindUsers(Convert.ToInt32(listView_Projects.SelectedItems[0].Text), false);
             findusers.ShowDialog();
+            UpdateProjects(false);
         }
 
         private void button_Refresh_Click(object sender, EventArgs e)
