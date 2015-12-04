@@ -10,7 +10,7 @@ namespace UnitTestProject
     [TestClass]
     public class CrudProjekt10Test
     {
-        
+
         const int id = 1;
         const string title = "The Big Project";
         const string description = "It's a fairly big project?";
@@ -21,7 +21,7 @@ namespace UnitTestProject
         private Project project3;
         private Project project4;
         private Project project5;
-        
+
         //User projectAdminUser = new User
         //{
         //    Id = 1,
@@ -34,7 +34,7 @@ namespace UnitTestProject
 
         ProjectController projectController = new ProjectController();
 
-#region SetupTest
+        #region SetupTest
         [TestInitialize]
         public void Setup()
         {
@@ -52,9 +52,9 @@ namespace UnitTestProject
             projectController.AddProject(project5);
 
         }
-#endregion
+        #endregion
 
-#region Test Teardown
+        #region Test Teardown
 
         [TestCleanup]
         public void Teardown()
@@ -74,16 +74,16 @@ namespace UnitTestProject
             //}
         }
 
-#endregion
+        #endregion
 
 
-#region CreateProject
+        #region CreateProject
         [TestMethod]
         public void TestCreateProjectSuccess()
         {
 
             ProjectReturnType returnValue = projectController.AddProject(title, description, projectFolder, projectAdminUser);
-            
+
             Assert.AreEqual(ProjectReturnType.Success, returnValue);
         }
 
@@ -92,7 +92,7 @@ namespace UnitTestProject
         {
 
             ProjectReturnType returnValue = projectController.AddProject(null, description, projectFolder, projectAdminUser);
-            Assert.AreEqual(ProjectReturnType.TitleMissing, returnValue); 
+            Assert.AreEqual(ProjectReturnType.TitleMissing, returnValue);
         }
 
         [TestMethod]
@@ -156,20 +156,20 @@ namespace UnitTestProject
         //    ProjectReturnType returnValue = projectController.AddProject(project);
         //    Assert.AreEqual(ProjectReturnType.ProjectAdministratorUserMissing, returnValue);
         //}
-#endregion
+        #endregion
 
 
-#region GetAllProjects
+        #region GetAllProjects
         [TestMethod]
         public void TestGetAllProjects()
         {
             List<Project> projects = projectController.GetAllProjects();
             Assert.IsNotNull(projects);
         }
-#endregion
+        #endregion
 
 
-#region GetProject
+        #region GetProject
 
         [TestMethod]
         public void TestGetProjectId1()
@@ -220,40 +220,18 @@ namespace UnitTestProject
             Assert.AreEqual(@"WorldDomination", project.ProjectFolder);
         }
 
-#endregion
+        #endregion
 
-#region Updateproject
-
-
-
-#endregion
+        #region Updateproject
 
 
-#region DeleteProjects
 
-        [TestMethod]
-        public void TestRemoveProject()
-        {
-            //List<Project> projects1 = projectController.GetProjectByTitle(project1.Title); ;
-            //List<bool> result1 = new List<bool>();
+        #endregion
 
-            //foreach (Project project in projects1)
-            //{
-            //    bool result = projectController.DeleteProject(project.Id);
-            //    result1.Add(result);
-            //}
-            //foreach (bool b in result1)
-            //{
-            //    Assert.AreEqual(true, b);
-            //}
-            bool result = projectController.DeleteProject(10);
-            Assert.AreEqual(true, result);
 
-        }
 
-#endregion
 
-#region Add and Remove Project user
+        #region Add and Remove Project user
 
         [TestMethod]
         public void TestAddRemoveProjectUserSuccess()
@@ -300,9 +278,9 @@ namespace UnitTestProject
         }
 
 
-#endregion
+        #endregion
 
-#region Add and Remove Project Administrator
+        #region Add and Remove Project Administrator
 
         [TestMethod]
         public void TestAddRemoveProjectAdminSuccess()
@@ -346,7 +324,44 @@ namespace UnitTestProject
             Assert.AreEqual(false, success);
         }
 
-#endregion
+        #endregion
+        #region DeleteProjects
 
+        [TestMethod]
+        public void TestRemoveProject()
+        {
+            List<Project> projects = projectController.GetProjectByTitle(project1.Title);
+            projectController.GetProjectByTitle(project2.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            projectController.GetProjectByTitle(project3.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            projectController.GetProjectByTitle(project4.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            projectController.GetProjectByTitle(project5.Title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
+            List<bool> results = new List<bool>();
+            foreach (Project project in projects)
+            {
+                bool result = projectController.DeleteProject(project.Id);
+                results.Add(result);
+            }
+            foreach (bool b in results)
+            {
+                Assert.AreEqual(true, b);
+            }
+            //bool result = projectController.DeleteProject(10);
+            //Assert.AreEqual(true, result);
+
+        }
+
+        #endregion
     }
 }

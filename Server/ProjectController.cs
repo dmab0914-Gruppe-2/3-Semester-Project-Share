@@ -12,12 +12,13 @@ namespace Server
 {
     public class ProjectController : IProjectController
     {
-        private readonly IDbProject _dbProject = new DbProject();
-        private readonly IDbUser _dbUser = new DbUser();
+        private readonly IDbProject _dbProject;
+        private readonly IUserController _userController;
 
         public ProjectController()
         {
-
+            _dbProject = new DbProject();
+            _userController = new UserController();
         }
 
         public ProjectReturnType AddProject(string title, string description, string projectFolder,
@@ -39,12 +40,18 @@ namespace Server
             {
                 return ProjectReturnType.ProjectAdministratorUserMissing;
             }
-
-            Project project = new Project(title, description, projectFolder, projectAdministratorUser);
-            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder, projectAdministratorUser);
-            return ProjectReturnType.Success;
-            //return ProjectReturnType.Success;
-            //throw new NotImplementedException();
+            else if (_userController.FindUserById(projectAdministratorUser.Id) == null)
+            {
+                return ProjectReturnType.ProjectAdministratorUserMissing;
+            }
+            else if (_dbProject.AddProject(title, description, projectFolder, projectAdministratorUser))
+            {
+                return ProjectReturnType.Success;
+            }
+            else
+            {
+                return ProjectReturnType.IdMissing;
+            }
         }
 
         public ProjectReturnType AddProject(Project project)
@@ -103,7 +110,7 @@ namespace Server
 
         public bool AddUserToProject(int projectId, User user)
         {
-            if (_dbProject.GetProject(projectId) != null && _dbUser.FindUserById(user.Id) != null)
+            if (_dbProject.GetProject(projectId) != null && _userController.FindUserById(user.Id) != null)
             {
                 return _dbProject.AddUserToProject(projectId, user);
             }
