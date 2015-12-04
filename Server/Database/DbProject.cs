@@ -168,11 +168,12 @@ namespace Server.Database
             var projects = from project in dbContext.Projects
                            where project.Title.Equals(title)
                            select project;
-            foreach (Project project in projects)
+            List<Project> projectsList = projects.ToList();
+            for (int i = 0; i < projectsList.Count; i++)
             {
-                project = GetProject(project.Id);
+                projectsList[i] = GetProject(projectsList[i].Id);
             }
-            return projects.ToList();
+            return projectsList;
         }
 
         public bool AddUserToProject(int projectId, User user)
