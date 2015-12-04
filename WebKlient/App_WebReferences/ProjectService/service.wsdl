@@ -172,6 +172,120 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_GetProjectByTitle_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_GetProjectByTitle_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_GetSomeProjectsBetweenId_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_GetSomeProjectsBetweenId_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_GetSomeProjectsToId_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_GetSomeProjectsToId_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_GetProject_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -286,6 +400,158 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_AddUserToProject_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_AddUserToProject_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_RemoveUserFromProject_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_RemoveUserFromProject_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_AddProjectAdministratorToProject_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_AddProjectAdministratorToProject_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_RemoveProjectAdministratorFromProject_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="WSHttpBinding_IProjectService_RemoveProjectAdministratorFromProject_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import namespace="http://tempuri.org/" />
@@ -305,6 +571,24 @@
   <wsdl:message name="IProjectService_GetAllProjects_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllProjectsResponse" />
   </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectByTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectByTitle" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetProjectByTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetProjectByTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetSomeProjectsBetweenId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSomeProjectsBetweenId" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetSomeProjectsBetweenId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSomeProjectsBetweenIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetSomeProjectsToId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSomeProjectsToId" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_GetSomeProjectsToId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSomeProjectsToIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IProjectService_GetProject_InputMessage">
     <wsdl:part name="parameters" element="tns:GetProject" />
   </wsdl:message>
@@ -323,6 +607,30 @@
   <wsdl:message name="IProjectService_DeleteProject_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteProjectResponse" />
   </wsdl:message>
+  <wsdl:message name="IProjectService_AddUserToProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_AddUserToProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserToProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_RemoveUserFromProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_RemoveUserFromProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveUserFromProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_AddProjectAdministratorToProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddProjectAdministratorToProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_AddProjectAdministratorToProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddProjectAdministratorToProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_RemoveProjectAdministratorFromProject_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProjectAdministratorFromProject" />
+  </wsdl:message>
+  <wsdl:message name="IProjectService_RemoveProjectAdministratorFromProject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemoveProjectAdministratorFromProjectResponse" />
+  </wsdl:message>
   <wsdl:portType name="IProjectService">
     <wsdl:operation name="AddProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/AddProject" message="tns:IProjectService_AddProject_InputMessage" />
@@ -331,6 +639,18 @@
     <wsdl:operation name="GetAllProjects">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetAllProjects" message="tns:IProjectService_GetAllProjects_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/GetAllProjectsResponse" message="tns:IProjectService_GetAllProjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectByTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetProjectByTitle" message="tns:IProjectService_GetProjectByTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/GetProjectByTitleResponse" message="tns:IProjectService_GetProjectByTitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSomeProjectsBetweenId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetSomeProjectsBetweenId" message="tns:IProjectService_GetSomeProjectsBetweenId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/GetSomeProjectsBetweenIdResponse" message="tns:IProjectService_GetSomeProjectsBetweenId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSomeProjectsToId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetSomeProjectsToId" message="tns:IProjectService_GetSomeProjectsToId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/GetSomeProjectsToIdResponse" message="tns:IProjectService_GetSomeProjectsToId_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/GetProject" message="tns:IProjectService_GetProject_InputMessage" />
@@ -343,6 +663,22 @@
     <wsdl:operation name="DeleteProject">
       <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/DeleteProject" message="tns:IProjectService_DeleteProject_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/DeleteProjectResponse" message="tns:IProjectService_DeleteProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/AddUserToProject" message="tns:IProjectService_AddUserToProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/AddUserToProjectResponse" message="tns:IProjectService_AddUserToProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/RemoveUserFromProject" message="tns:IProjectService_RemoveUserFromProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/RemoveUserFromProjectResponse" message="tns:IProjectService_RemoveUserFromProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddProjectAdministratorToProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/AddProjectAdministratorToProject" message="tns:IProjectService_AddProjectAdministratorToProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/AddProjectAdministratorToProjectResponse" message="tns:IProjectService_AddProjectAdministratorToProject_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProjectAdministratorFromProject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProjectService/RemoveProjectAdministratorFromProject" message="tns:IProjectService_RemoveProjectAdministratorFromProject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProjectService/RemoveProjectAdministratorFromProjectResponse" message="tns:IProjectService_RemoveProjectAdministratorFromProject_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSHttpBinding_IProjectService" type="tns:IProjectService">
@@ -367,6 +703,39 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_GetAllProjects_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProjectByTitle">
+      <soap12:operation soapAction="http://tempuri.org/IProjectService/GetProjectByTitle" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_GetProjectByTitle_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_GetProjectByTitle_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSomeProjectsBetweenId">
+      <soap12:operation soapAction="http://tempuri.org/IProjectService/GetSomeProjectsBetweenId" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_GetSomeProjectsBetweenId_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_GetSomeProjectsBetweenId_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSomeProjectsToId">
+      <soap12:operation soapAction="http://tempuri.org/IProjectService/GetSomeProjectsToId" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_GetSomeProjectsToId_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_GetSomeProjectsToId_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -400,6 +769,50 @@
       </wsdl:input>
       <wsdl:output>
         <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_DeleteProject_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddUserToProject">
+      <soap12:operation soapAction="http://tempuri.org/IProjectService/AddUserToProject" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_AddUserToProject_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_AddUserToProject_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveUserFromProject">
+      <soap12:operation soapAction="http://tempuri.org/IProjectService/RemoveUserFromProject" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_RemoveUserFromProject_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_RemoveUserFromProject_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddProjectAdministratorToProject">
+      <soap12:operation soapAction="http://tempuri.org/IProjectService/AddProjectAdministratorToProject" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_AddProjectAdministratorToProject_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_AddProjectAdministratorToProject_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveProjectAdministratorFromProject">
+      <soap12:operation soapAction="http://tempuri.org/IProjectService/RemoveProjectAdministratorFromProject" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_RemoveProjectAdministratorFromProject_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#WSHttpBinding_IProjectService_RemoveProjectAdministratorFromProject_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>

@@ -31,21 +31,26 @@ header {
         width: 100%;
         box-shadow: #3d3d3d 1px 1px;
     }
-    #logo {
-        float:left;
-    }
-    #login {
-        float: right;
-        margin-top: 20px;
-    }
-    nav {
-        float: left;
-        /*margin-right: 25px;*/
-        padding: 10px 30px 10px 0px;
-    }
-    #menu {
-        list-style: none;
-    }
+
+#logo {
+    float: left;
+}
+
+#login {
+    float: right;
+    margin-top: 20px;
+}
+
+nav {
+    float: left;
+    /*margin-right: 25px;*/
+    padding: 10px 30px 10px 0px;
+}
+
+#menu {
+    list-style: none;
+}
+
     #menu li a {
         float: left;
         font-family: 'Trebuchet MS';
@@ -54,17 +59,21 @@ header {
         padding: 12px;
         padding-left: 0px;
     }
-    #menu li a:hover {
-        text-decoration: none;
-        color: #3d3d3d;
-    }
+
+        #menu li a:hover {
+            text-decoration: none;
+            color: #3d3d3d;
+        }
+
     #menu li.highlight a {
         text-decoration: none;
         color: #3d3d3d;
     }
-    #subMenu {
-        list-style: none;
-    }
+
+#subMenu {
+    list-style: none;
+}
+
     #subMenu li a {
         float: left;
         font-family: 'Trebuchet MS';
@@ -73,17 +82,61 @@ header {
         padding: 5px;
         padding-top: 0px;
     }
-    #subMenu li a:hover {
-        text-decoration: none;
-        color: #3d3d3d;
-    }
+
+        #subMenu li a:hover {
+            text-decoration: none;
+            color: #3d3d3d;
+        }
+
     #subMenu li.highlight a {
         text-decoration: none;
         color: #3d3d3d;
     }
-    #Content {
-        height: 500px;
+
+#Content {
+    width: 760px;
+    /*background-color: yellow;*/
+    float: right;
+}
+    /****** Projects *****/
+    #ProjectList {
+        margin-bottom: 20px;
+    }
+    #ProjectList a {
+        font-family: 'Trebuchet MS';
+        color: black;
+        font-size: 22px;
+        padding: 12px;
+        padding-left: 0px;
+    }
+    #ProjectList p  {
+        font-size: 14px;
+        font-style: italic;
+        margin-top: -20px;
+        padding-left: 25px;
+    }
+    /****** Project *****/
+    #ProjectInfo {
         width: 760px;
-        /*background-color: yellow;*/
-        float: right;
+        float: left;
+        margin-bottom: 50px;
+    }
+    #ProjectFileList 
+    {
+        width: 760px;
+        float:left;
+        padding: 10px;
+        border: 3px rgba(114, 114, 114, 0.67) solid;
+        box-shadow: 3px 3px #727272;
+    }
+    #ProjectFileList h2 {
+        text-decoration: underline;
+    }
+    #ProjectFileList a {
+        font-family: 'Trebuchet MS';
+        color: black;
+        font-size: 14px;
+    }
+    #Projectfiles {
+
     }

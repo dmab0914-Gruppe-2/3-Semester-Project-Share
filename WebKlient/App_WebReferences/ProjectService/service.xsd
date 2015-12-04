@@ -30,6 +30,49 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetProjectByTitle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProjectByTitleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetProjectByTitleResult" nillable="true" type="q4:ArrayOfProject" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSomeProjectsBetweenId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="first" type="xs:int" />
+        <xs:element minOccurs="0" name="last" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSomeProjectsBetweenIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetSomeProjectsBetweenIdResult" nillable="true" type="q5:ArrayOfProject" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSomeProjectsToId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="last" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSomeProjectsToIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetSomeProjectsToIdResult" nillable="true" type="q6:ArrayOfProject" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetProject">
     <xs:complexType>
       <xs:sequence>
@@ -40,7 +83,7 @@
   <xs:element name="GetProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetProjectResult" nillable="true" type="q4:Project" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="GetProjectResult" nillable="true" type="q7:Project" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -51,15 +94,13 @@
         <xs:element minOccurs="0" name="title" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="projectFolder" nillable="true" type="xs:string" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="ProjectMembers" nillable="true" type="q5:ArrayOfUser" />
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="projectAdministrators" nillable="true" type="q6:ArrayOfUser" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="UpdateProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="UpdateProjectResult" type="xs:int" />
+        <xs:element minOccurs="0" name="UpdateProjectResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -73,7 +114,67 @@
   <xs:element name="DeleteProjectResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="DeleteProjectResult" type="xs:int" />
+        <xs:element minOccurs="0" name="DeleteProjectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserToProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="projectId" type="xs:int" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="user" nillable="true" type="q8:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddUserToProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddUserToProjectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserFromProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="projectId" type="xs:int" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="user" nillable="true" type="q9:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveUserFromProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveUserFromProjectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProjectAdministratorToProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="projectId" type="xs:int" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="projectAdministrator" nillable="true" type="q10:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddProjectAdministratorToProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddProjectAdministratorToProjectResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProjectAdministratorFromProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="projectId" type="xs:int" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="projectAdministrator" nillable="true" type="q11:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RemoveProjectAdministratorFromProjectResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RemoveProjectAdministratorFromProjectResult" type="xs:boolean" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
