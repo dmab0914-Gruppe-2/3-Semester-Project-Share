@@ -67,6 +67,7 @@ namespace ClientApp
             textbox_Directory.Visible = false;
             listView_ProjectAdmin.Visible = false;
             label_ProjectAdmin.Visible = false;
+            button_PromoteDemote.Visible = false;
 
             //Editable
             textBox_ProjektId.ReadOnly = true;
@@ -104,6 +105,7 @@ namespace ClientApp
             textBox_Description.Visible = false;
             button_FindUser.Visible = true;
             button_Save.Visible = true;
+            button_PromoteDemote.Visible = false;
 
             //label_MembersProject settings
             label_MembersProject.Visible = true;
@@ -147,6 +149,7 @@ namespace ClientApp
             listView_FilesParticipants.Visible = false;
             label_Directory.Visible = true;
             textbox_Directory.Visible = true;
+            button_PromoteDemote.Visible = false;
 
 
 
@@ -346,6 +349,74 @@ namespace ClientApp
                 label_ProjectAdmin.Text = string.Format("Valgte projekt administrator: " + name);
                 projectAdmin = userService.FindUserById(Convert.ToInt32(id));
             }
+        }
+
+        private void listView_FilesParticipants_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listView_FilesParticipants.SelectedItems.Count == 1)
+            {
+                ListViewItem.ListViewSubItemCollection rowCollection = listView_FilesParticipants.SelectedItems[0].SubItems;
+                string rank = rowCollection[2].Text;
+                if (rank.Equals("Member"))
+                {
+                    button_PromoteDemote.Text = "Promomote";
+                }
+                else if (rank.Equals("Administrator"))
+                {
+                    button_PromoteDemote.Text = "Demote";
+                }
+                
+                button_PromoteDemote.Visible = true;
+                
+            }
+            
+        }
+
+        private void button_PromoteDemote_Click(object sender, EventArgs e)
+        {
+            bool success = false;
+            if (button_PromoteDemote.Text.Equals("Demote"))
+            {
+                User user = userService.FindUserById(Convert.ToInt32(listView_ProjectAdmin.SelectedItems[0].SubItems[0].Text));
+                if (!user.Username.Equals(""))
+                {
+                    success = projectService.RemoveProjectAdministratorFromProject(activeProject.Id, user);
+                }
+                else
+                {
+                    MessageBox.Show("Fejl");
+                }
+                
+            }
+            else if (button_PromoteDemote.Text.Equals("Promomote"))
+            {
+                User[] users = userService.FindUserByUsername(listView_ProjectAdmin.SelectedItems[0].Text);
+                User user = users.FirstOrDefault();
+                if (!user.Username.Equals(""))
+                {
+                    success = projectService.AddProjectAdministratorToProject(activeProject.Id, user);
+                }
+                else
+                {
+                    MessageBox.Show("Fejl");
+                }
+            }
+            if (button_PromoteDemote.Text.Equals("Promote"))
+            {
+                if (success)
+                    MessageBox.Show("Bruger forfremmet til administrator i projektet");
+                else
+                    MessageBox.Show("Bruger blev ikke forfremmet!");
+            }
+            else if (button_PromoteDemote.Text.Equals("Demote"))
+            {
+                if (success)
+                    MessageBox.Show("Bruger blev fjernet som administrator i projektet");
+                else
+                    MessageBox.Show("Bruger blev IKKE fjernet som administrtor i projektet!");
+            }
+                
+
         }
 
 

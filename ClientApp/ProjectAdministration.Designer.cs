@@ -53,6 +53,7 @@
             this.button_CreateProject = new System.Windows.Forms.Button();
             this.listView_ProjectAdmin = new System.Windows.Forms.ListView();
             this.label_ProjectAdmin = new System.Windows.Forms.Label();
+            this.button_PromoteDemote = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblUpload
@@ -121,6 +122,7 @@
             this.listView_FilesParticipants.Size = new System.Drawing.Size(440, 345);
             this.listView_FilesParticipants.TabIndex = 6;
             this.listView_FilesParticipants.UseCompatibleStateImageBehavior = false;
+            this.listView_FilesParticipants.SelectedIndexChanged += new System.EventHandler(this.listView_FilesParticipants_SelectedIndexChanged);
             // 
             // button_EditProject
             // 
@@ -263,11 +265,21 @@
             this.label_ProjectAdmin.TabIndex = 22;
             this.label_ProjectAdmin.Text = "Vælg venligst en projekt administrator";
             // 
+            // button_PromoteDemote
+            // 
+            this.button_PromoteDemote.Location = new System.Drawing.Point(783, 526);
+            this.button_PromoteDemote.Name = "button_PromoteDemote";
+            this.button_PromoteDemote.Size = new System.Drawing.Size(108, 23);
+            this.button_PromoteDemote.TabIndex = 24;
+            this.button_PromoteDemote.UseVisualStyleBackColor = true;
+            this.button_PromoteDemote.Click += new System.EventHandler(this.button_PromoteDemote_Click);
+            // 
             // ProjectAdministration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 561);
+            this.Controls.Add(this.button_PromoteDemote);
             this.Controls.Add(this.label_ProjectAdmin);
             this.Controls.Add(this.listView_ProjectAdmin);
             this.Controls.Add(this.button_CreateProject);
@@ -325,5 +337,6 @@
         private System.Windows.Forms.Button button_CreateProject;
         private System.Windows.Forms.ListView listView_ProjectAdmin;
         private System.Windows.Forms.Label label_ProjectAdmin;
+        private System.Windows.Forms.Button button_PromoteDemote;
     }
 }
