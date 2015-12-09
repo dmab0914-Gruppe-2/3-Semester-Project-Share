@@ -8,7 +8,7 @@ using Library;
 
 namespace Server
 {
-    interface IFileController
+    public interface IFileController
     {
         List<File> AllFilesForProject(int projectID);
         List<FileVersion> AllVersionsForFile(int fileID);
