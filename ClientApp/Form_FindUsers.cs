@@ -73,5 +73,10 @@ namespace ClientApp
                     MessageBox.Show("Fejl");
             }
         }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            Dispose();
+        }
     }
 }
