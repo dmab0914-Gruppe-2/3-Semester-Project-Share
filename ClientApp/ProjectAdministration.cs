@@ -13,7 +13,6 @@ using Library;
 
 namespace ClientApp
 {
-    
     public partial class ProjectAdministration : Form
     {
         internal User projectAdmin;
@@ -83,18 +82,10 @@ namespace ClientApp
                 ListViewItem lwi = new ListViewItem(lwiStrings);
                 listView_Projects.Items.Add(lwi);
             }
-
         }
 
-        
-        /// <summary>
-        /// Visibility modifiers and listview settings
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void button_EditParticipants_Click(object sender, EventArgs e)
+        private void ResetVisibility()
         {
-            //Visibility
             label_ProjektId.Visible = false;
             label_Title.Visible = false;
             label_Description.Visible = false;
@@ -103,9 +94,28 @@ namespace ClientApp
             label_Directory.Visible = false;
             textbox_Directory.Visible = false;
             textBox_Description.Visible = false;
+            button_PromoteDemote.Visible = false;
+            button_Save.Visible = false;
+            button_FindUser.Visible = false;
+            listView_ProjectAdmin.Visible = false;
+            label_ProjectAdmin.Visible = false;
+            listView_FilesParticipants.Visible = false;
+            button_Save.Visible = false;
+            button_FindUser.Visible = false;
+        }
+
+
+        /// <summary>
+        /// Visibility modifiers and listview settings
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_EditParticipants_Click(object sender, EventArgs e)
+        {
+            //Visibility
+            ResetVisibility();
             button_FindUser.Visible = true;
             button_Save.Visible = true;
-            button_PromoteDemote.Visible = false;
 
             //label_MembersProject settings
             label_MembersProject.Visible = true;
@@ -121,10 +131,6 @@ namespace ClientApp
             listView_FilesParticipants.Columns.Add("Username", 125);
             listView_FilesParticipants.Columns.Add("Email", 200);
             listView_FilesParticipants.Columns.Add("Role", -2);
-
-
-
-
         }
 
         /// <summary>
@@ -134,6 +140,7 @@ namespace ClientApp
         /// <param name="e"></param>
         private void button_EditProject_Click(object sender, EventArgs e)
         {
+            ResetVisibility();
             //Edit visibility
             label_ProjektId.Visible = true;
             label_Title.Visible = true;
@@ -141,18 +148,11 @@ namespace ClientApp
             textBox_ProjektId.Visible = true;
             textBox_Title.Visible = true;
             textBox_Description.Visible = true;
-            button_Save.Visible = false;
-            button_FindUser.Visible = false;
             //label_MembersProject settings
             label_MembersProject.Visible = true;
             label_MembersProject.Text = "Projekt indstillinger";
-            listView_FilesParticipants.Visible = false;
             label_Directory.Visible = true;
             textbox_Directory.Visible = true;
-            button_PromoteDemote.Visible = false;
-
-
-
         }
 
         private void listView_Projects_ItemActivate(object sender, EventArgs e)
@@ -164,7 +164,6 @@ namespace ClientApp
 
         private void button_Save_Click(object sender, EventArgs e)
         {
-
             bool accepted;
             if (activeProject != null)
             {
@@ -209,9 +208,9 @@ namespace ClientApp
                     {
                         MessageBox.Show("Du valgte nej");
                     }
-                } 
+                }
             }
-            else if(activeProject == null)
+            else if (activeProject == null)
             {
                 string title = textBox_Title.Text;
                 string desc = textBox_Description.Text;
@@ -262,7 +261,7 @@ namespace ClientApp
                     string[] row = { id, title, desc };
                     ListViewItem lwi = new ListViewItem(row);
                     listView_Projects.Items.Add(lwi);
-                } 
+                }
             }
 
             //Project settings for active project
@@ -295,16 +294,15 @@ namespace ClientApp
                         listView_FilesParticipants.Items.Add(lwi);
                     }
                 }
-
-
                 textBox_ProjektId.Text = activeProject.Id.ToString();
                 textBox_Description.Text = activeProject.Description;
-                textBox_Title.Text = activeProject.Title; 
+                textBox_Title.Text = activeProject.Title;
             }
         }
 
         private void button_CreateProject_Click(object sender, EventArgs e)
         {
+            ResetVisibility();
             activeProject = null;
             UpdateProjects(false);
             //Edit visibility
@@ -325,18 +323,17 @@ namespace ClientApp
             label_Directory.Visible = true;
             textbox_Directory.Visible = true;
 
-            
             User[] users = userService.FindAllUsers();
+            listView_ProjectAdmin.Items.Clear();
             foreach (User user in users)
             {
                 string id = user.Id.ToString();
                 string name = user.Username;
                 string email = user.Email;
-                string[] row = {id, name, email};
+                string[] row = { id, name, email };
                 ListViewItem lwi = new ListViewItem(row);
                 listView_ProjectAdmin.Items.Add(lwi);
             }
-
         }
 
         private void listView_ProjectAdmin_SelectedIndexChanged(object sender, EventArgs e)
@@ -365,11 +362,8 @@ namespace ClientApp
                 {
                     button_PromoteDemote.Text = "Demote";
                 }
-                
                 button_PromoteDemote.Visible = true;
-                
             }
-            
         }
 
         private void button_PromoteDemote_Click(object sender, EventArgs e)
@@ -386,7 +380,6 @@ namespace ClientApp
                 {
                     MessageBox.Show("Fejl");
                 }
-                
             }
             else if (button_PromoteDemote.Text.Equals("Promomote"))
             {
@@ -415,10 +408,6 @@ namespace ClientApp
                 else
                     MessageBox.Show("Bruger blev IKKE fjernet som administrtor i projektet!");
             }
-                
-
         }
-
-
     }
 }
