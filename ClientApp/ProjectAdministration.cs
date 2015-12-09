@@ -25,7 +25,6 @@ namespace ClientApp
             InitializeComponent();
         }
 
-
         /// <summary>
         /// Settings for the window being set when loaded
         /// </summary>
@@ -50,7 +49,6 @@ namespace ClientApp
             listView_ProjectAdmin.Columns.Add("Navn", 150);
             listView_ProjectAdmin.Columns.Add("Email", 200);
             listView_FilesParticipants.Visible = false;
-
             label_MembersProject.Visible = false;
 
             //Set visibility
@@ -102,8 +100,13 @@ namespace ClientApp
             listView_FilesParticipants.Visible = false;
             button_Save.Visible = false;
             button_FindUser.Visible = false;
-        }
 
+            //Reset text boxes.
+            textBox_ProjektId.Clear();
+            textBox_Title.Clear();
+            textBox_Description.Clear();
+            textbox_Directory.Clear();
+        }
 
         /// <summary>
         /// Visibility modifiers and listview settings
@@ -319,7 +322,6 @@ namespace ClientApp
             //label_MembersProject settings
             label_MembersProject.Visible = true;
             label_MembersProject.Text = "Opret Projekt";
-            listView_FilesParticipants.Visible = false;
             label_Directory.Visible = true;
             textbox_Directory.Visible = true;
 
