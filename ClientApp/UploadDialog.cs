@@ -51,20 +51,24 @@ namespace ClientApp
             {
                 try
                 {
-                    using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                    int id = AddFile(txtFileName.Text, txtDesc.Text);
+                    if (id != 0)
                     {
-                        var request = new FileUploadMessage();
-                        var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
-                        fileMetaData.FileName = fileToUpload;
-                        fileMetaData.FullLocalPath = fullFilePath;
-                        fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUpload).ToUpper().Replace(@".", ""));
-                        request.Metadata = fileMetaData;
-                        request.FileByteStream = fileStream;
-                        FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
-                        client.UploadFile(fum);
+                        using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                        {
+                            var request = new FileUploadMessage();
+                            var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
+                            string ft = fileToUpload.Substring(fileToUpload.LastIndexOf('.') + 1);
+                            fileMetaData.FileName = id.ToString() + "." + ft;
+                            fileMetaData.FullLocalPath = fullFilePath;
+                            fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUpload).ToUpper().Replace(@".", ""));
+                            request.Metadata = fileMetaData;
+                            request.FileByteStream = fileStream;
+                            FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
+                            client.UploadFile(fum);
+                        }
+                        client.Close();
                     }
-                    AddFile(txtFileName.Text, txtDesc.Text);
-                    client.Close();
                 }
                 catch (IOException ioException)
                 {
@@ -84,7 +88,7 @@ namespace ClientApp
             else
                 MessageBox.Show("Come on man, you need to select a file ;)");
         }
-        private void AddFile(string fileName, string fileDesc)
+        private int AddFile(string fileName, string fileDesc)
         {
             if (txtFileName.Text.Length > 0 && txtDesc.Text.Length > 3)
             {
@@ -93,20 +97,25 @@ namespace ClientApp
                     Library.File newFile = new Library.File(fileName, fileDesc, Project);
                     AddSingleFileMessage asfm = new AddSingleFileMessage();
                     asfm.file = newFile;
-                    client.AddFile(asfm);
+                    AddSingleFileMessage newAsfm = client.AddFile(asfm);
 
                     lblFilePath.Text = "";
                     txtFileName.Text = "";
                     txtDesc.Text = "";
+
+                    return newAsfm.file.Id;
                 }
                 catch (Exception hest)
                 {
+                    
                     MessageBox.Show("failed uploading your file to database. Sorry for this :( \n " + hest);
+                    return 0;
                 }
             }
             else
             {
                 lblError.Text = "Please recheck all fields Thanks!";
+                return 0;
             }
         }
     }

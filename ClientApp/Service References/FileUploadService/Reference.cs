@@ -141,10 +141,10 @@ namespace ClientApp.FileUploadService {
         System.Threading.Tasks.Task<ClientApp.FileUploadService.UploadFileResponse> UploadFileAsync(ClientApp.FileUploadService.FileUploadMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
-        ClientApp.FileUploadService.AddFileResponse AddFile(ClientApp.FileUploadService.AddSingleFileMessage request);
+        ClientApp.FileUploadService.AddSingleFileMessage AddFile(ClientApp.FileUploadService.AddSingleFileMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddFile", ReplyAction="http://tempuri.org/IFileUpLoadService/AddFileResponse")]
-        System.Threading.Tasks.Task<ClientApp.FileUploadService.AddFileResponse> AddFileAsync(ClientApp.FileUploadService.AddSingleFileMessage request);
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.AddSingleFileMessage> AddFileAsync(ClientApp.FileUploadService.AddSingleFileMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/DownloadFile", ReplyAction="http://tempuri.org/IFileUpLoadService/DownloadFileResponse")]
         ClientApp.FileUploadService.FileDownloadReturnMessage DownloadFile(ClientApp.FileUploadService.FileDownloadMessage request);
@@ -158,11 +158,17 @@ namespace ClientApp.FileUploadService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetAllFilesForProject", ReplyAction="http://tempuri.org/IFileUpLoadService/GetAllFilesForProjectResponse")]
         System.Threading.Tasks.Task<ClientApp.FileUploadService.GetAllFilesForProjectResponse> GetAllFilesForProjectAsync(ClientApp.FileUploadService.GetAllFilesForProjectRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMultiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMultiFilesResponse")]
-        ClientApp.FileUploadService.AddMultiFilesResponse AddMultiFiles(ClientApp.FileUploadService.AddMultiFilesMessage request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/getFileById", ReplyAction="http://tempuri.org/IFileUpLoadService/getFileByIdResponse")]
+        ClientApp.FileUploadService.getFileByIdResponse getFileById(ClientApp.FileUploadService.getFileByIdRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/getFileById", ReplyAction="http://tempuri.org/IFileUpLoadService/getFileByIdResponse")]
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.getFileByIdResponse> getFileByIdAsync(ClientApp.FileUploadService.getFileByIdRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMultiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMultiFilesResponse")]
-        System.Threading.Tasks.Task<ClientApp.FileUploadService.AddMultiFilesResponse> AddMultiFilesAsync(ClientApp.FileUploadService.AddMultiFilesMessage request);
+        ClientApp.FileUploadService.AddMultiFilesReturn AddMultiFiles(ClientApp.FileUploadService.AddMultiFilesMessage request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/AddMultiFiles", ReplyAction="http://tempuri.org/IFileUpLoadService/AddMultiFilesResponse")]
+        System.Threading.Tasks.Task<ClientApp.FileUploadService.AddMultiFilesReturn> AddMultiFilesAsync(ClientApp.FileUploadService.AddMultiFilesMessage request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileUpLoadService/GetFile", ReplyAction="http://tempuri.org/IFileUpLoadService/GetFileResponse")]
         ClientApp.FileUploadService.GetFIleReturnMessage GetFile(ClientApp.FileUploadService.GetFileMessage request);
@@ -213,15 +219,6 @@ namespace ClientApp.FileUploadService {
         
         public AddSingleFileMessage(Library.File file) {
             this.file = file;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class AddFileResponse {
-        
-        public AddFileResponse() {
         }
     }
     
@@ -295,6 +292,38 @@ namespace ClientApp.FileUploadService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="getFileById", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class getFileByIdRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int fileID;
+        
+        public getFileByIdRequest() {
+        }
+        
+        public getFileByIdRequest(int fileID) {
+            this.fileID = fileID;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="getFileByIdResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class getFileByIdResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Library.File getFileByIdResult;
+        
+        public getFileByIdResponse() {
+        }
+        
+        public getFileByIdResponse(Library.File getFileByIdResult) {
+            this.getFileByIdResult = getFileByIdResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.MessageContractAttribute(WrapperName="AddMultiFilesMessage", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class AddMultiFilesMessage {
         
@@ -319,10 +348,17 @@ namespace ClientApp.FileUploadService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(IsWrapped=false)]
-    public partial class AddMultiFilesResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="AddMultiFilesReturn", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class AddMultiFilesReturn {
         
-        public AddMultiFilesResponse() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public int[] ids;
+        
+        public AddMultiFilesReturn() {
+        }
+        
+        public AddMultiFilesReturn(int[] ids) {
+            this.ids = ids;
         }
     }
     
@@ -393,11 +429,11 @@ namespace ClientApp.FileUploadService {
             return base.Channel.UploadFileAsync(request);
         }
         
-        public ClientApp.FileUploadService.AddFileResponse AddFile(ClientApp.FileUploadService.AddSingleFileMessage request) {
+        public ClientApp.FileUploadService.AddSingleFileMessage AddFile(ClientApp.FileUploadService.AddSingleFileMessage request) {
             return base.Channel.AddFile(request);
         }
         
-        public System.Threading.Tasks.Task<ClientApp.FileUploadService.AddFileResponse> AddFileAsync(ClientApp.FileUploadService.AddSingleFileMessage request) {
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.AddSingleFileMessage> AddFileAsync(ClientApp.FileUploadService.AddSingleFileMessage request) {
             return base.Channel.AddFileAsync(request);
         }
         
@@ -417,11 +453,19 @@ namespace ClientApp.FileUploadService {
             return base.Channel.GetAllFilesForProjectAsync(request);
         }
         
-        public ClientApp.FileUploadService.AddMultiFilesResponse AddMultiFiles(ClientApp.FileUploadService.AddMultiFilesMessage request) {
+        public ClientApp.FileUploadService.getFileByIdResponse getFileById(ClientApp.FileUploadService.getFileByIdRequest request) {
+            return base.Channel.getFileById(request);
+        }
+        
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.getFileByIdResponse> getFileByIdAsync(ClientApp.FileUploadService.getFileByIdRequest request) {
+            return base.Channel.getFileByIdAsync(request);
+        }
+        
+        public ClientApp.FileUploadService.AddMultiFilesReturn AddMultiFiles(ClientApp.FileUploadService.AddMultiFilesMessage request) {
             return base.Channel.AddMultiFiles(request);
         }
         
-        public System.Threading.Tasks.Task<ClientApp.FileUploadService.AddMultiFilesResponse> AddMultiFilesAsync(ClientApp.FileUploadService.AddMultiFilesMessage request) {
+        public System.Threading.Tasks.Task<ClientApp.FileUploadService.AddMultiFilesReturn> AddMultiFilesAsync(ClientApp.FileUploadService.AddMultiFilesMessage request) {
             return base.Channel.AddMultiFilesAsync(request);
         }
         

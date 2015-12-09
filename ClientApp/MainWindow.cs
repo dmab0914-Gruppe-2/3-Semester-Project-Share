@@ -97,7 +97,8 @@ namespace ClientApp
                 fileMetaData.FileId = Convert.ToInt32(lwFiles.SelectedItems[0].Text);
                 GetFileMessage gfm = new GetFileMessage();
                 gfm.Metadata = fileMetaData;
-                Library.File activeFile = fileClient.GetFile(gfm).file;
+                //Library.File activeFile = fileClient.GetFile(gfm).file;
+                activeFile = fileClient.GetFile(gfm).file;
                 lblFIleInfo.Text = activeFile.Title;
                 txtFileDesc.Text = activeFile.Description;
                 btnDownload.Visible = true;
@@ -195,7 +196,7 @@ namespace ClientApp
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-            string filetodownload = @"C:\ProjectShare\Uploads\" + lblFIleInfo.Text;
+            string filetodownload = @"C:\ProjectShare\Uploads\" + activeFile.Id.ToString() + "." + lblFIleInfo.Text.Substring(lblFIleInfo.Text.LastIndexOf('.') + 1);
 
 
            FileMetaData fmd = new FileMetaData();

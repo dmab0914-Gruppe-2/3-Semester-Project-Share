@@ -134,16 +134,19 @@
     <None Include="Service References\FileUploadService\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.AddFileResponse.datasource">
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.AddMultiFilesReturn.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.AddMultiFilesResponse.datasource">
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.AddSingleFileMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\FileUploadService\ClientApp.FileUploadService.FileDownloadReturnMessage.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\FileUploadService\ClientApp.FileUploadService.GetAllFilesForProjectResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FileUploadService\ClientApp.FileUploadService.getFileByIdResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\FileUploadService\ClientApp.FileUploadService.GetFIleReturnMessage.datasource">

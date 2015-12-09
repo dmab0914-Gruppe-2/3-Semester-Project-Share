@@ -39,9 +39,13 @@ namespace WebService
                 throw;
             }
         }
-        public void AddFile(AddSingleFileMessage asfm)
+        public AddSingleFileMessage AddFile(AddSingleFileMessage asfm)
         {
-            fCtr.AddFile(asfm.file.Title, asfm.file.Description, asfm.file.Project);
+            AddSingleFileMessage returnASFM = new AddSingleFileMessage();
+            Library.File file = new Library.File();
+            returnASFM.file = file;
+            returnASFM.file.Id = fCtr.AddFile(asfm.file.Title, asfm.file.Description, asfm.file.Project);
+            return returnASFM;
         }
         public FileDownloadReturnMessage DownloadFile(FileDownloadMessage request)
         {
@@ -65,9 +69,13 @@ namespace WebService
         }
 
         //public void AddMutiFiles(List<String> fileNames, List<String> fileDescs, Library.Project project)
-        public void AddMultiFiles(AddMultiFilesMessage amfm)
+        public AddMultiFilesReturn AddMultiFiles(AddMultiFilesMessage amfm)
         {
-            fCtr.AddMutiFiles(amfm.filenames.ToList<string>(), amfm.filedescs.ToList<string>(), amfm.project);
+            AddMultiFilesReturn returnList = new AddMultiFilesReturn();
+            int[] idlist = fCtr.AddMutiFiles(amfm.filenames.ToList<string>(), amfm.filedescs.ToList<string>(), amfm.project).ToArray();
+            returnList.ids = idlist;
+            
+            return returnList;
         }
         public GetFIleReturnMessage GetFile(GetFileMessage gfm)
         {

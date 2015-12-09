@@ -6,7 +6,6 @@ using System.Data.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Library;
 using Server.Database;
 using System.Transactions;
 
@@ -39,7 +38,7 @@ namespace Server
         {
             return dbFile.GetFile(fileID);
         }
-        public void AddFile(string fileName, string fileDesc, int projectid)
+        public int AddFile(string fileName, string fileDesc, int projectid)
         {
             Project project = new Library.Project();
             project.Id = projectid;
@@ -63,6 +62,7 @@ namespace Server
                     if (version && f)
                         scope.Complete();
                 }
+                return file.Id;
             }
             catch (Exception e)
             {
@@ -115,8 +115,9 @@ namespace Server
         }
 
 
-        public void AddMutiFiles(List<string> fileNames, List<string> fileDescs, Library.Project project)
+        public List<int> AddMutiFiles(List<string> fileNames, List<string> fileDescs, Library.Project project)
         {
+            List<int> ids = new List<int>();
             List<File> files = new List<File>();
             User owner = new Library.User(1);
             int i = 0;
@@ -145,9 +146,11 @@ namespace Server
                             scope.Dispose();
                             break;
                         }
+                        ids.Add(f.Id);
                     }
                     scope.Complete();
                 }
+                return ids;
             }
             catch (Exception e)
             {

@@ -38,28 +38,44 @@ namespace ClientApp
         private void btnUpload_Click(object sender, EventArgs e)
         {
             int i = 0;
+            bool stop = false;
             if (fullFilePathList != null && fileToUploadList != null)
             {
                 try
                 {
-                    foreach (string fullFilePath in fullFilePathList)
+                    List<int> ids = AddFiles();
+                    foreach (int q in ids)
                     {
-                        using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                        if (q == 0)
                         {
-                            var request = new FileUploadMessage();
-                            var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
-                            fileMetaData.FileName = fileToUploadList[i];
-                            fileMetaData.FullLocalPath = fullFilePath;
-                            fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
-                            request.Metadata = fileMetaData;
-                            request.FileByteStream = fileStream;
-                            FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
-                            client.UploadFile(fum);                            
-                        }                        
-                        i++;
+                            stop = true;
+                        }
                     }
-                    AddFiles();                
-                    client.Close();
+                    if (!stop)
+                    {
+                        foreach (string fullFilePath in fullFilePathList)
+                        {
+                            using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                            {
+                                var request = new FileUploadMessage();
+                                var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
+
+                                string ft = fileToUploadList[i].Substring(fileToUploadList[i].LastIndexOf('.') + 1);
+                                fileMetaData.FileName = ids[i] + "." + ft;
+                                
+                              //  fileMetaData.FileName = fileToUploadList[i];
+                                fileMetaData.FullLocalPath = fullFilePath;
+                                fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
+                                request.Metadata = fileMetaData;
+                                request.FileByteStream = fileStream;
+                                FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
+                                client.UploadFile(fum);
+                            }
+                            i++;
+                        }
+
+                        client.Close();
+                    }
                 }
                 catch (IOException ioException)
                 {
@@ -86,7 +102,7 @@ namespace ClientApp
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 btnUpload.Enabled = true;
-                lblError.Text = "";              
+                lblError.Text = "";
                 #region dataGridView stuff
                 List<String> files = openFileDialog1.SafeFileNames.ToList();
                 List<Library.File> myFiles = new List<Library.File>();
@@ -111,11 +127,11 @@ namespace ClientApp
             }
         }
 
-        private void AddFiles()
+        private List<int> AddFiles()
         {
-           List<string> filenames = new List<string>();
+            List<string> filenames = new List<string>();
             List<string> filedescs = new List<string>();
-            for(int i = 0; i < dataGridView1.Rows.Count; i++)
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
                 filenames.Add(dataGridView1.Rows[i].Cells[0].Value.ToString());
                 filedescs.Add(dataGridView1.Rows[i].Cells[1].Value.ToString());
@@ -124,9 +140,11 @@ namespace ClientApp
             amfm.filenames = filenames.ToArray<string>();
             amfm.filedescs = filedescs.ToArray<string>();
             amfm.project = Project;
-            client.AddMultiFiles(amfm);
+            AddMultiFilesReturn idlist = client.AddMultiFiles(amfm);
+
             btnUpload.Enabled = false;
             lblError.Text = "Upload done";
+            return idlist.ids.ToList();
         }
     }
 }

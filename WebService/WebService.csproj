@@ -49,6 +49,7 @@
     <Compile Include="IFileUpLoadService.cs" />
     <Compile Include="IUserService.cs" />
     <Compile Include="Models\AddMultiFilesMessage.cs" />
+    <Compile Include="Models\AddMultiFilesReturn.cs" />
     <Compile Include="Models\AddSingleFileMessage.cs" />
     <Compile Include="Models\DefinedFileTypes.cs" />
     <Compile Include="Models\FileDownloadMessage.cs" />

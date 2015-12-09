@@ -47,12 +47,33 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getFileById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fileID" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getFileByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="getFileByIdResult" nillable="true" type="q8:File" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddMultiFilesMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="filenames" nillable="true" type="q8:ArrayOfstring" />
-        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="filedescs" nillable="true" type="q9:ArrayOfstring" />
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="project" nillable="true" type="q10:Project" />
+        <xs:element xmlns:q9="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="filenames" nillable="true" type="q9:ArrayOfstring" />
+        <xs:element xmlns:q10="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="filedescs" nillable="true" type="q10:ArrayOfstring" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="project" nillable="true" type="q11:Project" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddMultiFilesReturn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ids" nillable="true" type="q12:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -64,7 +85,7 @@
   <xs:element name="GetFIleReturnMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="file" nillable="true" type="q11:File" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="file" nillable="true" type="q13:File" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

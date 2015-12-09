@@ -16,7 +16,7 @@ namespace WebService
         [OperationContract]
         void UploadFile(FileUploadMessage fum); //MUST return void
         [OperationContract]
-        void AddFile(AddSingleFileMessage asfm);
+        AddSingleFileMessage AddFile(AddSingleFileMessage asfm);
         [OperationContract]
         FileDownloadReturnMessage DownloadFile(FileDownloadMessage fdm);
         [OperationContract]
@@ -24,7 +24,7 @@ namespace WebService
         [OperationContract]
         File getFileById(int fileID);
         [OperationContract]
-        void AddMultiFiles(AddMultiFilesMessage amfm);
+        AddMultiFilesReturn AddMultiFiles(AddMultiFilesMessage amfm);
         [OperationContract]
         GetFIleReturnMessage GetFile(GetFileMessage gfm);
         //  [OperationContract]
