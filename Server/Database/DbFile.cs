@@ -20,7 +20,7 @@ namespace Server.Database
         private DbContext dbContext;
         public DbFile()
         {
-            dbContext = new DbContext();
+            dbContext = DbContext.Instance;
             filesTest = new List<File>(filearr);
         }
 

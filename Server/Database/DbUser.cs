@@ -13,7 +13,7 @@ namespace Server.Database
 
         public DbUser()
         {
-            dbContext = new DbContext();
+            dbContext = DbContext.Instance;
         }
         public Library.User FindUserById(int id)
         {

@@ -19,7 +19,7 @@ namespace Server
 
         public FileController()
         {
-            dbContext = new DbContext();
+            dbContext = DbContext.Instance;
             dbFile = new DbFile();
             dbFileVersion = new DbFileVersion();
         }

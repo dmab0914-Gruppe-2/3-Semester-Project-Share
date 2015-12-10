@@ -16,7 +16,7 @@ namespace Server.Database
         private DbUser dbUser;
         public DbProject()
         {
-            dbContext = new DbContext();
+            dbContext = DbContext.Instance;
             dbFile = new DbFile();
             dbUser = new DbUser();
         }

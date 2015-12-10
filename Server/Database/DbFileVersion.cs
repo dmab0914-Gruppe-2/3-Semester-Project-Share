@@ -13,7 +13,7 @@ namespace Server.Database
         private DbContext dbContext;
         public DbFileVersion()
         {
-            dbContext = new DbContext();
+            dbContext = DbContext.Instance;
         }
         public List<FileVersion> GetFilesVersionForFile(int fileId)
         {
