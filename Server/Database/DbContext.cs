@@ -21,16 +21,16 @@ namespace Server.Database
 
 
         public Table<User> Users;
-        //public Table<UserType> UserTypes;
         public Table<File> Files;
         public Table<FileVersion> FileVersions;
         public Table<Project> Projects;
         public Table<ProjectUsers> ProjectUsers;
         public Table<ProjectFiles> ProjectFiles;
+        public Table<ChatMessage> ChatMessages;
+        public Table<FileChat> FileChats;
 
-        //public Table<ChatMessage> ChatMessages;
+        //public Table<UserType> UserTypes;
         //public Table<UserChat> UserChats;
-        //public Table<FileChat> FileChats;
         //public Table<ProjectChat> ProjectChats;
     }
 
