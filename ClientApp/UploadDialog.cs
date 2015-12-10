@@ -47,7 +47,8 @@ namespace ClientApp
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (lblFilePath.Text.Length > 0)
+            //if (Enum.GetNames(typeof(DefinedFileTypes)).Equals(Path.GetExtension(fileToUpload).ToUpper().Replace(@".", "")))
+            if (Enum.IsDefined(typeof(DefinedFileTypes), Path.GetExtension(fileToUpload).ToUpper().Replace(@".", "")))
             {
                 try
                 {
@@ -61,7 +62,7 @@ namespace ClientApp
                             string ft = fileToUpload.Substring(fileToUpload.LastIndexOf('.') + 1);
                             fileMetaData.FileName = id.ToString() + "." + ft;
                             fileMetaData.FullLocalPath = fullFilePath;
-                            fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUpload).ToUpper().Replace(@".", ""));
+                            fileMetaData.FileType = (DefinedFileTypes)Enum.Parse(typeof(DefinedFileTypes), Path.GetExtension(fileToUpload).ToUpper().Replace(@".", ""));
                             request.Metadata = fileMetaData;
                             request.FileByteStream = fileStream;
                             FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
@@ -82,11 +83,12 @@ namespace ClientApp
                 }
                 finally
                 {
+                    lblError.ForeColor = System.Drawing.Color.Green;
                     lblError.Text = "File uploaded";
                 }
             }
             else
-                MessageBox.Show("Come on man, you need to select a file ;)");
+                MessageBox.Show("Come on man, you need to select a file ;) \n or this is a bad filetype we don't allow");
         }
         private int AddFile(string fileName, string fileDesc)
         {
@@ -114,6 +116,7 @@ namespace ClientApp
             }
             else
             {
+                lblError.ForeColor = System.Drawing.Color.Red;
                 lblError.Text = "Please recheck all fields Thanks!";
                 return 0;
             }

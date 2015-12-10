@@ -37,63 +37,86 @@ namespace ClientApp
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            bool typeCheck = true;
+            for (int q = 0; q < dataGridView1.Rows.Count && typeCheck; q++)
+            {
+
+                //TO DO get file extension without '.' 
+                string type = Path.GetExtension(dataGridView1.Rows[q].Cells[0].Value.ToString()).ToUpper();//.Substring(dataGridView1.Rows[q].Cells[0].Value.ToString().LastIndexOf('.') );
+                string extenstion = type.Substring(type.LastIndexOf('.') + 1);
+                if (!Enum.IsDefined(typeof(DefinedFileTypes), Path.GetExtension(dataGridView1.Rows[q].Cells[0].Value.ToString()).ToUpper().Replace(@".", "")))
+                {
+                    typeCheck = false;
+                }
+            }
             int i = 0;
             bool stop = false;
             if (fullFilePathList != null && fileToUploadList != null)
             {
-                try
+                if (typeCheck)
                 {
-                    List<int> ids = AddFiles();
-                    foreach (int q in ids)
+                    try
                     {
-                        if (q == 0)
+                        List<int> ids = AddFiles();
+                        foreach (int q in ids)
                         {
-                            stop = true;
-                        }
-                    }
-                    if (!stop)
-                    {
-                        foreach (string fullFilePath in fullFilePathList)
-                        {
-                            using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                            if (q == 0)
                             {
-                                var request = new FileUploadMessage();
-                                var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
-
-                                string ft = fileToUploadList[i].Substring(fileToUploadList[i].LastIndexOf('.') + 1);
-                                fileMetaData.FileName = ids[i] + "." + ft;
-                                
-                              //  fileMetaData.FileName = fileToUploadList[i];
-                                fileMetaData.FullLocalPath = fullFilePath;
-                                fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
-                                request.Metadata = fileMetaData;
-                                request.FileByteStream = fileStream;
-                                FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
-                                client.UploadFile(fum);
+                                stop = true;
                             }
-                            i++;
+                        }
+                        if (!stop)
+                        {
+                            foreach (string fullFilePath in fullFilePathList)
+                            {
+                                using (Stream fileStream = new FileStream(fullFilePath, FileMode.Open, FileAccess.Read))
+                                {
+                                    var request = new FileUploadMessage();
+                                    var fileMetaData = new ClientApp.FileUploadService.FileMetaData();
+
+                                    string ft = fileToUploadList[i].Substring(fileToUploadList[i].LastIndexOf('.') + 1);
+                                    fileMetaData.FileName = ids[i] + "." + ft;
+
+                                    //  fileMetaData.FileName = fileToUploadList[i];
+                                    fileMetaData.FullLocalPath = fullFilePath;
+                                    fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
+                                    request.Metadata = fileMetaData;
+                                    request.FileByteStream = fileStream;
+                                    FileUploadMessage fum = new FileUploadMessage(fileMetaData, fileStream);
+                                    client.UploadFile(fum);
+                                }
+                                i++;
+                            }
+
+                            client.Close();
                         }
 
-                        client.Close();
                     }
-                }
-                catch (IOException ioException)
-                {
-                    // throw new FileTransferProxyException("Unable to open the file to upload");
-                    MessageBox.Show("File error!" + ioException);
-                }
-                catch (Exception ex)
-                {
-                    //throw new FileTransferProxyException(e.Message);
-                    MessageBox.Show("Error in upload, please try again. If this continue contact administrator :(" + ex);
-                }
-                finally
-                {
-                    lblError.Text = "File uploaded";
-                }
+                    catch (IOException ioException)
+                    {
+                        // throw new FileTransferProxyException("Unable to open the file to upload");
+                        MessageBox.Show("File error!" + ioException);
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new FileTransferProxyException(e.Message);
+                        MessageBox.Show("Error in upload, please try again. If this continue contact administrator :(" + ex);
+                    }
+                    finally
+                    {
+                        lblError.Text = "File uploaded";
+                    }
 
+                }
+                else
+                {
+                    MessageBox.Show("Bad filetype(s)");
+                }
             }
-
+            else
+            {
+                MessageBox.Show("no files seleced");
+            }
         }
 
 
