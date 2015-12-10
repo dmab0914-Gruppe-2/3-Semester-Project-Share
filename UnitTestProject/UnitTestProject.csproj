@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EditFileInProject24Test.cs" />
     <Compile Include="CrudProjekt10Test.cs" />
+    <Compile Include="FileChat42Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClientApp\ClientApp.csproj">
