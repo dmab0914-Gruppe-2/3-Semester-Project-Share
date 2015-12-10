@@ -341,8 +341,8 @@ namespace Server.Database
             }
             try
             {
-                //dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = type });
-                string sql = "INSERT INTO ProjectUsers VALUES (" + project.Id + "," + user.Id + "," + EnumToint(type) + ")";
+                dbContext.ProjectUsers.InsertOnSubmit(new ProjectUsers { Project = project, User = user, UserType = type });
+                //string sql = "INSERT INTO ProjectUsers VALUES (" + project.Id + "," + user.Id + "," + EnumToint(type) + ")";
                 dbContext.ExecuteCommand(sql);
                 dbContext.SubmitChanges();
             }

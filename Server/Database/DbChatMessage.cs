@@ -41,13 +41,13 @@ namespace Server.Database
                 {
                     dbContext.ChatMessages.InsertOnSubmit(chatMessage);
                     dbContext.SubmitChanges();
-                    ChatMessage s = chatMessage;
-                    string sql = "INSERT INTO FileChat VALUES (" + file.Id + "," + chatMessage.Id + ")";
-                    dbContext.ExecuteCommand(sql);
+                    //ChatMessage s = chatMessage;
+                    //string sql = "INSERT INTO FileChat VALUES (" + file.Id + "," + chatMessage.Id + ")";
+                    //dbContext.ExecuteCommand(sql);
                     //dbContext.SubmitChanges();
 
 
-                    //dbContext.FileChats.InsertOnSubmit(new FileChat{chatMessage = chatMessage, file = file});
+                    dbContext.FileChats.InsertOnSubmit(new FileChat{chatMessage = chatMessage, file = file});
                     dbContext.SubmitChanges();
                     scope.Complete(); //TODO check if the data added to db were sucessfull / valid.
                 }
