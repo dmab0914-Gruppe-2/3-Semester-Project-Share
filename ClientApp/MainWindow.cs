@@ -11,15 +11,20 @@ using Library;
 using ClientApp.FileUploadService;
 using ClientApp.ProjectService;
 using System.IO;
+using ClientApp.ChatService;
+using ClientApp.UserService;
 
 namespace ClientApp
 {
     public partial class MainWindow : Form
     {
+        private static IChatService chatService = new ChatServiceClient();
+        private static IUserService userService = new UserServiceClient();
         private static FileUpLoadServiceClient fileClient = new FileUpLoadServiceClient();
         private static IProjectService projectClient = new ProjectServiceClient();
         private Library.File activeFile = new Library.File();
         private Project project = null;
+        private User activeUser = null;
         public MainWindow()
         {
             InitializeComponent();
@@ -54,7 +59,11 @@ namespace ClientApp
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-
+            User[] users = userService.FindAllUsers();
+            foreach (User user in users)
+            {
+                comboBox_Users.Items.Add(user.Username);
+            }
             //Listview projects setup
             listView_Projects.GridLines = true;
             listView_Projects.View = View.Details;
@@ -252,6 +261,34 @@ namespace ClientApp
         private void button_Chat_send_Click(object sender, EventArgs e)
         {
             lblNotImplementedWarning.Visible = true;
+        }
+
+        private void button_SendFilechat_Click(object sender, EventArgs e)
+        {
+            if (activeFile != null)
+            {
+                ChatMessage message = new ChatMessage(richTextBox_Filechat.Text, activeUser);
+                bool success = chatService.SendMessage(message, activeFile);
+
+                if (success)
+                {
+                    listBox_Filechat.Items.Add(DateTime.Now.ToShortTimeString() + " " + message.Sender.Username + ": " + message.Message);
+                }
+                else
+                {
+                    listBox_Filechat.Items.Add("ERROR: Message was not sent!");
+                }
+            }
+
+            
+
+            
+        }
+
+        private void comboBox_Users_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string username = comboBox_Users.SelectedItem.ToString();
+            activeUser = userService.FindUserByUsername(username).FirstOrDefault();
         }
     }
 }

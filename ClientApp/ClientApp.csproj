@@ -71,6 +71,11 @@
     <Compile Include="ProjectAdministration.Designer.cs">
       <DependentUpon>ProjectAdministration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service References\ChatService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Service References\FileUploadService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -131,6 +136,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Service References\ChatService\Library.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\service.wsdl" />
+    <None Include="Service References\ChatService\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ChatService\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\FileUploadService\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -199,6 +214,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ChatService\" />
     <WCFMetadataStorage Include="Service References\FileUploadService\" />
     <WCFMetadataStorage Include="Service References\ProjectService\" />
     <WCFMetadataStorage Include="Service References\UserService\" />
@@ -241,6 +257,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\FileUploadService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ChatService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
