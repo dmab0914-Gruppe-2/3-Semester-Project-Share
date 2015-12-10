@@ -43,6 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatController.cs" />
+    <Compile Include="Database\DbChatMessage.cs" />
+    <Compile Include="Database\IDbChatMessage.cs" />
+    <Compile Include="IChatController.cs" />
     <Compile Include="Database\DbFile.cs" />
     <Compile Include="Database\DbProject.cs" />
     <Compile Include="Database\DbFileVersion.cs" />
