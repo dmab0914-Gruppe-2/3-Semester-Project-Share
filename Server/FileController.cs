@@ -80,38 +80,7 @@ namespace Server
 
         public void EditFile(int fileID, User owner)
         {
-            //File file = GetFile(fileID);
-            //if (file.FileLock == null)
-            //{
-            //    dbFile.Files.Context.ExecuteCommand(string.Format(
-            //    "UPDATE dbo.File" +
-            //    "SET FileLock = {0}, FileLockTime = {1}", owner.Id, DateTime.Now));
-            //    //FileVersion fileVersion = dbContext.FileVersions.FirstOrDefault(x => x.Id == fileID);
-            //    //DownloadFile(file); //TODO Uncomment once code is added
-            //    //Thread thread = new Thread(); //TODO Set to waiting thread to start upload once complete
-            //    //thread.Start();
-            //    //thread.Join();
-            //    dbFile.Files.Context.ExecuteCommand(string.Format(
-            //        "UPDATE dbo.File" +
-            //        "SET title = '{0}', description = '{1}', versionNr = {2}, FileLock = {3}, FileLockTime = {4}" +
-            //        "WHERE id = {5}", file.Title, file.Description, file.VersionNr++, null, null, file.Id));
-            //    //dbContext.Files.Context.ExecuteCommand();
-            //    var query =
-            //        from c in dbFile.Files
-            //        where c.Id == fileID
-            //        select file;
-            //    //dbContext.Files.Context.ExecuteQuery(query);
-            //    //dbContext.SubmitChanges();
-
-
-            //   // UploadFile();
-            //}
-            //else
-            //{
-            //    throw new NotImplementedException();
-            //}
-
-
+           
         }
 
 

@@ -68,7 +68,6 @@ namespace WebService
             return fCtr.AllFilesForProject(projectId);
         }
 
-        //public void AddMutiFiles(List<String> fileNames, List<String> fileDescs, Library.Project project)
         public AddMultiFilesReturn AddMultiFiles(AddMultiFilesMessage amfm)
         {
             AddMultiFilesReturn returnList = new AddMultiFilesReturn();
@@ -85,13 +84,6 @@ namespace WebService
             gfrm.file = file;
             return gfrm;
         }
-
-        //public Library.FileVersion EditFile(Library.User owner)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
         public Library.File getFileById(int fileID)
         {
             return fCtr.GetFile(fileID);

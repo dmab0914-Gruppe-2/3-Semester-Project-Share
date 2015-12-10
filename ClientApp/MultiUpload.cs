@@ -40,10 +40,6 @@ namespace ClientApp
             bool typeCheck = true;
             for (int q = 0; q < dataGridView1.Rows.Count && typeCheck; q++)
             {
-
-                //TO DO get file extension without '.' 
-                string type = Path.GetExtension(dataGridView1.Rows[q].Cells[0].Value.ToString()).ToUpper();//.Substring(dataGridView1.Rows[q].Cells[0].Value.ToString().LastIndexOf('.') );
-                string extenstion = type.Substring(type.LastIndexOf('.') + 1);
                 if (!Enum.IsDefined(typeof(DefinedFileTypes), Path.GetExtension(dataGridView1.Rows[q].Cells[0].Value.ToString()).ToUpper().Replace(@".", "")))
                 {
                     typeCheck = false;
@@ -76,8 +72,6 @@ namespace ClientApp
 
                                     string ft = fileToUploadList[i].Substring(fileToUploadList[i].LastIndexOf('.') + 1);
                                     fileMetaData.FileName = ids[i] + "." + ft;
-
-                                    //  fileMetaData.FileName = fileToUploadList[i];
                                     fileMetaData.FullLocalPath = fullFilePath;
                                     fileMetaData.FileType = (ClientApp.FileUploadService.DefinedFileTypes)Enum.Parse(typeof(ClientApp.FileUploadService.DefinedFileTypes), Path.GetExtension(fileToUploadList[i]).ToUpper().Replace(@".", ""));
                                     request.Metadata = fileMetaData;
