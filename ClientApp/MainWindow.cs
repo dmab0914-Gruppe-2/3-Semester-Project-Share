@@ -23,6 +23,7 @@ namespace ClientApp
         public MainWindow()
         {
             InitializeComponent();
+            lblNotImplementedWarning.Visible = false;
             btnUpload.Visible = false;
             btnRefreshFiles.Visible = false;
             btnMulti.Visible = false;
@@ -246,6 +247,11 @@ namespace ClientApp
                     bytesRead = saveFile.Read(buffer, 0, bufferSize);
                 }
             }
+        }
+
+        private void button_Chat_send_Click(object sender, EventArgs e)
+        {
+            lblNotImplementedWarning.Visible = true;
         }
     }
 }

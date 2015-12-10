@@ -45,6 +45,7 @@
             this.txtFileDesc = new System.Windows.Forms.TextBox();
             this.lblFIleInfo = new System.Windows.Forms.Label();
             this.panelCenterTop = new System.Windows.Forms.Panel();
+            this.lblNotImplementedWarning = new System.Windows.Forms.Label();
             this.button_Chat_send = new System.Windows.Forms.Button();
             this.richTextBoxChatmessage = new System.Windows.Forms.RichTextBox();
             this.listChatMessages = new System.Windows.Forms.ListBox();
@@ -52,7 +53,6 @@
             this.ChatFileDivider = new System.Windows.Forms.Label();
             this.ProjectsChatFileDevider = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblNotImplementedWarning = new System.Windows.Forms.Label();
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -236,6 +236,19 @@
             this.panelCenterTop.Size = new System.Drawing.Size(373, 203);
             this.panelCenterTop.TabIndex = 0;
             // 
+            // lblNotImplementedWarning
+            // 
+            this.lblNotImplementedWarning.AutoSize = true;
+            this.lblNotImplementedWarning.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblNotImplementedWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNotImplementedWarning.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblNotImplementedWarning.Location = new System.Drawing.Point(42, 112);
+            this.lblNotImplementedWarning.Name = "lblNotImplementedWarning";
+            this.lblNotImplementedWarning.Size = new System.Drawing.Size(293, 41);
+            this.lblNotImplementedWarning.TabIndex = 5;
+            this.lblNotImplementedWarning.Text = "Not Implemented";
+            this.lblNotImplementedWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // button_Chat_send
             // 
             this.button_Chat_send.Location = new System.Drawing.Point(295, 156);
@@ -244,6 +257,7 @@
             this.button_Chat_send.TabIndex = 3;
             this.button_Chat_send.Text = "Send";
             this.button_Chat_send.UseVisualStyleBackColor = true;
+            this.button_Chat_send.Click += new System.EventHandler(this.button_Chat_send_Click);
             // 
             // richTextBoxChatmessage
             // 
@@ -295,19 +309,6 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(2, 560);
             this.label1.TabIndex = 4;
-            // 
-            // lblNotImplementedWarning
-            // 
-            this.lblNotImplementedWarning.AutoSize = true;
-            this.lblNotImplementedWarning.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNotImplementedWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNotImplementedWarning.ForeColor = System.Drawing.Color.IndianRed;
-            this.lblNotImplementedWarning.Location = new System.Drawing.Point(42, 112);
-            this.lblNotImplementedWarning.Name = "lblNotImplementedWarning";
-            this.lblNotImplementedWarning.Size = new System.Drawing.Size(293, 41);
-            this.lblNotImplementedWarning.TabIndex = 5;
-            this.lblNotImplementedWarning.Text = "Not Implemented";
-            this.lblNotImplementedWarning.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MainWindow
             // 
