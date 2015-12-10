@@ -33,13 +33,27 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void SendMessageTest()
+        public void TestSendMessageSuccess()
         {
             ChatMessage chatMessage = new ChatMessage("fedt arbejde", myUser);
             bool success = chatController.SendMessage(chatMessage, myFile);
             Assert.IsTrue(success);
+        }
 
+        [TestMethod]
+        public void TestSendMessageFailUser()
+        {
+            ChatMessage chatMessage = new ChatMessage("fedt arbejde", null);
+            bool success = chatController.SendMessage(chatMessage, myFile);
+            Assert.IsFalse(success);
+        }
 
+        [TestMethod]
+        public void TestSendMessageFailEmptyMessage()
+        {
+            ChatMessage chatMessage = new ChatMessage("", myUser);
+            bool success = chatController.SendMessage(chatMessage, myFile);
+            Assert.IsFalse(success);
         }
     }
 }
