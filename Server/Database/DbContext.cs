@@ -10,13 +10,30 @@ using Library;
 namespace Server.Database
 {
 #pragma warning disable 0169    // disable never used warnings for fields that are being used by LINQ
-    class DbContext : DataContext
+    sealed class DbContext : DataContext
     {
+        private static DbContext instance = null;
+        private static readonly object threadlock = new Object();
         public DbContext()
             : base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=ProjectShare;Integrated Security=True")
         //TODO Replace this is you're getting errors
         {
 
+        }
+
+        public static DbContext Instance
+        {
+            get
+            {
+                lock (threadlock)
+                {
+                    if (instance == null)
+                    {
+                        instance = new DbContext();
+                    }
+                    return instance;
+                }
+            }
         }
 
 
