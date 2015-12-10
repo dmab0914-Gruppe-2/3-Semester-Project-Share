@@ -17,7 +17,7 @@ namespace Server.Database
 
         public DbChatMessage()
         {
-            dbContext = new DbContext();
+            dbContext = DbContext.Instance;
             dbFile = new DbFile();
             userController = new UserController();
             //dbUser = new DbUser();
@@ -40,7 +40,14 @@ namespace Server.Database
                 using (TransactionScope scope = new TransactionScope(TransactionScopeOption.Required, options))
                 {
                     dbContext.ChatMessages.InsertOnSubmit(chatMessage);
-                    dbContext.FileChats.InsertOnSubmit(new FileChat{chatMessage = chatMessage, file = file});
+                    dbContext.SubmitChanges();
+                    ChatMessage s = chatMessage;
+                    string sql = "INSERT INTO FileChat VALUES (" + file.Id + "," + chatMessage.Id + ")";
+                    dbContext.ExecuteCommand(sql);
+                    //dbContext.SubmitChanges();
+
+
+                    //dbContext.FileChats.InsertOnSubmit(new FileChat{chatMessage = chatMessage, file = file});
                     dbContext.SubmitChanges();
                     scope.Complete(); //TODO check if the data added to db were sucessfull / valid.
                 }
