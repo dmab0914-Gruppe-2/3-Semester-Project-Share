@@ -41,9 +41,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatMessage.cs" />
     <Compile Include="File.cs" />
     <Compile Include="FileVersion.cs" />
     <Compile Include="Project.cs" />
+    <Compile Include="FileChat.cs" />
     <Compile Include="ProjectFiles.cs" />
     <Compile Include="ProjectUsers.cs" />
     <Compile Include="ProjectReturnType.cs" />

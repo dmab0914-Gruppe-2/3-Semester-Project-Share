@@ -11,7 +11,7 @@ namespace Library
     [Table(Name = "User")]
     public class User
     {
-        [Column(IsPrimaryKey = true, IsDbGenerated = true)]
+        [Column(Name = "id", IsPrimaryKey = true, IsDbGenerated = true)]
         public int Id { get; set; }
         [Column]
         public string Username { get; set; }
