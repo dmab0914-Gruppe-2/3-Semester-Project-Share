@@ -27,11 +27,11 @@ namespace Server
             {
                 return false;
             }
-            if (myFile.Title.Equals(""))
+            if (myFile == null)
             {
                 return false;
             }
-            else if (myFile.Id != 0)
+            else if (myFile.Id == 0)
             {
                 return false;
             }
