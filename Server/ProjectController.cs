@@ -24,19 +24,19 @@ namespace Server
         public ProjectReturnType AddProject(string title, string description, string projectFolder,
             User projectAdministratorUser)
         {
-            if (title == null || title.Equals(""))
+            if (title == null || title.Equals("") || !System.Text.RegularExpressions.Regex.IsMatch(title, @"^[a-zA-Z\d\s]{1,40}$"))
             {
                 return ProjectReturnType.TitleMissing;
             }
-            else if (description == null || description.Equals(""))
+            else if (description == null || description.Equals("") || !System.Text.RegularExpressions.Regex.IsMatch(description, @"^[a-zA-Z\d\s\,\.\-\?\&\+\@\#\*\(\)\;\:\/]{1,500}$"))
             {
                 return ProjectReturnType.DescriptionMissing;
             }
-            else if (projectFolder == null || projectFolder.Equals(""))
+            else if (projectFolder == null || projectFolder.Equals("")/* || !System.Text.RegularExpressions.Regex.IsMatch(projectFolder, @"^[a-zA-Z\d]$")*/)
             {
                 return ProjectReturnType.ProjectFolderMissing;
             }
-            else if (projectAdministratorUser == null)
+            else if (projectAdministratorUser == null/* || !System.Text.RegularExpressions.Regex.IsMatch(title, @"^[a-zA-Z\d\s]{1,40}$")*/)
             {
                 return ProjectReturnType.ProjectAdministratorUserMissing;
             }
@@ -52,30 +52,6 @@ namespace Server
             {
                 return ProjectReturnType.IdMissing;
             }
-        }
-
-        public ProjectReturnType AddProject(Project project)
-        {
-            if (project.Title == null || project.Title.Equals(""))
-            {
-                return ProjectReturnType.TitleMissing;
-            }
-            else if (project.Description == null || project.Description.Equals(""))
-            {
-                return ProjectReturnType.DescriptionMissing;
-            }
-            else if (project.ProjectFolder == null || project.ProjectFolder.Equals(""))
-            {
-                return ProjectReturnType.ProjectFolderMissing;
-            }
-            else if (project.ProjectAdministrators.Count == 0)
-            {
-                return ProjectReturnType.ProjectAdministratorUserMissing;
-            }
-            _dbProject.AddProject(project.Title, project.Description, project.ProjectFolder,
-                project.ProjectAdministrators.FirstOrDefault());
-            return ProjectReturnType.Success;
-            //throw new NotImplementedException();
         }
 
         public List<Project> GetAllProjects()

@@ -7,7 +7,6 @@ namespace Server
     public interface IProjectController
     {
         ProjectReturnType AddProject(string title, string description, string projectFolder, User projectAdministratorUser);
-        ProjectReturnType AddProject(Project project);
         List<Project> GetAllProjects();
         List<Project> GetProjectByTitle(string title);
         List<Project> GetSomeProjects(int first, int last);
