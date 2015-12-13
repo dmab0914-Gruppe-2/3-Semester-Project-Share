@@ -55,5 +55,24 @@ namespace UnitTestProject
             bool success = chatController.SendMessage(chatMessage, myFile);
             Assert.IsFalse(success);
         }
+
+        [TestMethod]
+        public void TestGet20MessagesSuccess()
+        {
+            ChatMessage chatMessage = new ChatMessage("fedt lavet", myUser);
+            chatController.SendMessage(chatMessage, myFile);
+            List<ChatMessage> messages = chatController.GetLast20MessagesFromFile(myFile);
+            Assert.IsNotNull(messages);
+        }
+
+        [TestMethod]
+        public void TestGet20MessagesFailFileId()
+        {
+            ChatMessage chatMessage = new ChatMessage("fedt lavet", myUser);
+            chatController.SendMessage(chatMessage, myFile);
+            List<ChatMessage> messages = chatController.GetLast20MessagesFromFile(null);
+            Assert.IsNull(messages);
+            
+        }
     }
 }
