@@ -308,8 +308,14 @@ namespace ClientApp
             
             if (messages.Count() > 0)
             {
-                LastDate = messages.First().Time;
-                listBox_Filechat.Items.Add("\t\t *** " + LastDate.Date.ToLongDateString() + " ***");
+                if(messages.First().Time.Date < LastDate)
+                {
+                    LastDate = messages.First().Time;
+                    listBox_Filechat.Items.Add("\t\t *** " + LastDate.Date.ToLongDateString() + " ***");
+                }
+
+
+                
                 foreach (ChatMessage message in messages)
                 {
                     if (LastDate.Date < message.Time.Date)
