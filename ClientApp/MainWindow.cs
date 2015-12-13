@@ -120,6 +120,7 @@ namespace ClientApp
                 //TODO Download last 20 messages
                 ChatMessage[] messages = chatService.GetLast20MessagesFromFile(activeFile);
                 listBox_Filechat.Items.Clear();
+                LastDate = DateTime.MinValue;
                 UpdateChat(messages);
             }
         }
