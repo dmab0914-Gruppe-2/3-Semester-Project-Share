@@ -14,7 +14,7 @@ namespace Server.Database
     {
         private static DbContext instance = null;
         private static readonly object threadlock = new Object();
-        public DbContext()
+        private DbContext()
             : base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=ProjectShare;Integrated Security=True")
         //TODO Replace this is you're getting errors
         {
