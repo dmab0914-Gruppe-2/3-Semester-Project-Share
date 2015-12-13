@@ -15,11 +15,23 @@ namespace ClientApp.ChatService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ChatService.IChatService")]
     public interface IChatService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        bool SendMessage(Library.ChatMessage message, Library.File file);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessageToFile", ReplyAction="http://tempuri.org/IChatService/SendMessageToFileResponse")]
+        bool SendMessageToFile(Library.ChatMessage message, Library.File file);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessage", ReplyAction="http://tempuri.org/IChatService/SendMessageResponse")]
-        System.Threading.Tasks.Task<bool> SendMessageAsync(Library.ChatMessage message, Library.File file);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/SendMessageToFile", ReplyAction="http://tempuri.org/IChatService/SendMessageToFileResponse")]
+        System.Threading.Tasks.Task<bool> SendMessageToFileAsync(Library.ChatMessage message, Library.File file);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetLast20MessagesFromFile", ReplyAction="http://tempuri.org/IChatService/GetLast20MessagesFromFileResponse")]
+        Library.ChatMessage[] GetLast20MessagesFromFile(Library.File file);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetLast20MessagesFromFile", ReplyAction="http://tempuri.org/IChatService/GetLast20MessagesFromFileResponse")]
+        System.Threading.Tasks.Task<Library.ChatMessage[]> GetLast20MessagesFromFileAsync(Library.File file);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetNewMessagesFromFile", ReplyAction="http://tempuri.org/IChatService/GetNewMessagesFromFileResponse")]
+        Library.ChatMessage[] GetNewMessagesFromFile(Library.File file, int lastMessage);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChatService/GetNewMessagesFromFile", ReplyAction="http://tempuri.org/IChatService/GetNewMessagesFromFileResponse")]
+        System.Threading.Tasks.Task<Library.ChatMessage[]> GetNewMessagesFromFileAsync(Library.File file, int lastMessage);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +61,28 @@ namespace ClientApp.ChatService {
                 base(binding, remoteAddress) {
         }
         
-        public bool SendMessage(Library.ChatMessage message, Library.File file) {
-            return base.Channel.SendMessage(message, file);
+        public bool SendMessageToFile(Library.ChatMessage message, Library.File file) {
+            return base.Channel.SendMessageToFile(message, file);
         }
         
-        public System.Threading.Tasks.Task<bool> SendMessageAsync(Library.ChatMessage message, Library.File file) {
-            return base.Channel.SendMessageAsync(message, file);
+        public System.Threading.Tasks.Task<bool> SendMessageToFileAsync(Library.ChatMessage message, Library.File file) {
+            return base.Channel.SendMessageToFileAsync(message, file);
+        }
+        
+        public Library.ChatMessage[] GetLast20MessagesFromFile(Library.File file) {
+            return base.Channel.GetLast20MessagesFromFile(file);
+        }
+        
+        public System.Threading.Tasks.Task<Library.ChatMessage[]> GetLast20MessagesFromFileAsync(Library.File file) {
+            return base.Channel.GetLast20MessagesFromFileAsync(file);
+        }
+        
+        public Library.ChatMessage[] GetNewMessagesFromFile(Library.File file, int lastMessage) {
+            return base.Channel.GetNewMessagesFromFile(file, lastMessage);
+        }
+        
+        public System.Threading.Tasks.Task<Library.ChatMessage[]> GetNewMessagesFromFileAsync(Library.File file, int lastMessage) {
+            return base.Channel.GetNewMessagesFromFileAsync(file, lastMessage);
         }
     }
 }

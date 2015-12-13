@@ -7,22 +7,60 @@
       <xsd:import namespace="http://schemas.datacontract.org/2004/07/Library" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IChatService_SendMessage_InputMessage">
-    <wsdl:part name="parameters" element="tns:SendMessage" />
+  <wsdl:message name="IChatService_SendMessageToFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToFile" />
   </wsdl:message>
-  <wsdl:message name="IChatService_SendMessage_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  <wsdl:message name="IChatService_SendMessageToFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageToFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetLast20MessagesFromFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLast20MessagesFromFile" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetLast20MessagesFromFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLast20MessagesFromFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetNewMessagesFromFile_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewMessagesFromFile" />
+  </wsdl:message>
+  <wsdl:message name="IChatService_GetNewMessagesFromFile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNewMessagesFromFileResponse" />
   </wsdl:message>
   <wsdl:portType name="IChatService">
-    <wsdl:operation name="SendMessage">
-      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessage" message="tns:IChatService_SendMessage_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/SendMessageResponse" message="tns:IChatService_SendMessage_OutputMessage" />
+    <wsdl:operation name="SendMessageToFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/SendMessageToFile" message="tns:IChatService_SendMessageToFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/SendMessageToFileResponse" message="tns:IChatService_SendMessageToFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLast20MessagesFromFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetLast20MessagesFromFile" message="tns:IChatService_GetLast20MessagesFromFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetLast20MessagesFromFileResponse" message="tns:IChatService_GetLast20MessagesFromFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNewMessagesFromFile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChatService/GetNewMessagesFromFile" message="tns:IChatService_GetNewMessagesFromFile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChatService/GetNewMessagesFromFileResponse" message="tns:IChatService_GetNewMessagesFromFile_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IChatService" type="tns:IChatService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SendMessage">
-      <soap:operation soapAction="http://tempuri.org/IChatService/SendMessage" style="document" />
+    <wsdl:operation name="SendMessageToFile">
+      <soap:operation soapAction="http://tempuri.org/IChatService/SendMessageToFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLast20MessagesFromFile">
+      <soap:operation soapAction="http://tempuri.org/IChatService/GetLast20MessagesFromFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNewMessagesFromFile">
+      <soap:operation soapAction="http://tempuri.org/IChatService/GetNewMessagesFromFile" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
