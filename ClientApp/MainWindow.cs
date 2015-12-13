@@ -22,9 +22,12 @@ namespace ClientApp
         private static IUserService userService = new UserServiceClient();
         private static FileUpLoadServiceClient fileClient = new FileUpLoadServiceClient();
         private static IProjectService projectClient = new ProjectServiceClient();
-        private Library.File activeFile = new Library.File();
+        private Library.File activeFile; //new Library.File();
         private Project project = null;
         private User activeUser = null;
+        private int lastMessageId = 0;
+        private DateTime LastDate;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +38,7 @@ namespace ClientApp
             btnDownload.Visible = false;
             lwFiles.MultiSelect = false;
             listView_Projects.MultiSelect = false;
+            this.richTextBox_Filechat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(CheckKeys);
         }
         private void button_ProjectAdministration_Click(object sender, EventArgs e)
         {
@@ -59,6 +63,7 @@ namespace ClientApp
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            timer_UpdateChat.Start();
             User[] users = userService.FindAllUsers();
             foreach (User user in users)
             {
@@ -112,6 +117,10 @@ namespace ClientApp
                 lblFIleInfo.Text = activeFile.Title;
                 txtFileDesc.Text = activeFile.Description;
                 btnDownload.Visible = true;
+                //TODO Download last 20 messages
+                ChatMessage[] messages = chatService.GetLast20MessagesFromFile(activeFile);
+                listBox_Filechat.Items.Clear();
+                UpdateChat(messages);
             }
         }
 
@@ -265,30 +274,84 @@ namespace ClientApp
 
         private void button_SendFilechat_Click(object sender, EventArgs e)
         {
+            SendMessageToFile();
+        }
+
+        private void SendMessageToFile()
+        {
             if (activeFile != null)
             {
                 ChatMessage message = new ChatMessage(richTextBox_Filechat.Text, activeUser);
-                bool success = chatService.SendMessage(message, activeFile);
+                bool success = chatService.SendMessageToFile(message, activeFile);
 
                 if (success)
                 {
-                    listBox_Filechat.Items.Add(DateTime.Now.ToShortTimeString() + " " + message.Sender.Username + ": " + message.Message);
+                    //listBox_Filechat.Items.Add(DateTime.Now.ToShortTimeString() + " " + message.Sender.Username + ":\n " + message.Message);
+                    richTextBox_Filechat.Text = "";
                 }
                 else
                 {
                     listBox_Filechat.Items.Add("ERROR: Message was not sent!");
                 }
             }
-
-            
-
-            
         }
 
         private void comboBox_Users_SelectedIndexChanged(object sender, EventArgs e)
         {
             string username = comboBox_Users.SelectedItem.ToString();
             activeUser = userService.FindUserByUsername(username).FirstOrDefault();
+        }
+
+        private void UpdateChat(ChatMessage[] messages)
+        {
+            //listBox_Filechat.Items.Clear();
+            
+            if (messages.Count() > 0)
+            {
+                LastDate = messages.First().Time;
+                listBox_Filechat.Items.Add("\t\t *** " + LastDate.Date.ToLongDateString() + " ***");
+                foreach (ChatMessage message in messages)
+                {
+                    if (LastDate.Date < message.Time.Date)
+                    {
+                        LastDate = message.Time.Date;
+                        listBox_Filechat.Items.Add("\t\t *** " + message.Time.Date.ToLongDateString() + " ***");
+                    }
+                    lastMessageId = message.Id;
+                    listBox_Filechat.Items.Add(message.Time.ToShortTimeString() + "  " + message.Sender.Username + ": \n" + message.Message);
+                }
+                listBox_Filechat.SelectedIndex = listBox_Filechat.Items.Count - 1;
+                listBox_Filechat.SelectedIndex = -1;
+            }
+
+            
+            
+        }
+
+        private void timer_UpdateChat_Tick(object sender, EventArgs e)
+        {
+            if (activeFile != null)
+            {
+                if (lastMessageId == 0) 
+                { 
+                    ChatMessage[] messages = chatService.GetLast20MessagesFromFile(activeFile);
+                    UpdateChat(messages);
+                }
+                else if (lastMessageId > 0)
+                {
+                    ChatMessage[] messages = chatService.GetNewMessagesFromFile(activeFile, lastMessageId);
+                    UpdateChat(messages);
+                }
+            }
+        }
+
+        private void CheckKeys(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13) //char 13 is Return (enter) key
+            {
+                SendMessageToFile();
+            }
+
         }
     }
 }

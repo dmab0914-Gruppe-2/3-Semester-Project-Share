@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panelLeft = new System.Windows.Forms.Panel();
             this.listView_Projects = new System.Windows.Forms.ListView();
@@ -40,6 +41,8 @@
             this.lwFiles = new System.Windows.Forms.ListView();
             this.btnUpload = new System.Windows.Forms.Button();
             this.panelRight = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboBox_Users = new System.Windows.Forms.ComboBox();
             this.button_SendFilechat = new System.Windows.Forms.Button();
             this.listBox_Filechat = new System.Windows.Forms.ListBox();
             this.richTextBox_Filechat = new System.Windows.Forms.RichTextBox();
@@ -56,8 +59,7 @@
             this.ChatFileDivider = new System.Windows.Forms.Label();
             this.ProjectsChatFileDevider = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox_Users = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.timer_UpdateChat = new System.Windows.Forms.Timer(this.components);
             this.panelLeft.SuspendLayout();
             this.panelCenterBottom.SuspendLayout();
             this.panelRight.SuspendLayout();
@@ -191,11 +193,29 @@
             this.panelRight.Size = new System.Drawing.Size(353, 561);
             this.panelRight.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 452);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Vælg en midlertidig bruger";
+            // 
+            // comboBox_Users
+            // 
+            this.comboBox_Users.FormattingEnabled = true;
+            this.comboBox_Users.Location = new System.Drawing.Point(145, 451);
+            this.comboBox_Users.Name = "comboBox_Users";
+            this.comboBox_Users.Size = new System.Drawing.Size(197, 21);
+            this.comboBox_Users.TabIndex = 8;
+            this.comboBox_Users.SelectedIndexChanged += new System.EventHandler(this.comboBox_Users_SelectedIndexChanged);
+            // 
             // button_SendFilechat
             // 
-            this.button_SendFilechat.Location = new System.Drawing.Point(267, 526);
+            this.button_SendFilechat.Location = new System.Drawing.Point(267, 481);
             this.button_SendFilechat.Name = "button_SendFilechat";
-            this.button_SendFilechat.Size = new System.Drawing.Size(75, 23);
+            this.button_SendFilechat.Size = new System.Drawing.Size(75, 68);
             this.button_SendFilechat.TabIndex = 7;
             this.button_SendFilechat.Text = "Send";
             this.button_SendFilechat.UseVisualStyleBackColor = true;
@@ -346,23 +366,10 @@
             this.label1.Size = new System.Drawing.Size(2, 560);
             this.label1.TabIndex = 4;
             // 
-            // comboBox_Users
+            // timer_UpdateChat
             // 
-            this.comboBox_Users.FormattingEnabled = true;
-            this.comboBox_Users.Location = new System.Drawing.Point(145, 451);
-            this.comboBox_Users.Name = "comboBox_Users";
-            this.comboBox_Users.Size = new System.Drawing.Size(197, 21);
-            this.comboBox_Users.TabIndex = 8;
-            this.comboBox_Users.SelectedIndexChanged += new System.EventHandler(this.comboBox_Users_SelectedIndexChanged);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 452);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Vælg en midlertidig bruger";
+            this.timer_UpdateChat.Interval = 1000;
+            this.timer_UpdateChat.Tick += new System.EventHandler(this.timer_UpdateChat_Tick);
             // 
             // MainWindow
             // 
@@ -425,6 +432,7 @@
         private System.Windows.Forms.RichTextBox richTextBox_Filechat;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox_Users;
+        private System.Windows.Forms.Timer timer_UpdateChat;
     }
 }
 

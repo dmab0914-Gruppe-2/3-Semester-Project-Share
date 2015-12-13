@@ -124,6 +124,7 @@
     <None Include="Properties\DataSources\ClientApp.ProjectService.IProjectService.datasource" />
     <None Include="Properties\DataSources\ClientApp.ProjectService.IProjectServiceChannel.datasource" />
     <None Include="Properties\DataSources\ClientApp.ProjectService.ProjectServiceClient.datasource" />
+    <None Include="Properties\DataSources\Library.ChatMessage.datasource" />
     <None Include="Properties\DataSources\Library.File.datasource" />
     <None Include="Properties\DataSources\Library.Project.datasource" />
     <None Include="Properties\DataSources\Library.User.datasource" />
