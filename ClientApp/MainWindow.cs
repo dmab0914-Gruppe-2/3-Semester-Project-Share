@@ -117,7 +117,6 @@ namespace ClientApp
                 lblFIleInfo.Text = activeFile.Title;
                 txtFileDesc.Text = activeFile.Description;
                 btnDownload.Visible = true;
-                //TODO Download last 20 messages
                 ChatMessage[] messages = chatService.GetLast20MessagesFromFile(activeFile);
                 listBox_Filechat.Items.Clear();
                 LastDate = DateTime.MinValue;
