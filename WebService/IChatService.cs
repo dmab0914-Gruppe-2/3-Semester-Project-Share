@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using Library;
 
 namespace WebService
 {
@@ -12,6 +13,12 @@ namespace WebService
     public interface IChatService
     {
         [OperationContract]
-        bool SendMessage(Library.ChatMessage message, Library.File file);
+        bool SendMessageToFile(Library.ChatMessage message, Library.File file);
+
+        [OperationContract]
+        List<ChatMessage> GetLast20MessagesFromFile(Library.File file);
+        
+        [OperationContract]
+        List<ChatMessage> GetNewMessagesFromFile(Library.File file, int lastMessage);
     }
 }
