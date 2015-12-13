@@ -86,9 +86,13 @@ namespace Server.Database
         }
 
 
-        public List<ChatMessage> GetMoreChatMessages(int from, int fileId)
+        public List<ChatMessage> GetMoreChatMessages(int fileId, int fromId)
         {
-            throw new NotImplementedException();
+            var messages =
+                    (from chat in dbContext.ChatMessages
+                    where chat.Id > fromId
+                    select chat).ToList();
+            return messages;
         }
 
         public ChatMessage GetChatMessage(int id)
@@ -99,5 +103,6 @@ namespace Server.Database
                 select chat).SingleOrDefault();
             return message;
         }
+
     }
 }

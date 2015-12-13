@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Library;
 using Server.Database;
 
 namespace Server
@@ -37,6 +38,33 @@ namespace Server
             }
             
             return dbChatMessage.SendMessageToFile(chatMessage, myFile.Id);
+        }
+
+        public List<ChatMessage> GetLast20MessagesFromFile(Library.File file)
+        {
+            if (file == null)
+            {
+                return null;
+            }
+            else
+            {
+                return dbChatMessage.GetTop20ChatMessages(file.Id);
+            }
+
+        }
+
+
+        public List<ChatMessage> GetNewMessagesFromFile(File file, int lastMessageId)
+        {
+            if (file == null)
+            {
+                return null;
+            }
+            else
+            {
+                return dbChatMessage.GetMoreChatMessages(file.Id, lastMessageId);
+            }
+            throw new NotImplementedException();
         }
     }
 }
