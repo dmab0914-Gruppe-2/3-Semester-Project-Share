@@ -13,7 +13,7 @@ namespace UnitTestProject
 
         const int id = 1;
         const string title = "The Big Project";
-        const string description = "It's a fairly big project?";
+        const string description = "Its a fairly big project?";
         const string projectFolder = @"c:\";
         private User projectAdminUser;
         private Project project1;
@@ -45,12 +45,11 @@ namespace UnitTestProject
             project3 = new Project("Recruiting", "Get more members", @"Recruiters", projectAdminUser);
             project4 = new Project("Server code", "Backend server code", @"Backend", projectAdminUser);
             project5 = new Project("Life and Universe", "What is 42?", @"42", projectAdminUser);
-            projectController.AddProject(project1);
-            projectController.AddProject(project2);
-            projectController.AddProject(project3);
-            projectController.AddProject(project4);
-            projectController.AddProject(project5);
-
+            projectController.AddProject(project1.Title,project1.Description,project1.ProjectFolder,project1.ProjectAdministrators.FirstOrDefault());
+            projectController.AddProject(project2.Title, project2.Description, project2.ProjectFolder, project2.ProjectAdministrators.FirstOrDefault());
+            projectController.AddProject(project3.Title, project3.Description, project3.ProjectFolder, project3.ProjectAdministrators.FirstOrDefault());
+            projectController.AddProject(project4.Title, project4.Description, project4.ProjectFolder, project4.ProjectAdministrators.FirstOrDefault());
+            projectController.AddProject(project4.Title, project5.Description, project5.ProjectFolder, project5.ProjectAdministrators.FirstOrDefault());
         }
         #endregion
 
@@ -141,7 +140,7 @@ namespace UnitTestProject
         public void TestCreateProjectSuccess2()
         {
             Project project = new Project(id, title, description, projectFolder, projectAdminUser);
-            ProjectReturnType returnValue = projectController.AddProject(project);
+            ProjectReturnType returnValue = projectController.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
 
             Assert.AreEqual(ProjectReturnType.Success, returnValue);
         }
@@ -150,7 +149,7 @@ namespace UnitTestProject
         public void TestCreateProjectFailTitle2()
         {
             Project project = new Project(id, null, description, projectFolder, projectAdminUser);
-            ProjectReturnType returnValue = projectController.AddProject(project);
+            ProjectReturnType returnValue = projectController.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
             Assert.AreEqual(ProjectReturnType.TitleMissing, returnValue);
         }
 
@@ -158,7 +157,7 @@ namespace UnitTestProject
         public void TestCreateProjectFailDescription2()
         {
             Project project = new Project(id, title, null, projectFolder, projectAdminUser);
-            ProjectReturnType returnValue = projectController.AddProject(project);
+            ProjectReturnType returnValue = projectController.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
             Assert.AreEqual(ProjectReturnType.DescriptionMissing, returnValue);
         }
 
@@ -166,7 +165,7 @@ namespace UnitTestProject
         public void TestCreateProjectFailProjectFolder2()
         {
             Project project = new Project(id, title, description, null, projectAdminUser);
-            ProjectReturnType returnValue = projectController.AddProject(project);
+            ProjectReturnType returnValue = projectController.AddProject(project.Title, project.Description, project.ProjectFolder, project.ProjectAdministrators.FirstOrDefault());
             Assert.AreEqual(ProjectReturnType.ProjectFolderMissing, returnValue);
         }
 
