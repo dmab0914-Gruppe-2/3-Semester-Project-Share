@@ -67,11 +67,10 @@
                 <ul id="menu">
                     <li><a href="../Projects.aspx">Projects</a></li>
                     <li><a href="../Chat.aspx">Chat</a></li>
-                    <ul id="subMenu">
+                   <%-- <ul id="subMenu">
                         <li><a href="../Chat.aspx">Project</a></li>
                         <li><a href="../Chat.aspx">Private</a></li>
-                    </ul>
-
+                    </ul>--%>
                 </ul>
             </nav>
 

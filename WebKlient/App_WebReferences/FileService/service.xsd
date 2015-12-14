@@ -70,6 +70,13 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddMultiFilesReturn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ids" nillable="true" type="q12:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetFileMessage">
     <xs:complexType>
       <xs:sequence />
@@ -78,7 +85,7 @@
   <xs:element name="GetFIleReturnMessage">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="file" nillable="true" type="q12:File" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Library" minOccurs="0" name="file" nillable="true" type="q13:File" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

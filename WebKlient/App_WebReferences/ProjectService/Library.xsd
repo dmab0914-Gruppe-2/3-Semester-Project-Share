@@ -98,6 +98,7 @@
       <xs:element minOccurs="0" name="ProjectAdministrators" nillable="true" type="tns:ArrayOfUser" />
       <xs:element minOccurs="0" name="ProjectFiles" nillable="true" type="tns:ArrayOfFile" />
       <xs:element minOccurs="0" name="ProjectFolder" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ProjectMembers" nillable="true" type="tns:ArrayOfUser" />
       <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>

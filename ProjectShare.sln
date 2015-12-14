@@ -18,6 +18,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebKlient(2)", "http://loca
 	ProjectSection(WebsiteProperties) = preProject
 		UseIISExpress = "true"
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{0ed9f437-b041-4778-b248-1b7afe39a578}|Library.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_7290"
 		Debug.AspNetCompiler.PhysicalPath = "WebKlient\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_7290\"

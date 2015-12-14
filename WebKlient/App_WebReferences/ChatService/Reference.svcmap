@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="325900df-3f9b-4300-88d0-7f4752fc6272" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/WebService/ChatService/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5b21c5dc-2d8a-44a0-8b4d-e27bd9d62f26" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/ChatService/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="32bafe0a-2822-47d4-a121-0fb90e159cd6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/ChatService/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="bd3bb517-b96a-432c-b0d1-5a827a4a3d1a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/ChatService/mex" />
+    <MetadataFile FileName="Library.xsd" MetadataType="Schema" ID="fce147ab-9139-4233-877a-5101c396ee2b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/WebService/ChatService/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
