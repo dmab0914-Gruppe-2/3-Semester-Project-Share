@@ -294,6 +294,10 @@ namespace ClientApp
                     listBox_Filechat.Items.Add("ERROR: Message was not sent!");
                 }
             }
+            else
+            {
+                listBox_Filechat.Items.Add("ERROR: You need to select a file first.");
+            }
         }
 
         private void comboBox_Users_SelectedIndexChanged(object sender, EventArgs e)
