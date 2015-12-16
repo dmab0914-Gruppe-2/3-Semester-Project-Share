@@ -234,9 +234,17 @@ namespace ClientApp
 
         private void button_FindUser_Click(object sender, EventArgs e)
         {
-            Form_FindUsers findusers = new Form_FindUsers(Convert.ToInt32(listView_Projects.SelectedItems[0].Text), false);
-            findusers.ShowDialog();
-            UpdateProjects(false);
+            try
+            {
+                Form_FindUsers findusers = new Form_FindUsers(Convert.ToInt32(listView_Projects.SelectedItems[0].Text), false);
+                findusers.ShowDialog();
+                UpdateProjects(false);
+            }
+            catch
+            {
+                MessageBox.Show("Select project first");
+            }
+           
         }
 
         private void button_Refresh_Click(object sender, EventArgs e)
