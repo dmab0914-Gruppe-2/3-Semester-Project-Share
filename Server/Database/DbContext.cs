@@ -16,6 +16,7 @@ namespace Server.Database
         private static readonly object threadlock = new Object();
         private DbContext()
             : base(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=ProjectShare;Integrated Security=True")
+            //: base("Data Source=kraka.ucn.dk;Initial Catalog=dmab0914_2Sem_2;User ID=dmab0914_2Sem_2;Password=IsAllowed")
         //TODO Replace this is you're getting errors
         {
 
