@@ -75,6 +75,10 @@ namespace UnitTestProject
             {
                 projects.Add(project);
             });
+            projectController.GetProjectByTitle(title).ForEach(delegate(Project project)
+            {
+                projects.Add(project);
+            });
             List<bool> results = new List<bool>();
             foreach (Project project in projects)
             {
